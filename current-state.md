@@ -1,8 +1,8 @@
 # Rahm Current State
 
-last_updated_utc: 2026-05-09T20:49:23+00:00
+last_updated_utc: 2026-05-09T20:52:30+00:00
 generator: Codex generate_current_state.py
-workspace_head: d946df1
+workspace_head: 4c15db5
 
 ## Trading Bot Runtime
 ### gemini
@@ -12,7 +12,7 @@ workspace_head: d946df1
 - nrestarts: 0
 - active_enter: Sat 2026-05-09 09:05:33 CDT
 - reconciliation:
-  - Reconciliation: resolved_pnl=$-13068.75 open_cost=$5075.64 open_fees=$39.94 recon_adj=$-96.06 expected_cash=$1.11 cash_gap=$+0.00 unrealized=+$275.44 [MATCH]
+  - Reconciliation: resolved_pnl=$-13068.75 open_cost=$5075.64 open_fees=$39.94 recon_adj=$-96.06 expected_cash=$1.11 cash_gap=$+0.00 unrealized=+$275.25 [MATCH]
   - ✓ HARD CHECK PASSED — gap $0.00
   - Reconciliation adjustment: $-96.06 (auto-computed from exchange balance)
   - Expected cash: $1.11
@@ -100,7 +100,7 @@ workspace_head: d946df1
   - `QTY_PER_POSITION=60`
 - strategy/cohort excerpts:
   - Lifetime P&L: -$36.11 across 597 resolved trades
-  - 24h P&L: +$0.00 (0W-0L resolved, 1 placed)
+  - 24h P&L: +$0.00 (0W-0L resolved, 0 placed)
   - SELF-MANAGED ACTIVITY (last 24h):
   - Pilots: Weather DS cohort since 2026-05-08 15:20:00: 6 placed, 0 resolved, 6 open, $25.50 open cost, latest=2026-05-08 20:52:11.
   - Cohort gates: Weather DS needs 30 more resolved rows before n>=30 evaluation; no pass/fail scaling action due.
@@ -249,25 +249,25 @@ workspace_head: d946df1
 ## Timers
 ```
 NEXT                            LEFT LAST                              PASSED UNIT                                          ACTIVATES
-Sat 2026-05-09 15:50:17 CDT      37s Sat 2026-05-09 15:49:17 CDT      22s ago ibkr-scan-loop-watchdog.timer                 ibkr-scan-loop-watchdog.service
-Sat 2026-05-09 15:57:06 CDT     7min Sat 2026-05-09 15:42:06 CDT     7min ago ds-storage-pressure-monitor.timer             ds-storage-pressure-monitor.service
-Sat 2026-05-09 15:58:18 CDT     8min Sat 2026-05-09 15:48:16 CDT 1min 23s ago ds-shadow-continuous-archive.timer            ds-shadow-continuous-archive.service
-Sat 2026-05-09 16:04:22 CDT    14min Sat 2026-05-09 15:04:06 CDT    45min ago moderate-favorites-unr-resolver.timer         moderate-favorites-unr-resolver.service
-Sat 2026-05-09 16:07:36 CDT    17min Sat 2026-05-09 15:06:06 CDT    43min ago consensus-tracking-resolver.timer             consensus-tracking-resolver.service
-Sat 2026-05-09 16:26:22 CDT    36min Sat 2026-05-09 15:25:59 CDT    23min ago moderate-favorites-finance-resolver.timer     moderate-favorites-finance-resolver.service
-Sat 2026-05-09 16:33:04 CDT    43min Sat 2026-05-09 15:32:38 CDT    17min ago moderate-favorites-weather-resolver.timer     moderate-favorites-weather-resolver.service
-Sat 2026-05-09 16:35:12 CDT    45min Sat 2026-05-09 15:33:17 CDT    16min ago moderate-favorites-economics-resolver.timer   moderate-favorites-economics-resolver.service
-Sat 2026-05-09 16:39:53 CDT    50min Sat 2026-05-09 15:38:03 CDT    11min ago macro-release-resolver.timer                  macro-release-resolver.service
-Sat 2026-05-09 16:43:35 CDT    53min Sat 2026-05-09 15:43:06 CDT     6min ago ladder-coherence-resolver.timer               ladder-coherence-resolver.service
-Sat 2026-05-09 16:48:13 CDT    58min Sat 2026-05-09 15:47:06 CDT 2min 33s ago spread-capture-resolver.timer                 spread-capture-resolver.service
-Sat 2026-05-09 17:30:50 CDT 1h 41min Sat 2026-05-09 11:30:50 CDT 4h 18min ago ds-shadow-db-maintenance.timer                ds-shadow-db-maintenance.service
-Sat 2026-05-09 18:00:00 CDT 2h 10min Sat 2026-05-09 15:00:01 CDT    49min ago snap.firmware-updater.firmware-notifier.timer snap.firmware-updater.firmware-notifier.service
-Sat 2026-05-09 18:10:00 CDT 2h 20min -                                      - claude-chat-sync.timer                        claude-chat-sync.service
-Sat 2026-05-09 19:17:00 CDT 3h 27min Sat 2026-05-09 13:17:06 CDT 2h 32min ago ds-shadow-retention-engine.timer              ds-shadow-retention-engine.service
-Sat 2026-05-09 21:24:00 CDT 5h 34min Sat 2026-05-09 15:24:06 CDT    25min ago ds-shadow-archive.timer                       ds-shadow-archive.service
-Sat 2026-05-09 21:40:00 CDT 5h 50min Sat 2026-05-09 15:40:04 CDT     9min ago ds-storage-monitor.timer                      ds-storage-monitor.service
+Sat 2026-05-09 15:53:26 CDT      38s Sat 2026-05-09 15:52:26 CDT      21s ago ibkr-scan-loop-watchdog.timer                 ibkr-scan-loop-watchdog.service
+Sat 2026-05-09 15:57:06 CDT 4min 18s Sat 2026-05-09 15:42:06 CDT    10min ago ds-storage-pressure-monitor.timer             ds-storage-pressure-monitor.service
+Sat 2026-05-09 15:58:18 CDT     5min Sat 2026-05-09 15:48:16 CDT 4min 31s ago ds-shadow-continuous-archive.timer            ds-shadow-continuous-archive.service
+Sat 2026-05-09 16:04:45 CDT    11min Sat 2026-05-09 15:04:06 CDT    48min ago moderate-favorites-unr-resolver.timer         moderate-favorites-unr-resolver.service
+Sat 2026-05-09 16:06:19 CDT    13min Sat 2026-05-09 15:06:06 CDT    46min ago consensus-tracking-resolver.timer             consensus-tracking-resolver.service
+Sat 2026-05-09 16:27:32 CDT    34min Sat 2026-05-09 15:25:59 CDT    26min ago moderate-favorites-finance-resolver.timer     moderate-favorites-finance-resolver.service
+Sat 2026-05-09 16:32:56 CDT    40min Sat 2026-05-09 15:32:38 CDT    20min ago moderate-favorites-weather-resolver.timer     moderate-favorites-weather-resolver.service
+Sat 2026-05-09 16:34:17 CDT    41min Sat 2026-05-09 15:33:17 CDT    19min ago moderate-favorites-economics-resolver.timer   moderate-favorites-economics-resolver.service
+Sat 2026-05-09 16:39:24 CDT    46min Sat 2026-05-09 15:38:03 CDT    14min ago macro-release-resolver.timer                  macro-release-resolver.service
+Sat 2026-05-09 16:44:39 CDT    51min Sat 2026-05-09 15:43:06 CDT     9min ago ladder-coherence-resolver.timer               ladder-coherence-resolver.service
+Sat 2026-05-09 16:49:02 CDT    56min Sat 2026-05-09 15:47:06 CDT     5min ago spread-capture-resolver.timer                 spread-capture-resolver.service
+Sat 2026-05-09 17:30:50 CDT 1h 38min Sat 2026-05-09 11:30:50 CDT 4h 21min ago ds-shadow-db-maintenance.timer                ds-shadow-db-maintenance.service
+Sat 2026-05-09 18:00:00 CDT  2h 7min Sat 2026-05-09 15:00:01 CDT    52min ago snap.firmware-updater.firmware-notifier.timer snap.firmware-updater.firmware-notifier.service
+Sat 2026-05-09 18:10:00 CDT 2h 17min -                                      - claude-chat-sync.timer                        claude-chat-sync.service
+Sat 2026-05-09 19:17:00 CDT 3h 24min Sat 2026-05-09 13:17:06 CDT 2h 35min ago ds-shadow-retention-engine.timer              ds-shadow-retention-engine.service
+Sat 2026-05-09 21:24:00 CDT 5h 31min Sat 2026-05-09 15:24:06 CDT    28min ago ds-shadow-archive.timer                       ds-shadow-archive.service
+Sat 2026-05-09 21:40:00 CDT 5h 47min Sat 2026-05-09 15:40:04 CDT    12min ago ds-storage-monitor.timer                      ds-storage-monitor.service
 Sat 2026-05-09 23:35:00 CDT       7h Fri 2026-05-08 23:55:06 CDT      15h ago ibkr-deterministic-fx-poc.timer               ibkr-deterministic-fx-poc.service
-Sun 2026-05-10 04:46:13 CDT      12h Sat 2026-05-09 04:48:06 CDT      11h ago ds-archive-tier-rotation.timer                ds-archive-tier-rotation.service
+Sun 2026-05-10 04:47:40 CDT      12h Sat 2026-05-09 04:48:06 CDT      11h ago ds-archive-tier-rotation.timer                ds-archive-tier-rotation.service
 Sun 2026-05-10 05:20:00 CDT      13h -                                      - logrotate-user.timer                          logrotate-user.service
 Sun 2026-05-10 05:30:00 CDT      13h -                                      - disk-hygiene-audit.timer                      disk-hygiene-audit.service
 Sun 2026-05-10 05:40:00 CDT      13h -                                      - database-autonomous-maintenance.timer         database-autonomous-maintenance.service
@@ -280,8 +280,8 @@ Sun 2026-05-10 09:14:06 CDT      17h Sat 2026-05-09 09:14:06 CDT       6h ago la
 - gemini: head=0e0c54b branch=master in_sync=true remote=https://github.com/PhotonRahm/gemini_prediction_bot.git dirty=no
 - ibkr: head=a974e39 branch=master in_sync=true remote=https://github.com/PhotonRahm/ibkr_forecast_bot.git dirty=no
 - kalshi: head=f769da0 branch=master in_sync=true remote=https://github.com/PhotonRahm/kalshi_favorites_bot.git dirty=no
-- operations-knowledge: head=e1d8493 branch=master in_sync=true remote=https://github.com/PhotonRahm/operations-knowledge.git dirty=no
-- workspace: head=d946df1 branch=master in_sync=true remote=https://github.com/PhotonRahm/rahm-workspace.git dirty=no
+- operations-knowledge: head=dfad003 branch=master in_sync=true remote=https://github.com/PhotonRahm/operations-knowledge.git dirty=no
+- workspace: head=4c15db5 branch=master in_sync=true remote=https://github.com/PhotonRahm/rahm-workspace.git dirty=no
 
 ## Deferred And Pending Items
 ```
