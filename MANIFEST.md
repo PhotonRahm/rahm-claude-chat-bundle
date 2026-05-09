@@ -1,6 +1,6 @@
 # Claude Chat Bundle Manifest
 
-generated_utc: 2026-05-09T20:52:47+00:00
+generated_utc: 2026-05-09T20:52:30+00:00
 
 - `AGENTS.md` | 38613 bytes | sha256=2b4c8fe6f949b90957d21567a0c7da699d1b150e04859b0c6e7fbcb1d108e52a | tier=2 | Global Rahm operating rules and principles
 - `dispatch-conventions.md` | 9799 bytes | sha256=d9d56c53ffadc3f61f3644abe15918be885989f313ee4bcc9a127d25d44c0b46 | tier=2 | Dispatch vocabulary and reporting conventions
