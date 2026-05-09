@@ -1,8 +1,8 @@
 # Rahm Current State
 
-last_updated_utc: 2026-05-09T20:52:30+00:00
+last_updated_utc: 2026-05-09T23:10:00+00:00
 generator: Codex generate_current_state.py
-workspace_head: 4c15db5
+workspace_head: 7f10f21
 
 ## Trading Bot Runtime
 ### gemini
@@ -12,11 +12,11 @@ workspace_head: 4c15db5
 - nrestarts: 0
 - active_enter: Sat 2026-05-09 09:05:33 CDT
 - reconciliation:
-  - Reconciliation: resolved_pnl=$-13068.75 open_cost=$5075.64 open_fees=$39.94 recon_adj=$-96.06 expected_cash=$1.11 cash_gap=$+0.00 unrealized=+$275.25 [MATCH]
+  - Reconciliation: resolved_pnl=$-12457.83 open_cost=$0.00 open_fees=$0.00 recon_adj=$0.28 expected_cash=$5823.95 cash_gap=$+0.00 unrealized=+$5.85 [MATCH]
   - ✓ HARD CHECK PASSED — gap $0.00
-  - Reconciliation adjustment: $-96.06 (auto-computed from exchange balance)
-  - Expected cash: $1.11
-  - Actual cash (API): $1.11
+  - Reconciliation adjustment: $0.28 (auto-computed from exchange balance)
+  - Expected cash: $5823.95
+  - Actual cash (API): $5823.95
 - selected env:
   - `BLOCKED_ASSETS=WTI,BTC,ETH,SOL,XRP,ZEC,BRENT,COPPER,NGAS`
   - `BTC_QTY=600`
@@ -59,33 +59,33 @@ workspace_head: 4c15db5
   - `SPREAD_QTY=15`
   - `VALUE_QTY=10`
 - strategy/cohort excerpts:
-  - Lifetime P&L: +$4,296.85 across 243 resolved trades
-  - 24h P&L: +$503.26 (9W-0L resolved, 16 placed)
-  - Today's P&L: +$0.00
-  - Record: 213W-30L (88%) | P&L: +$4,296.85
-  - Today's P&L: +$0.00
-  - Today's raw P&L: +$0.00
-  - 24h: 16 placed | 9W-0L resolved | P&L +$503.26
-  - By expiry: 0-8h: 53W-12L (81.5%) +$343.91 | 16-24h: 115W-12L (90.6%) +$3,723.34 | 8-16h: 45W-6L (88.2%) +$525.39
+  - Lifetime P&L: +$4,901.27 across 252 resolved trades
+  - 24h P&L: +$604.42 (9W-0L resolved, 16 placed)
+  - Record: 222W-30L (88%) | P&L: +$4,901.27
+  - Today's P&L: +$575.37
+  - Today's raw P&L: +$575.37
+  - 24h: 16 placed | 9W-0L resolved | P&L +$604.42
+  - 24h resolved by time: morning 0-14 UTC 5W-0L +$575.22 | evening 15-23 UTC 4W-0L +$29.20
+  - By expiry: 0-8h: 54W-12L (81.8%) +$344.06 | 16-24h: 122W-12L (91.0%) +$4,217.70 | 8-16h: 46W-6L (88.5%) +$635.30
   - Trades in rolling 24h: 16
   - Actual P&L (flat QTY baseline): $0.00
   - Kelly P&L (if Kelly was used): $0.00
   - Config: QTY 50 | Max open 3 | Per-trade $50 | Daily CB $-100 | Lifetime CB $-300 | Min depth 0
   - Active cohort start: 2026-05-09 14:01:37
   - Daily CB reset at: 2026-05-07 19:04:24 | daily ledger scoped after reset; lifetime ledger unchanged
-  - Today: 78 attempted (50 filled, 0 cancelled, 28 unfilled) | 51 resolved (51W-0L) | +$17.68 P&L
-  - Pilot lifetime (since 2026-05-06 16:28:46): 161 filled | 159 resolved (152W-7L) | +$0.57 P&L
+  - Today: 66 attempted (47 filled, 0 cancelled, 19 unfilled) | 47 resolved (47W-0L) | +$24.18 P&L
+  - Pilot lifetime (since 2026-05-06 16:28:46): 164 filled | 164 resolved (157W-7L) | +$7.07 P&L
   - (See daily/full-picture report for DB-wide DS lifetime including all prior cohorts.)
-  - Pilot CB ledger (lifetime CB scoped to current pilot): +$0.57 / -$300.00 [SAFE]
+  - Pilot CB ledger (lifetime CB scoped to current pilot): +$7.07 / -$300.00 [SAFE]
   - GEMINI DS COHORT TRACKER
   - Closed cohort: strict_filter_pilot | start 2026-05-05 15:57:01 | closed 2026-05-05 18:12:00
 
 ### ibkr
 - unit: ibkr-scan-loop.service
 - active: active/running
-- pid: 2049139
+- pid: 2459276
 - nrestarts: 0
-- active_enter: Fri 2026-05-08 10:53:36 CDT
+- active_enter: Sat 2026-05-09 17:47:55 CDT
 - reconciliation:
   - Formula: expected cash/NLV uses broker_ledger realized P&L + latest Flex statement snapshot
   - ✓ HARD CHECK PASSED — cash gap $0.00
@@ -109,7 +109,7 @@ workspace_head: 4c15db5
   - P&L since deploy: $32.99
   - Live record (all bot resolutions): 55W-3L (94.8%) | P&L +$56.41 | avg +$0.97
   - Filters: bid >= $0.80 | ask <= $0.95 | spread >= $0.04 | expiry 12-48h | lifetime 2h
-  - Historical: 5030 entries | 398 resolved | 199W-199L (50.0%) | P&L: -$121.68
+  - Historical: 5063 entries | 398 resolved | 199W-199L (50.0%) | P&L: -$121.68
   - Final avg P&L/trade: -$0.31 | accumulation disabled; data preserved in shadow_nws_trades
   - 0-24h: 61 collected, 13 resolved (76.9% WR)
   - 0-24h: 0 eligible, 0 resolved (0.0% WR)
@@ -118,7 +118,7 @@ workspace_head: 4c15db5
   - FX 0-24h: 0 eligible, 0 resolved (0.0% WR)
   - ECONOMICS 0-24h: 0 eligible, 0 resolved (0.0% WR)
   - PLACEMENT CONVERSION (last 24h):
-  - Last 24h: 3379 evaluated | 0 live-eligible (0.0%) | 0 placed (0.0%); top rejects: category_blocked(OTHER) 38%, category_blocked(RATES) 22%, underlier_not_proven(USCCI) 5%
+  - Last 24h: 3357 evaluated | 0 live-eligible (0.0%) | 0 placed (0.0%); top rejects: category_blocked(OTHER) 38%, category_blocked(RATES) 22%, underlier_not_proven(USCCI) 5%
 
 ### kalshi
 - unit: kalshi-bot.service
@@ -127,11 +127,11 @@ workspace_head: 4c15db5
 - nrestarts: 0
 - active_enter: Sat 2026-05-09 09:00:38 CDT
 - reconciliation:
-  - Reconciliation: resolved_pnl=$811.66 open_cost=$906.72 open_fees=$1.46 recon_adj=$124.36 expected_cash=$2618.39 cash_gap=$+0.00 unrealized=$+95.99 [MATCH]
+  - Reconciliation: resolved_pnl=$697.07 open_cost=$0.00 open_fees=$0.00 recon_adj=$127.25 expected_cash=$3414.87 cash_gap=$+0.00 unrealized=$+90.55 [MATCH]
   - ✓ HARD CHECK PASSED — gap $0.00
-  - Reconciliation adjustment: $124.36 (auto-computed from exchange balance)
-  - Expected cash: $2618.39
-  - Actual cash (API): $2618.39
+  - Reconciliation adjustment: $127.25 (auto-computed from exchange balance)
+  - Expected cash: $3414.87
+  - Actual cash (API): $3414.87
 - selected env:
   - `DETERMINISTIC_SETTLEMENT_ALLOWED_ASSETS=BTC,ETH`
   - `DETERMINISTIC_SETTLEMENT_DAILY_CB=-600`
@@ -214,13 +214,13 @@ workspace_head: 4c15db5
   - `MODERATE_FAVORITES_QTY_PRIME=100`
   - `MR_ASSET_QTY_OVERRIDES=INDEX:300`
 - strategy/cohort excerpts:
-  - Lifetime P&L: +$811.66 across 2304 resolved trades
-  - 24h P&L: +$722.61 (82W-3L resolved, 87 placed)
+  - Lifetime P&L: +$697.07 across 2316 resolved trades
+  - 24h P&L: +$708.17 (80W-1L resolved, 94 placed)
   - Record: 328W-53L (86%) | P&L: -$103.88
   - ✓ Weather-high blocked (80% WR, -$930 lifetime)
   - ✓ BTC blocked (53 resolved, -$173 lifetime; tail-loss asymmetry)
   - ✓ ETH cost cap: max $300 per trade (27W-0L good cohort vs 9W-3L bad cohort; p=0.025)
-  - 24h: 0 placed | 6W-3L resolved | P&L -$149.44
+  - 24h: 0 placed | 1W-0L resolved | P&L +$33.76
   - Forward allowed-cell tracker: start 2026-05-07 20:20:23 UTC | 3W-1L (75.0%) | P&L $-27.92 | open 0 ($0.00 cost)
   - WEATHER_LOW YES cap pilot: 0W-0L (0%) | P&L +$0.00 | open 0 ($0.00) | blocks 6/6 attempts | review 0/30 resolved
   - 24h resolved by hour: morning 0-10 CDT 0W-0L (+$0.00) | afternoon 15-20 CDT 0W-0L (+$0.00)
@@ -232,56 +232,57 @@ workspace_head: 4c15db5
   - Decision trigger: at 30+ resolved in each slice, pilot only if preferred-range WR/P&L is materially better
   - Record: 22W-3L (88.0%) | P&L: $-205.31
   - NWS FILTER BEHAVIOR (last 24h):
-  - 263756 entries | 257643 resolved | 256531W-1112L (99.6%) | P&L: +$355,187.20
-  - Taker-net P&L: +$291,445.24 (maker model overstates by +$63,741.96 / 22%; fees -$27875)
+  - 264186 entries | 258010 resolved | 256896W-1114L (99.6%) | P&L: +$356,143.20
+  - Taker-net P&L: +$292,268.42 (maker model overstates by +$63,874.78 / 22%; fees -$27944)
 
 ## Storage State
 - DATABASE STORAGE HEALTH
 -   Overall status: GREEN / TARGET
--   Disk: 180.37 GiB used / 936.79 GiB total (19.3%), 708.76 GiB free
+-   Disk: 181.52 GiB used / 936.79 GiB total (19.4%), 707.61 GiB free
 -   Envelope: TARGET 50.0%, WARN 65.0%, CRITICAL 75.0%, HARD_LIMIT 85.0%
--   DS storage: active 2.84 GiB (state TARGET), hot 93.78 GiB, warm 0.00 GiB, cold 0.00 GiB, archive_state CRITICAL, total 96.64 GiB (10.3% of disk)
--   Retention engine: last=2026-05-09T20:26:36+00:00 status=SKIPPED_LOCK_BUSY dry_run=False rows_selected=0 rows_archived=0 rows_pruned=0
--   Tier rotation: last=2026-05-09T20:11:36+00:00 status=OK actions=0
--   Autonomous maintenance: last=2026-05-09T18:58:08+00:00 status=OK backups=5/5 integrity_failures=0 drift_flags=0
+-   DS storage: active 2.86 GiB (state TARGET), hot 94.04 GiB, warm 0.00 GiB, cold 0.00 GiB, archive_state CRITICAL, total 96.91 GiB (10.3% of disk)
+-   Retention engine: last=2026-05-09T22:45:06+00:00 status=OK dry_run=False rows_selected=0 rows_archived=0 rows_pruned=0
+-   Archive compression: status=OK actions=0 warm_days=7 min_file_mb=100
+-   Tier rotation: last=2026-05-09T22:45:06+00:00 status=OK actions=0
+-   Autonomous maintenance: last=2026-05-09T20:52:50+00:00 status=OK backups=5/5 integrity_failures=0 drift_flags=0
 -   PROTECT_TRADING mode: NO
 
 ## Timers
 ```
 NEXT                            LEFT LAST                              PASSED UNIT                                          ACTIVATES
-Sat 2026-05-09 15:53:26 CDT      38s Sat 2026-05-09 15:52:26 CDT      21s ago ibkr-scan-loop-watchdog.timer                 ibkr-scan-loop-watchdog.service
-Sat 2026-05-09 15:57:06 CDT 4min 18s Sat 2026-05-09 15:42:06 CDT    10min ago ds-storage-pressure-monitor.timer             ds-storage-pressure-monitor.service
-Sat 2026-05-09 15:58:18 CDT     5min Sat 2026-05-09 15:48:16 CDT 4min 31s ago ds-shadow-continuous-archive.timer            ds-shadow-continuous-archive.service
-Sat 2026-05-09 16:04:45 CDT    11min Sat 2026-05-09 15:04:06 CDT    48min ago moderate-favorites-unr-resolver.timer         moderate-favorites-unr-resolver.service
-Sat 2026-05-09 16:06:19 CDT    13min Sat 2026-05-09 15:06:06 CDT    46min ago consensus-tracking-resolver.timer             consensus-tracking-resolver.service
-Sat 2026-05-09 16:27:32 CDT    34min Sat 2026-05-09 15:25:59 CDT    26min ago moderate-favorites-finance-resolver.timer     moderate-favorites-finance-resolver.service
-Sat 2026-05-09 16:32:56 CDT    40min Sat 2026-05-09 15:32:38 CDT    20min ago moderate-favorites-weather-resolver.timer     moderate-favorites-weather-resolver.service
-Sat 2026-05-09 16:34:17 CDT    41min Sat 2026-05-09 15:33:17 CDT    19min ago moderate-favorites-economics-resolver.timer   moderate-favorites-economics-resolver.service
-Sat 2026-05-09 16:39:24 CDT    46min Sat 2026-05-09 15:38:03 CDT    14min ago macro-release-resolver.timer                  macro-release-resolver.service
-Sat 2026-05-09 16:44:39 CDT    51min Sat 2026-05-09 15:43:06 CDT     9min ago ladder-coherence-resolver.timer               ladder-coherence-resolver.service
-Sat 2026-05-09 16:49:02 CDT    56min Sat 2026-05-09 15:47:06 CDT     5min ago spread-capture-resolver.timer                 spread-capture-resolver.service
-Sat 2026-05-09 17:30:50 CDT 1h 38min Sat 2026-05-09 11:30:50 CDT 4h 21min ago ds-shadow-db-maintenance.timer                ds-shadow-db-maintenance.service
-Sat 2026-05-09 18:00:00 CDT  2h 7min Sat 2026-05-09 15:00:01 CDT    52min ago snap.firmware-updater.firmware-notifier.timer snap.firmware-updater.firmware-notifier.service
-Sat 2026-05-09 18:10:00 CDT 2h 17min -                                      - claude-chat-sync.timer                        claude-chat-sync.service
-Sat 2026-05-09 19:17:00 CDT 3h 24min Sat 2026-05-09 13:17:06 CDT 2h 35min ago ds-shadow-retention-engine.timer              ds-shadow-retention-engine.service
-Sat 2026-05-09 21:24:00 CDT 5h 31min Sat 2026-05-09 15:24:06 CDT    28min ago ds-shadow-archive.timer                       ds-shadow-archive.service
-Sat 2026-05-09 21:40:00 CDT 5h 47min Sat 2026-05-09 15:40:04 CDT    12min ago ds-storage-monitor.timer                      ds-storage-monitor.service
-Sat 2026-05-09 23:35:00 CDT       7h Fri 2026-05-08 23:55:06 CDT      15h ago ibkr-deterministic-fx-poc.timer               ibkr-deterministic-fx-poc.service
-Sun 2026-05-10 04:47:40 CDT      12h Sat 2026-05-09 04:48:06 CDT      11h ago ds-archive-tier-rotation.timer                ds-archive-tier-rotation.service
-Sun 2026-05-10 05:20:00 CDT      13h -                                      - logrotate-user.timer                          logrotate-user.service
-Sun 2026-05-10 05:30:00 CDT      13h -                                      - disk-hygiene-audit.timer                      disk-hygiene-audit.service
-Sun 2026-05-10 05:40:00 CDT      13h -                                      - database-autonomous-maintenance.timer         database-autonomous-maintenance.service
-Sun 2026-05-10 09:14:06 CDT      17h Sat 2026-05-09 09:14:06 CDT       6h ago launchpadlib-cache-clean.timer                launchpadlib-cache-clean.service
+Sat 2026-05-09 18:10:26 CDT       9s Sat 2026-05-09 18:09:26 CDT      50s ago ibkr-scan-loop-watchdog.timer                 ibkr-scan-loop-watchdog.service
+Sat 2026-05-09 18:11:56 CDT 1min 40s Sat 2026-05-09 18:01:56 CDT     8min ago ds-shadow-continuous-archive.timer            ds-shadow-continuous-archive.service
+Sat 2026-05-09 18:15:12 CDT 4min 55s Sat 2026-05-09 18:00:12 CDT    10min ago ds-storage-pressure-monitor.timer             ds-storage-pressure-monitor.service
+Sat 2026-05-09 18:28:57 CDT    18min Sat 2026-05-09 17:28:06 CDT    42min ago moderate-favorites-finance-resolver.timer     moderate-favorites-finance-resolver.service
+Sat 2026-05-09 18:33:46 CDT    23min Sat 2026-05-09 17:33:36 CDT    36min ago moderate-favorites-weather-resolver.timer     moderate-favorites-weather-resolver.service
+Sat 2026-05-09 18:36:23 CDT    26min Sat 2026-05-09 17:35:52 CDT    34min ago moderate-favorites-economics-resolver.timer   moderate-favorites-economics-resolver.service
+Sat 2026-05-09 18:41:48 CDT    31min Sat 2026-05-09 17:41:06 CDT    29min ago macro-release-resolver.timer                  macro-release-resolver.service
+Sat 2026-05-09 18:48:41 CDT    38min Sat 2026-05-09 17:46:56 CDT    23min ago ladder-coherence-resolver.timer               ladder-coherence-resolver.service
+Sat 2026-05-09 18:49:31 CDT    39min Sat 2026-05-09 17:49:16 CDT    21min ago spread-capture-resolver.timer                 spread-capture-resolver.service
+Sat 2026-05-09 19:08:12 CDT    57min Sat 2026-05-09 18:08:00 CDT 2min 16s ago moderate-favorites-unr-resolver.timer         moderate-favorites-unr-resolver.service
+Sat 2026-05-09 19:09:18 CDT    59min Sat 2026-05-09 18:09:06 CDT 1min 10s ago consensus-tracking-resolver.timer             consensus-tracking-resolver.service
+Sat 2026-05-09 19:17:00 CDT  1h 6min Sat 2026-05-09 13:17:06 CDT 4h 53min ago ds-shadow-retention-engine.timer              ds-shadow-retention-engine.service
+Sat 2026-05-09 21:00:00 CDT 2h 49min Sat 2026-05-09 18:00:02 CDT    10min ago snap.firmware-updater.firmware-notifier.timer snap.firmware-updater.firmware-notifier.service
+Sat 2026-05-09 21:24:00 CDT 3h 13min Sat 2026-05-09 15:24:06 CDT 2h 46min ago ds-shadow-archive.timer                       ds-shadow-archive.service
+Sat 2026-05-09 21:40:00 CDT 3h 29min Sat 2026-05-09 15:40:04 CDT 2h 30min ago ds-storage-monitor.timer                      ds-storage-monitor.service
+Sat 2026-05-09 23:30:50 CDT 5h 20min Sat 2026-05-09 17:30:50 CDT    39min ago ds-shadow-db-maintenance.timer                ds-shadow-db-maintenance.service
+Sat 2026-05-09 23:35:00 CDT 5h 24min Fri 2026-05-08 23:55:06 CDT      18h ago ibkr-deterministic-fx-poc.timer               ibkr-deterministic-fx-poc.service
+Sun 2026-05-10 04:47:40 CDT      10h Sat 2026-05-09 04:48:06 CDT      13h ago ds-archive-tier-rotation.timer                ds-archive-tier-rotation.service
+Sun 2026-05-10 05:20:00 CDT      11h -                                      - logrotate-user.timer                          logrotate-user.service
+Sun 2026-05-10 05:30:00 CDT      11h -                                      - disk-hygiene-audit.timer                      disk-hygiene-audit.service
+Sun 2026-05-10 05:40:00 CDT      11h -                                      - database-autonomous-maintenance.timer         database-autonomous-maintenance.service
+Sun 2026-05-10 09:14:06 CDT      15h Sat 2026-05-09 09:14:06 CDT       8h ago launchpadlib-cache-clean.timer                launchpadlib-cache-clean.service
+-                                  - Sat 2026-05-09 18:10:00 CDT      16s ago claude-chat-sync.timer                        claude-chat-sync.service
 
 23 timers listed.
 ```
 
 ## Repo State
 - gemini: head=0e0c54b branch=master in_sync=true remote=https://github.com/PhotonRahm/gemini_prediction_bot.git dirty=no
-- ibkr: head=a974e39 branch=master in_sync=true remote=https://github.com/PhotonRahm/ibkr_forecast_bot.git dirty=no
+- ibkr: head=e1a8d8b branch=master in_sync=true remote=https://github.com/PhotonRahm/ibkr_forecast_bot.git dirty=no
 - kalshi: head=f769da0 branch=master in_sync=true remote=https://github.com/PhotonRahm/kalshi_favorites_bot.git dirty=no
-- operations-knowledge: head=dfad003 branch=master in_sync=true remote=https://github.com/PhotonRahm/operations-knowledge.git dirty=no
-- workspace: head=4c15db5 branch=master in_sync=true remote=https://github.com/PhotonRahm/rahm-workspace.git dirty=no
+- operations-knowledge: head=8b471d0 branch=master in_sync=true remote=https://github.com/PhotonRahm/operations-knowledge.git dirty=no
+- workspace: head=7f10f21 branch=master in_sync=true remote=https://github.com/PhotonRahm/rahm-workspace.git dirty=yes
 
 ## Deferred And Pending Items
 ```
