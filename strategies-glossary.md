@@ -1,6 +1,6 @@
 # Rahm Live Strategy Glossary
 
-Last updated: 2026-05-09
+Last updated: 2026-05-10
 
 This glossary names each live strategy by actual mechanism. Legacy strategy keys
 and kill-switch paths are preserved where changing them would create operational
@@ -98,17 +98,52 @@ Shadow-only streams that should not be confused with live strategy keys:
 - Principle 29 applies to every stream below: aggregate metrics are descriptive
   only, and live-pilot decisions require n>=50 resolved per defined cell with
   Wilson lower above breakeven for that cell.
+- Cushion-DS methodology: proper final-30m deterministic settlement on a
+  numeric underlying and numeric strike. Entry is taker-side at best ask.
+  The live crypto filter is `entry_price >= 0.90` and
+  `abs(spot - strike) / strike >= 0.10%`.
+- Favorite-tracking methodology: broad favorite-vs-longshot observation logic
+  used in the existing DS SHADOW EXPANSION section. It is not equivalent to
+  cushion-DS; confusing this with proper cushion-DS caused the legacy
+  Index/FX Longshot Fade live failure.
+- `spot_age_at_placement_seconds`: forward-only post-2026-05-10 live DS trade
+  instrumentation. Age of the spot reading used by the bot's placement filter
+  decision. Older rows remain NULL.
+- `spot_age_at_fill_seconds`: forward-only live DS trade instrumentation. Age
+  of the same spot reading at the post-submit fill check, capturing order dwell
+  time without adding hot-path spot API calls.
+- `spot_value_at_placement` / `spot_value_at_fill`: spot values stored with the
+  age fields for future cushion-correctness checks.
+- `spot_source_at_placement`: source label for spot-age diagnostics, currently
+  `shadow_deterministic_settlement` for Gemini/Kalshi crypto DS.
 - Proper Index/FX cushion DS shadow: workspace
-  `scripts/index_fx_cushion_ds_shadow.py`, table
+  `scripts/cushion_ds_multi_series_scanner.py`, table
   `shadow_index_fx_cushion_ds`. Mechanism: proper final-30m cushion DS
-  on continuous index/FX/commodity underlyings; spot feeds are Yahoo/Gemini
-  helpers and Kalshi settlement is the resolver.
+  on continuous index/FX underlyings. Spot feeds are Yahoo 1-minute chart
+  metadata, rows are skipped when `spot_age_seconds > 60`, and Kalshi
+  settlement is the resolver. Gate: n>=50 resolved per series with Wilson
+  lower above breakeven before live pilot evaluation.
 - Gemini proper cushion DS shadow: workspace
   `scripts/gemini_cushion_ds_shadow.py`, table
   `gemini_cushion_ds_shadow`. Mechanism: proper final-30m cushion DS on
   numeric crypto and commodity ladder contracts. It excludes reference-strike
   UP contracts and path-dependent touch contracts. Fillability is depth-aware
   via Gemini REST `/v1/book/{instrumentSymbol}`.
+- `shadow_gemini_cushion_ds`: forward-only proper cushion-DS shadow on
+  Gemini's full crypto ladder universe: BTC, ETH, SOL, XRP, and ZEC. It is
+  populated by `scripts/gemini_cushion_ds_scanner.py` on a separate passive
+  timer and records spot age, 60-second spot jitter, and side-specific depth
+  bands. Gate: n>=50 resolved per asset with Wilson lower above breakeven
+  before any live pilot or expansion evaluation. This is distinct from the
+  legacy `gemini crypto` favorite-tracking shadow and from the older
+  `gemini_cushion_ds_shadow` broad numeric-ladder table.
+- Gemini DS edge hypothesis: Scope 3 research file
+  `research/2026-05-10-gemini-ds-edge-investigation.md` compares Gemini DS
+  against Kalshi DS on breakeven economics, cushion, spot staleness, depth,
+  and settlement-window timing. The current working hypothesis is that
+  Gemini's tight breakeven is a compounding economics problem: high entry
+  prices make losses much larger than wins, while narrow cushion and spot
+  movement leave little margin for error.
 - Weather cushion DS shadow: workspace
   `scripts/weather_cushion_ds_shadow.py`, table
   `weather_cushion_ds_shadow`. Mechanism: NWS-cushion weather DS normalized
@@ -131,6 +166,9 @@ Shadow-only streams that should not be confused with live strategy keys:
 - Sports DS forward quote capture: workspace
   `scripts/sports_ds_forward_scanner.py`, tables
   `sports_ds_forward_detections`, `sports_ds_forward_quotes`.
+  Sports is not forced into `shadow_index_fx_cushion_ds` because game state
+  lacks a simple numeric spot/strike cushion; it remains a separate
+  quote-capture and per-cell research path.
 - Volatility-Implied Binary Pricing: workspace
   `scripts/vol_implied_binary_scanner.py`, table `vol_implied_signals` in
   Gemini/Kalshi bot DBs. Paused 2026-05-05 with
