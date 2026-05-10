@@ -1568,3 +1568,35 @@ questions above carries a real risk of breaking Rahm's runtime, which is
 the prime directive to preserve. The dispatch explicitly permitted
 deferral of Section 5 when restart safety isn't resolvable in one pass.
 This dispatch defers in line with that permission.
+
+## 2026-05-09 EOD — Profit-maximization investigation dispatch
+
+Read-only/investigation-first dispatch completed with IBKR explicitly out of
+operator-dispatch scope.
+
+- Calibration investigation saved to
+  `research/2026-05-09-calibration-investigation.md`. Primary finding:
+  DS `predicted_probability` is a raw/implied side field, not consistently the
+  probability that the placed trade wins; Gemini MR live rows do not reproduce
+  the cited 50.3% raw forward-calibration headline.
+- Polymarket access-path investigation saved to
+  `research/2026-05-09-polymarket-access-paths.md`. Current recommendation:
+  prioritize official Polymarket US access; do not attempt wallet/API trading
+  paths without legal/tax review.
+- True P&L reporting clarified in the workspace daily report and in
+  `strategies-glossary.md`: True P&L is cumulative balance-minus-deposits;
+  24h P&L plus rendered `cash_gap` is the current-bleed indicator.
+- Gemini-vs-Kalshi legacy cross-platform arb scanner retired after historical
+  review showed no material opportunity; preserved evidence classified
+  `TIER_C_RESEARCH`. Polymarket cross-platform research remains active.
+- Kalshi MR 2026-05-21 review pre-staged with
+  `scripts/kalshi_mr_review_extract.py` and
+  `research/kalshi-mr-2026-05-21-review-prep.md`.
+- Depth-at-limit investigation saved to
+  `research/2026-05-09-depth-signal-investigation.md`. Depth is currently
+  observed, not enforced, in Gemini and Kalshi DS. Future action should use a
+  forward shadow-comparison gate, not immediate live filter deployment.
+- IBKR scope boundary established as AGENTS.md Principle 49. Operator-driven
+  dispatches do not touch `ibkr_forecast_bot`, `ibkr-scan-loop.service`, IBKR
+  Weather DS, IBKR Maker Pilot, IBKR Long+Short bot, or IBKR Release Monitor
+  unless Eric explicitly lifts the boundary.

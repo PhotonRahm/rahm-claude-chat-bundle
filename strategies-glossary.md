@@ -20,6 +20,22 @@ risk.
 
 Live strategy policy notes:
 
+Reconciliation vocabulary:
+
+- **True P&L**: cumulative platform balance minus deposits across all activity
+  since the platform was funded. It includes pre-strategy historical drag and is
+  not, by itself, a current-bleed indicator.
+- **Documented baseline**: an absorbed structural offset for known historical
+  losses or unverifiable platform/account movement. The rendered
+  RECONCILIATION block uses it so `cash_gap` can remain `$0.00` while preserving
+  the historical context.
+- **Forward strategy P&L**: P&L from cohort-framework-managed strategies only.
+  This is the operationally relevant number for whether the current strategy
+  stack is working.
+- **24h P&L**: the correct current-bleed indicator. If 24h P&L and rendered
+  `cash_gap` are healthy, cumulative True P&L can remain negative without
+  implying current operational drain.
+
 Kalshi MR retired subseries and permanent controls:
 
 - `KXHIGH*` (Weather High) is RETIRED for MR. Investigation evidence: Weather

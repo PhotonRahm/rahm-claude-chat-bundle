@@ -30,6 +30,15 @@ IBKR has two separate reconciliation tracks:
 
 Dispatch reports that mention IBKR reconciliation must distinguish these two. A `statement_live_nlv_delta` of $20 or less is normal market movement; values above $20 warrant operator awareness but do not automatically halt a deploy.
 
+## Scope boundaries
+
+As of 2026-05-09 EOD, IBKR ForecastEx is under autonomous Codex goal control.
+Operator-authored dispatches must mark IBKR as out-of-scope unless the operator
+explicitly lifts that boundary. Cross-platform reports may reference IBKR data
+for context, but operator dispatches must not propose or execute IBKR actions,
+restart `ibkr-scan-loop.service`, edit `ibkr_forecast_bot`, or change IBKR
+strategy configuration.
+
 ## Pre-flight reconciliation gate
 
 Every dispatch's pre-flight verification must:
