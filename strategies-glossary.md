@@ -8,10 +8,10 @@ risk.
 
 | Strategy display name | Strategy key | Mechanism | Methodology class | Kill switch |
 | --- | --- | --- | --- | --- |
-| Gemini Mean Reversion | mean_reversion | Prediction-market mean reversion with 0.625-Kelly live sizing, empirical-Bayes probability calibration where per-asset forward sample is sufficient, and permanent 50% per-asset concentration cap | Live MR | Gemini MR kill paths in repo CLAUDE.md |
+| Gemini Mean Reversion | mean_reversion | Prediction-market mean reversion with 0.75x Kelly live sizing, empirical-Bayes probability calibration where per-asset forward sample is sufficient, and permanent 50% per-asset concentration cap | Live MR with evidence-gated Kelly multiplier scale-up from 0.625 to 0.75 on 2026-05-10; 50 resolved post-deploy MR placements required before any further multiplier review | Gemini MR kill paths in repo CLAUDE.md |
 | Gemini Crypto DS High-Price ETH Pilot | deterministic_settlement | Final-window ETH cushion settlement with price >=0.95 and cushion >=0.10%, no depth enforcement, qty 50, max_open 3, daily CB -$100, lifetime CB -$300; depth is still recorded for bucket analysis. Active cohort name: `filter_combined_eth_high_price_qty_50_pilot` (started 2026-05-09 14:01:37 UTC / 09:01:37 CDT). Closed cohort names: `filter_combined_eth_high_price_pilot` (qty-10 ETH high-price pilot, passed 2026-05-09 at 52 resolved, 52W-0L, Wilson 93.1%, P&L +$15.50), `filter_combined_btc_eth_high_price_pilot` (BTC/ETH high-price pilot, failed 2026-05-08 at 53 resolved, 51W-2L, Wilson 87.2%, P&L -$3.48 after BTC loss concentration), `parallel_filter_btc_eth_pilot` (BTC/ETH price>=0.90 pilot, failed 2026-05-07 at 42 resolved, 37W-5L, Wilson 75.0%, P&L -$24.63, daily CB breach), `parallel_filter_pilot` (BTC/ETH/SOL pilot, closed 2026-05-06 16:28:46 after SOL loss concentration), and `strict_filter_pilot` (earlier strict-filter pilot, closed 2026-05-05 18:12:00 when parallel pilot started). | Live bounded qty-50 ETH continuation of the Kalshi-matched high-price+cushion filter structure; prior qty-10 rows are informative only and not inherited | `KILL_DETERMINISTIC_SETTLEMENT` |
 | Kalshi Mean Reversion | mean_reversion | Prediction-market mean reversion with surgical cell controls: KXHIGH/KXETHD/KXBTCD retired via MR-only pattern blocks, WEATHER_LOW YES total_cost >=$150 permanently blocked, INDEX capped at max 2 per underlier/event and max 4 total INDEX positions per settlement hour, NO side intentionally active where not otherwise retired | Live MR with forward allowed-cell P&L tracker from 2026-05-07 20:20:23 UTC | Kalshi MR kill paths in repo CLAUDE.md |
-| Kalshi Crypto DS | deterministic_settlement | Final-window crypto cushion settlement on BTC/ETH, per-asset sizing BTC qty 600 / ETH qty 275, daily CB -$600, lifetime CB -$1,800, max_open 8, max 4 open positions per asset/settlement-hour, combined filter price >=0.90 and cushion >=0.10%, qty and filter cohort trackers active | Proper cushion DS with per-asset rollback after aggregate qty-400 gate failure; BTC qty 600 and ETH qty 275 one-parameter pilots opened after their prior per-asset cohorts passed pre-committed gates | `KILL_DETERMINISTIC_SETTLEMENT` |
+| Kalshi Crypto DS | deterministic_settlement | Final-window crypto cushion settlement on BTC/ETH, per-asset sizing BTC qty 600 / ETH qty 275, daily CB -$600, lifetime CB -$1,800, max_open 8, max 4 open positions per asset/settlement-hour, combined filter price >=0.93 and cushion >=0.10%, qty and filter cohort trackers active | Proper cushion DS with per-asset rollback after aggregate qty-400 gate failure; BTC qty 600 and ETH qty 275 one-parameter pilots continue, and the $0.93 min-price filter cohort opened 2026-05-10 after the comprehensive loss forensic found it was the only Bonferroni-surviving surgical filter | `KILL_DETERMINISTIC_SETTLEMENT` |
 | Kalshi Index Longshot Fade | deterministic_settlement_index | Cheap-side longshot fade using audited TTE-bucketed heuristic rows | Paused: first live cohort 0W-4L on 2026-05-04 | `KILL_DETERMINISTIC_SETTLEMENT_INDEX` |
 | Kalshi FX Longshot Fade | deterministic_settlement_fx | Cheap-side longshot fade using audited TTE-bucketed heuristic rows | Paused: first live cohort 0W-4L on 2026-05-04 | `KILL_DETERMINISTIC_SETTLEMENT_FX` |
 | Kalshi Moderate Favorites | moderate_favorites | Narrow-band favorite pilot | Paused live pilot | `KILL_MODERATE_FAVORITES` |
@@ -100,8 +100,9 @@ Shadow-only streams that should not be confused with live strategy keys:
   Wilson lower above breakeven for that cell.
 - Cushion-DS methodology: proper final-30m deterministic settlement on a
   numeric underlying and numeric strike. Entry is taker-side at best ask.
-  The live crypto filter is `entry_price >= 0.90` and
-  `abs(spot - strike) / strike >= 0.10%`.
+  The live Kalshi crypto filter is `entry_price >= 0.93` and
+  `abs(spot - strike) / strike >= 0.10%` as of 2026-05-10. The live Gemini
+  ETH filter remains `entry_price >= 0.95` and cushion >=0.10%.
 - Favorite-tracking methodology: broad favorite-vs-longshot observation logic
   used in the existing DS SHADOW EXPANSION section. It is not equivalent to
   cushion-DS; confusing this with proper cushion-DS caused the legacy
@@ -116,13 +117,23 @@ Shadow-only streams that should not be confused with live strategy keys:
   age fields for future cushion-correctness checks.
 - `spot_source_at_placement`: source label for spot-age diagnostics, currently
   `shadow_deterministic_settlement` for Gemini/Kalshi crypto DS.
+- Unit of independence: the denominator used for statistical confidence and
+  gate decisions when shadow rows are correlated. If a scanner records many
+  observations for the same underlying contract or settlement event, row count
+  is descriptive only; Wilson lower, Fisher tests, and promotion gates use the
+  independent risk unit. Weather cushion-DS uses contract-date. Cushion-DS
+  final-30m scanners use contract-settlement. Per-trade execution shadows use
+  the trade row because row count already equals the independent unit. Encoded
+  as AGENTS.md Principle 51 on 2026-05-10 after the Gemini weather forensic.
 - Proper Index/FX cushion DS shadow: workspace
   `scripts/cushion_ds_multi_series_scanner.py`, table
   `shadow_index_fx_cushion_ds`. Mechanism: proper final-30m cushion DS
   on continuous index/FX underlyings. Spot feeds are Yahoo 1-minute chart
   metadata, rows are skipped when `spot_age_seconds > 60`, and Kalshi
-  settlement is the resolver. Gate: n>=50 resolved per series with Wilson
-  lower above breakeven before live pilot evaluation.
+  settlement is the resolver. Reports show row-level descriptive metrics plus
+  contract-settlement-collapsed decision-grade metrics. Gate: n>=30 independent
+  executable contract-settlements per series with Wilson lower above breakeven
+  and positive collapsed P&L before live pilot evaluation.
 - Gemini proper cushion DS shadow: workspace
   `scripts/gemini_cushion_ds_shadow.py`, table
   `gemini_cushion_ds_shadow`. Mechanism: proper final-30m cushion DS on
@@ -133,8 +144,10 @@ Shadow-only streams that should not be confused with live strategy keys:
   Gemini's full crypto ladder universe: BTC, ETH, SOL, XRP, and ZEC. It is
   populated by `scripts/gemini_cushion_ds_scanner.py` on a separate passive
   timer and records spot age, 60-second spot jitter, and side-specific depth
-  bands. Gate: n>=50 resolved per asset with Wilson lower above breakeven
-  before any live pilot or expansion evaluation. This is distinct from the
+  bands. Reports show row-level descriptive metrics plus
+  contract-settlement-collapsed decision-grade metrics. Gate: n>=30 independent
+  executable contract-settlements per asset with Wilson lower above breakeven
+  and positive collapsed P&L before any live pilot or expansion evaluation. This is distinct from the
   legacy `gemini crypto` favorite-tracking shadow and from the older
   `gemini_cushion_ds_shadow` broad numeric-ladder table.
 - Gemini DS edge hypothesis: Scope 3 research file
@@ -149,7 +162,10 @@ Shadow-only streams that should not be confused with live strategy keys:
   `weather_cushion_ds_shadow`. Mechanism: NWS-cushion weather DS normalized
   per platform/city-or-station/direction/side/cushion-bucket cell from Kalshi
   and IBKR source rows plus Gemini mapped weather rows. Gemini station mapping
-  source: `gemini-weather-nws-mapping.md`.
+  source: `gemini-weather-nws-mapping.md`. Reports show row-level descriptive
+  metrics plus contract-date-collapsed decision-grade metrics; gate decisions
+  require n>=30 independent executable contract-date groups with Wilson lower
+  above breakeven and positive collapsed P&L.
 - Gemini sports mapping audit: workspace
   `scripts/gemini_sports_mapping_audit.py`, tables
   `gemini_sports_mapping_audit` and `gemini_sports_espn_mapping`.

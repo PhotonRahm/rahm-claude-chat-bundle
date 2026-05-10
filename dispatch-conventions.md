@@ -159,6 +159,26 @@ for the final-report section.
 Cross-reference: AGENTS.md Principle 50 — Codex pastes full deliverable text
 into final reports.
 
+## Shadow-surface methodology rule: unit-of-independence
+
+When dispatching a new shadow scanner, research surface, or forward
+shadow harness, the dispatch MUST specify the unit of independence at
+design time. Reports MUST render BOTH row-level metrics AND
+collapsed-by-unit-of-independence metrics. Gate criteria for any live
+deployment, scale-up, or retire decision MUST reference the collapsed
+unit, not raw row count.
+
+This rule is encoded as AGENTS.md Principle 51 (the cross-agent
+methodology principle); this dispatch-conventions.md entry is the
+per-dispatch reference for shadow-surface design and report rendering.
+
+Existing shadow surfaces with row-count gates must be updated per
+the principle. New shadow surfaces must specify unit of independence
+at design time.
+
+Cross-reference: AGENTS.md Principle 51 — Shadow surfaces report
+unit-of-independence, not raw row count.
+
 ## Cross-agent context
 
 Dispatches authored by Claude-in-chat:
