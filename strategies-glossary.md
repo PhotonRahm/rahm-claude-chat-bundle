@@ -20,6 +20,21 @@ risk.
 
 Live strategy policy notes:
 
+Depth filter forward shadow:
+
+- `depth_at_limit_price` means the venue depth observed at the intended DS
+  limit price at placement time. For Kalshi DS the comparable live-trade field
+  is `ask_depth_at_entry`.
+- As of 2026-05-10, depth is not a live filter for Gemini DS or Kalshi DS. It
+  is tracked in the forward-only `shadow_depth_filter_comparison` harness with
+  clean cohorts `gemini_ds_depth_filter_pilot` and
+  `kalshi_ds_depth_filter_pilot`.
+- Fixed pilot thresholds: Gemini `depth_at_limit_price >= 5555`; Kalshi
+  `ask_depth_at_entry >= 74`.
+- Future live deployment requires the pre-committed gate in
+  `research/2026-05-10-depth-filter-pilot-pre-commit.md`. Historical depth
+  rows are informative only and do not count toward that gate.
+
 Reconciliation vocabulary:
 
 - **True P&L**: cumulative platform balance minus deposits across all activity
@@ -35,6 +50,23 @@ Reconciliation vocabulary:
 - **24h P&L**: the correct current-bleed indicator. If 24h P&L and rendered
   `cash_gap` are healthy, cumulative True P&L can remain negative without
   implying current operational drain.
+
+Calibration probability vocabulary:
+
+- **`raw_model_probability`**: the model output before side adjustment,
+  empirical-Bayes shrinkage, Kelly sizing, or concentration caps. Historical
+  rows before 2026-05-10 usually cannot reconstruct this value and should show
+  `INSUFFICIENT_DATA` rather than fabricating it.
+- **`side_adjusted_trade_win_probability`**: probability that the placed trade,
+  on its actual side, resolves as a winner. New calibration analyses should use
+  this column when comparing predicted probability to realized win rate.
+- **`live_sizing_probability`**: probability used by the live sizing decision
+  at placement time. It may equal side-adjusted probability, or differ when
+  EB shrinkage, Kelly modifiers, or hard concentration caps apply.
+- **Legacy `predicted_probability`**: pre-2026-05-10 compatibility field with
+  ambiguous semantics across strategies. It remains in reports for historical
+  continuity but should not be used for new remediation decisions when the
+  semantic columns are available.
 
 Kalshi MR retired subseries and permanent controls:
 

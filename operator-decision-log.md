@@ -1,5 +1,31 @@
 # Operator Decision Log
 
+## 2026-05-09 evening - Kalshi DS BTC qty 700 deploy
+
+Decision:
+- Scale Kalshi crypto DS BTC sizing from qty 600 to qty 700 as a one-parameter
+  evidence-gated step. The `filter_combined_qty_600_btc_pilot` cohort met the
+  expansion gate at 38 resolved, 38W-0L, WR 100%, Wilson lower 90.8%,
+  P&L +$833.07, max DD $0.00, and no daily CB breach.
+
+Implementation boundary:
+- `DS_KALSHI_QTY_BTC=700` and
+  `DS_KALSHI_PER_TRADE_DOLLAR_CAP_BTC=700`.
+- Daily CB mechanically scales to `DETERMINISTIC_SETTLEMENT_DAILY_CB=-700`;
+  lifetime CB mechanically scales to
+  `DETERMINISTIC_SETTLEMENT_LIFETIME_CB=-2100`.
+- ETH remains `DS_KALSHI_QTY_ETH=275` and
+  `DS_KALSHI_PER_TRADE_DOLLAR_CAP_ETH=275`. Max_open 8, asset-hour cap 4,
+  max exposure, allowed assets BTC/ETH, and the price>=0.90 plus
+  cushion>=0.10% combined filter remain unchanged.
+- Close `filter_combined_qty_600_btc_pilot` as PASSED and open
+  `filter_combined_qty_700_btc_pilot` fresh at n=0 from
+  `DS_KALSHI_QTY_700_BTC_START=2026-05-10 03:35:49`. The qty-600 rows are
+  informative only and are not inherited.
+- Next review trigger: 30+ resolved BTC trades in the qty-700 cohort with
+  WR>=95%, Wilson lower>=88%, positive P&L, no daily CB breach,
+  asset/settlement-hour cap block count, and cash-binding evidence.
+
 ## 2026-05-09 - Kalshi DS BTC qty 600 deploy
 
 Decision:
@@ -1568,35 +1594,3 @@ questions above carries a real risk of breaking Rahm's runtime, which is
 the prime directive to preserve. The dispatch explicitly permitted
 deferral of Section 5 when restart safety isn't resolvable in one pass.
 This dispatch defers in line with that permission.
-
-## 2026-05-09 EOD — Profit-maximization investigation dispatch
-
-Read-only/investigation-first dispatch completed with IBKR explicitly out of
-operator-dispatch scope.
-
-- Calibration investigation saved to
-  `research/2026-05-09-calibration-investigation.md`. Primary finding:
-  DS `predicted_probability` is a raw/implied side field, not consistently the
-  probability that the placed trade wins; Gemini MR live rows do not reproduce
-  the cited 50.3% raw forward-calibration headline.
-- Polymarket access-path investigation saved to
-  `research/2026-05-09-polymarket-access-paths.md`. Current recommendation:
-  prioritize official Polymarket US access; do not attempt wallet/API trading
-  paths without legal/tax review.
-- True P&L reporting clarified in the workspace daily report and in
-  `strategies-glossary.md`: True P&L is cumulative balance-minus-deposits;
-  24h P&L plus rendered `cash_gap` is the current-bleed indicator.
-- Gemini-vs-Kalshi legacy cross-platform arb scanner retired after historical
-  review showed no material opportunity; preserved evidence classified
-  `TIER_C_RESEARCH`. Polymarket cross-platform research remains active.
-- Kalshi MR 2026-05-21 review pre-staged with
-  `scripts/kalshi_mr_review_extract.py` and
-  `research/kalshi-mr-2026-05-21-review-prep.md`.
-- Depth-at-limit investigation saved to
-  `research/2026-05-09-depth-signal-investigation.md`. Depth is currently
-  observed, not enforced, in Gemini and Kalshi DS. Future action should use a
-  forward shadow-comparison gate, not immediate live filter deployment.
-- IBKR scope boundary established as AGENTS.md Principle 49. Operator-driven
-  dispatches do not touch `ibkr_forecast_bot`, `ibkr-scan-loop.service`, IBKR
-  Weather DS, IBKR Maker Pilot, IBKR Long+Short bot, or IBKR Release Monitor
-  unless Eric explicitly lifts the boundary.
