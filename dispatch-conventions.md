@@ -179,6 +179,48 @@ at design time.
 Cross-reference: AGENTS.md Principle 51 — Shadow surfaces report
 unit-of-independence, not raw row count.
 
+## Weather DS time-window rule (pre-committed for future live pilots)
+
+For any future weather-DS live pilot consideration on Gemini, Kalshi, or
+other platforms, the cohort analysis must restrict to a defined time
+window of "actionable observations" rather than aggregating across the
+full contract lifetime.
+
+Pre-committed default rules:
+- Daily high-temperature contracts: actionable observations only between
+  10:00 local station time and the contract's stated daily-high
+  observation cutoff (typically late afternoon). This excludes
+  overnight and early-morning observations when forecast and actual
+  high are still poorly correlated.
+- Daily low-temperature contracts: actionable observations only between
+  00:00 and 08:00 local station time, excluding mid-day and afternoon
+  when overnight low is already settled or no longer at risk.
+- Range contracts (HI/LO): same rules as the corresponding direction.
+
+These rules are pre-committed defaults. A dispatch proposing a specific
+weather live pilot may justify alternate windows with explicit
+evidence, but the default is the above.
+
+Rationale:
+- Mid-day and afternoon temperature observations for a daily high
+  contract are dispositive (the high is forming or has formed) while
+  overnight observations are not. Treating both as equivalent
+  shadow signal inflates statistical confidence.
+- The 2026-05-10 Gemini weather forensic identified that observations
+  span 0-38 hours pre-settlement without a window rule, contributing
+  to the methodology issues that prevented live pilot deployment.
+
+Implementation:
+- Weather cushion-DS shadow scanners may continue to record all
+  observations forward-only (descriptive value preserved).
+- Reports and gate evaluations for live pilot promotion MUST restrict
+  to the actionable window per the rules above.
+- New live pilot dispatches must specify which time window applies and
+  why, even if the default is being adopted.
+
+Cross-reference: AGENTS.md Principle 51 (unit of independence) and
+2026-05-10 Gemini weather cells live-vs-shadow forensic.
+
 ## Cross-agent context
 
 Dispatches authored by Claude-in-chat:

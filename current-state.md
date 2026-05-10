@@ -1,22 +1,22 @@
 # Rahm Current State
 
-last_updated_utc: 2026-05-10T17:10:03+00:00
+last_updated_utc: 2026-05-10T23:10:03+00:00
 generator: Codex generate_current_state.py
-workspace_head: 0532386
+workspace_head: e3b2f50
 
 ## Trading Bot Runtime
 ### gemini
 - unit: gemini-bot.service
 - active: active/running
-- pid: 2679656
+- pid: 2767199
 - nrestarts: 0
-- active_enter: Sun 2026-05-10 10:37:59 CDT
+- active_enter: Sun 2026-05-10 16:59:54 CDT
 - reconciliation:
-  - Reconciliation: resolved_pnl=$-12518.89 open_cost=$5717.04 open_fees=$47.80 recon_adj=$25.64 expected_cash=$23.41 cash_gap=$+0.00 unrealized=+$242.56 [MATCH]
+  - Reconciliation: resolved_pnl=$-11786.34 open_cost=$0.00 open_fees=$0.00 recon_adj=$15.31 expected_cash=$6510.47 cash_gap=$+0.00 unrealized=+$6.00 [MATCH]
   - ✓ HARD CHECK PASSED — gap $0.00
-  - Reconciliation adjustment: $25.64 (auto-computed from exchange balance)
-  - Expected cash: $23.41
-  - Actual cash (API): $23.41
+  - Reconciliation adjustment: $15.31 (auto-computed from exchange balance)
+  - Expected cash: $6510.47
+  - Actual cash (API): $6510.47
 - selected env:
   - `BLOCKED_ASSETS=WTI,BTC,ETH,SOL,XRP,ZEC,BRENT,COPPER,NGAS`
   - `BTC_QTY=600`
@@ -45,9 +45,9 @@ workspace_head: 0532386
   - `ENABLE_SPREAD_CAPTURE=false`
   - `ETH_QTY=600`
   - `FAV_QTY=200`
-  - `GEMINI_MR_KELLY_MULTIPLIER=0.625`
+  - `GEMINI_MR_KELLY_MULTIPLIER=0.75`
   - `KELLY_HIGH_PROB_SOFTCAP=0.7`
-  - `KELLY_MULTIPLIER=0.625`
+  - `KELLY_MULTIPLIER=0.75`
   - `KELLY_PER_ASSET_CONCENTRATION_CAP=0.50`
   - `KELLY_SIZING_ENABLED=true`
   - `MAX_EXPOSURE=10000`
@@ -60,26 +60,26 @@ workspace_head: 0532386
   - `SPREAD_QTY=15`
   - `VALUE_QTY=10`
 - strategy/cohort excerpts:
-  - Lifetime P&L: +$4,901.27 across 252 resolved trades
-  - 24h P&L: +$604.42 (9W-0L resolved, 13 placed)
-  - Today's P&L: +$0.00
-  - Record: 222W-30L (88%) | P&L: +$4,901.27
-  - Today's P&L: +$0.00
-  - Today's raw P&L: +$0.00
-  - 24h: 13 placed | 9W-0L resolved | P&L +$604.42
-  - 24h resolved by time: morning 0-14 UTC 0W-0L +$0.00 | evening 15-23 UTC 1W-0L +$0.15
-  - By expiry: 0-8h: 54W-12L (81.8%) +$344.06 | 16-24h: 122W-12L (91.0%) +$4,217.70 | 8-16h: 46W-6L (88.5%) +$635.30
-  - Trades in rolling 24h: 13
+  - Lifetime P&L: +$5,639.97 across 258 resolved trades
+  - 24h P&L: +$738.70 (6W-0L resolved, 9 placed)
+  - Record: 228W-30L (88%) | P&L: +$5,639.97
+  - Today's P&L: +$738.70
+  - Today's raw P&L: +$738.70
+  - 24h: 9 placed | 6W-0L resolved | P&L +$738.70
+  - 24h resolved by time: morning 0-14 UTC 6W-0L +$738.70 | evening 15-23 UTC 0W-0L +$0.00
+  - By expiry: 0-8h: 54W-12L (81.8%) +$344.06 | 16-24h: 123W-12L (91.1%) +$4,405.46 | 8-16h: 51W-6L (89.5%) +$1,186.24
+  - Trades in rolling 24h: 9
   - Actual P&L (flat QTY baseline): $0.00
   - Kelly P&L (if Kelly was used): $0.00
   - Config: QTY 10 | Max open 3 | Per-trade $10 | Daily CB $-20 | Lifetime CB $-60 | Min depth 0
   - Active cohort start: 2026-05-10 15:20:00 | CB ledgers scoped to active cohort
   - Daily CB reset at: 2026-05-07 19:04:24 | effective daily ledger uses latest of reset/cohort
-  - Today: 71 attempted (41 filled, 0 cancelled, 30 unfilled) | 41 resolved (38W-3L) | -$7.60 P&L
-  - Active cohort lifetime (since 2026-05-10 15:20:00): 5 filled | 5 resolved (4W-1L) | -$7.60 P&L
+  - Today: 75 attempted (44 filled, 0 cancelled, 31 unfilled) | 44 resolved (40W-4L) | -$13.75 P&L
+  - Active cohort lifetime (since 2026-05-10 15:20:00): 16 filled | 16 resolved (14W-2L) | -$13.75 P&L
   - (See daily/full-picture report for DB-wide DS lifetime including all prior cohorts.)
-  - Cohort lifetime CB ledger: -$7.60 / -$60.00 [SAFE]
+  - Cohort lifetime CB ledger: -$13.75 / -$60.00 [SAFE]
   - GEMINI DS COHORT TRACKER
+  - Closed cohort: strict_filter_pilot | start 2026-05-05 15:57:01 | closed 2026-05-05 18:12:00
 
 ### ibkr
 - unit: ibkr-scan-loop.service
@@ -90,8 +90,8 @@ workspace_head: 0532386
 - reconciliation:
   - Formula: expected cash/NLV uses broker_ledger realized P&L + latest Flex statement snapshot
   - ✓ HARD CHECK PASSED — cash gap $0.00
-  - Expected cash = deposits + realized + market data fees + incentive income - cost = $1462.34
-  - Actual cash (API): $1462.34
+  - Expected cash = deposits + realized + market data fees + incentive income - cost = $1100.74
+  - Actual cash (API): $1100.74
   - Raw cash gap before live delta adjustment: $0.00
   - Cash gap: $0.00
 - selected env:
@@ -101,42 +101,42 @@ workspace_head: 0532386
   - `QTY_PER_POSITION=60`
 - strategy/cohort excerpts:
   - Lifetime P&L: -$36.11 across 597 resolved trades
-  - 24h P&L: +$0.00 (0W-0L resolved, 6 placed)
+  - 24h P&L: +$0.00 (0W-0L resolved, 12 placed)
   - SELF-MANAGED ACTIVITY (last 24h):
   - Pilots: Weather DS cohort since 2026-05-08 15:20:00: 7 placed, 0 resolved, 7 open, $33.50 open cost, latest=2026-05-10 12:48:53.
   - Cohort gates: Weather DS needs 30 more resolved rows before n>=30 evaluation; no pass/fail scaling action due.
-  - Post-qty-increase tracking: 18 placed | 16 resolved (16W-0L) | P&L +$55.20 | avg/resolved +$3.45 | underliers JPUSD=4, USCAD=4, USEUR=4, USGBP=4, USGP=2
+  - Post-qty-increase tracking: 24 placed | 16 resolved (16W-0L) | P&L +$55.20 | avg/resolved +$3.45 | underliers JPUSD=6, USEUR=6, USGBP=6, USCAD=4, USGP=2
   - Entry: categories ECONOMICS, FX | proven underliers 10 | bid $0.85-$0.95 | min expiry 24h | max spread $0.10 | order LIMIT at ASK
   - P&L since deploy: $32.99
   - Live record (all bot resolutions): 55W-3L (94.8%) | P&L +$56.41 | avg +$0.97
   - Filters: bid >= $0.80 | ask <= $0.95 | spread >= $0.04 | expiry 12-48h | lifetime 2h
-  - Historical: 5195 entries | 398 resolved | 199W-199L (50.0%) | P&L: -$121.68
+  - Historical: 5440 entries | 398 resolved | 199W-199L (50.0%) | P&L: -$121.68
   - Final avg P&L/trade: -$0.31 | accumulation disabled; data preserved in shadow_nws_trades
-  - 0-24h: 62 collected, 13 resolved (76.9% WR)
+  - 0-24h: 64 collected, 13 resolved (76.9% WR)
   - 0-24h: 0 eligible, 0 resolved (0.0% WR)
   - FX 0-24h: 48 collected, 0 resolved (0.0% WR)
   - ECONOMICS 0-24h: 6 collected, 6 resolved (100.0% WR)
   - FX 0-24h: 0 eligible, 0 resolved (0.0% WR)
   - ECONOMICS 0-24h: 0 eligible, 0 resolved (0.0% WR)
   - PLACEMENT CONVERSION (last 24h):
-  - Last 24h: 2116 evaluated | 2 live-eligible (0.1%) | 3 placed (150.0%); top rejects: category_blocked(OTHER) 35%, category_blocked(RATES) 25%, economics_excluded(BPMI) 6%
+  - Last 24h: 1991 evaluated | 8 live-eligible (0.4%) | 9 placed (112.5%); top rejects: category_blocked(OTHER) 36%, category_blocked(RATES) 27%, economics_excluded(BPMI) 5%
 
 ### kalshi
 - unit: kalshi-bot.service
 - active: active/running
-- pid: 2679281
+- pid: 2753980
 - nrestarts: 0
-- active_enter: Sun 2026-05-10 10:36:51 CDT
+- active_enter: Sun 2026-05-10 16:01:23 CDT
 - reconciliation:
-  - Reconciliation: resolved_pnl=$264.05 open_cost=$0.00 open_fees=$0.00 recon_adj=$141.48 expected_cash=$2996.08 cash_gap=$+0.00 unrealized=$+90.55 [MATCH]
+  - Reconciliation: resolved_pnl=$-24.51 open_cost=$0.00 open_fees=$0.00 recon_adj=$143.32 expected_cash=$2709.36 cash_gap=$+0.00 unrealized=$+90.55 [MATCH]
   - ✓ HARD CHECK PASSED — gap $0.00
-  - Reconciliation adjustment: $141.48 (auto-computed from exchange balance)
-  - Expected cash: $2996.08
-  - Actual cash (API): $2996.08
+  - Reconciliation adjustment: $143.32 (auto-computed from exchange balance)
+  - Expected cash: $2709.36
+  - Actual cash (API): $2709.36
 - selected env:
   - `DETERMINISTIC_SETTLEMENT_ALLOWED_ASSETS=BTC,ETH`
-  - `DETERMINISTIC_SETTLEMENT_DAILY_CB=-700`
-  - `DETERMINISTIC_SETTLEMENT_DAILY_RESET_AT=2026-05-06 11:49:55-05:00`
+  - `DETERMINISTIC_SETTLEMENT_DAILY_CB=-600`
+  - `DETERMINISTIC_SETTLEMENT_DAILY_RESET_AT=2026-05-10 14:06:00-05:00`
   - `DETERMINISTIC_SETTLEMENT_ENABLED=true`
   - `DETERMINISTIC_SETTLEMENT_FX_ALLOWED_SERIES=KXEURUSD,KXUSDJPY`
   - `DETERMINISTIC_SETTLEMENT_FX_DAILY_CB=-150`
@@ -156,7 +156,8 @@ workspace_head: 0532386
   - `DETERMINISTIC_SETTLEMENT_INDEX_MAX_OPEN=4`
   - `DETERMINISTIC_SETTLEMENT_INDEX_PER_TRADE_MAX=50`
   - `DETERMINISTIC_SETTLEMENT_INDEX_QTY=50`
-  - `DETERMINISTIC_SETTLEMENT_LIFETIME_CB=-2100`
+  - `DETERMINISTIC_SETTLEMENT_LIFETIME_CB=-1800`
+  - `DETERMINISTIC_SETTLEMENT_LIFETIME_RESET_AT=2026-05-10 14:06:00-05:00`
   - `DETERMINISTIC_SETTLEMENT_MAX_ASSET_HOUR_OPEN=4`
   - `DETERMINISTIC_SETTLEMENT_MAX_EXPOSURE=999999`
   - `DETERMINISTIC_SETTLEMENT_MAX_OPEN=8`
@@ -178,15 +179,17 @@ workspace_head: 0532386
   - `DS_KALSHI_LOW_PRICE_NO_PER_TRADE_MAX=20`
   - `DS_KALSHI_LOW_PRICE_NO_QTY=10`
   - `DS_KALSHI_MIN_CUSHION=0.0010`
-  - `DS_KALSHI_MIN_PRICE=0.90`
+  - `DS_KALSHI_MIN_PRICE=0.93`
+  - `DS_KALSHI_MIN_PRICE_0_93_START=2026-05-10 20:56:50`
   - `DS_KALSHI_PER_ASSET_ROLLBACK_START=2026-05-06 16:28:46`
-  - `DS_KALSHI_PER_TRADE_DOLLAR_CAP_BTC=700`
+  - `DS_KALSHI_PER_TRADE_DOLLAR_CAP_BTC=600`
   - `DS_KALSHI_PER_TRADE_DOLLAR_CAP_ETH=275`
   - `DS_KALSHI_QTY_275_ETH_START=2026-05-08 14:35:34`
   - `DS_KALSHI_QTY_500_BTC_START=2026-05-07 13:35:31`
+  - `DS_KALSHI_QTY_600_BTC_ROLLBACK_START=2026-05-10 19:06:00`
   - `DS_KALSHI_QTY_600_BTC_START=2026-05-09 13:56:56`
   - `DS_KALSHI_QTY_700_BTC_START=2026-05-10 03:35:49`
-  - `DS_KALSHI_QTY_BTC=700`
+  - `DS_KALSHI_QTY_BTC=600`
   - `DS_KALSHI_QTY_ETH=275`
   - `FAV_QTY=100`
   - `KALSHI_MR_ALLOWED_CELLS_START=2026-05-07 20:20:23`
@@ -211,12 +214,9 @@ workspace_head: 0532386
   - `MODERATE_FAVORITES_LIFETIME_LOSS_CB=-300`
   - `MODERATE_FAVORITES_MAX_DAILY_EXPOSURE=1200`
   - `MODERATE_FAVORITES_MAX_OPEN_POSITIONS=16`
-  - `MODERATE_FAVORITES_QTY=50`
-  - `MODERATE_FAVORITES_QTY_080_085=150`
-  - `MODERATE_FAVORITES_QTY_PRIME=100`
 - strategy/cohort excerpts:
-  - Lifetime P&L: +$264.05 across 2389 resolved trades
-  - 24h P&L: -$326.22 (92W-4L resolved, 109 placed)
+  - Lifetime P&L: -$24.51 across 2411 resolved trades
+  - 24h P&L: -$721.58 (91W-4L resolved, 106 placed)
   - Record: 328W-53L (86%) | P&L: -$103.88
   - ✓ Weather-high blocked (80% WR, -$930 lifetime)
   - ✓ BTC blocked (53 resolved, -$173 lifetime; tail-loss asymmetry)
@@ -233,61 +233,61 @@ workspace_head: 0532386
   - Decision trigger: at 30+ resolved in each slice, pilot only if preferred-range WR/P&L is materially better
   - Record: 22W-3L (88.0%) | P&L: $-205.31
   - NWS FILTER BEHAVIOR (last 24h):
-  - 274365 entries | 268127 resolved | 266995W-1132L (99.6%) | P&L: +$369,828.20
-  - Taker-net P&L: +$304,032.64 (maker model overstates by +$65,795.56 / 22%; fees -$28926)
+  - 275164 entries | 268949 resolved | 267812W-1137L (99.6%) | P&L: +$371,579.20
+  - Taker-net P&L: +$305,418.25 (maker model overstates by +$66,160.95 / 22%; fees -$29058)
 
 ## Storage State
 - DATABASE STORAGE HEALTH
 -   Overall status: GREEN / TARGET
--   Disk: 184.97 GiB used / 936.79 GiB total (19.7%), 704.16 GiB free
+-   Disk: 187.12 GiB used / 936.79 GiB total (20.0%), 702.01 GiB free
 -   Envelope: TARGET 50.0%, WARN 65.0%, CRITICAL 75.0%, HARD_LIMIT 85.0%
--   DS storage: active 3.42 GiB (state TARGET), hot 95.33 GiB, warm 0.00 GiB, cold 0.00 GiB, archive_state CRITICAL, total 98.76 GiB (10.5% of disk)
--   Retention engine: last=2026-05-10T16:43:08+00:00 status=OK dry_run=False rows_selected=0 rows_archived=0 rows_pruned=0
+-   DS storage: active 4.17 GiB (state TARGET), hot 95.33 GiB, warm 0.00 GiB, cold 0.00 GiB, archive_state CRITICAL, total 99.51 GiB (10.6% of disk)
+-   Retention engine: last=2026-05-10T22:44:15+00:00 status=OK dry_run=False rows_selected=0 rows_archived=0 rows_pruned=0
 -   Archive compression: status=OK actions=0 warm_days=7 min_file_mb=100
--   Tier rotation: last=2026-05-10T16:43:08+00:00 status=OK actions=0
+-   Tier rotation: last=2026-05-10T22:44:15+00:00 status=OK actions=0
 -   Autonomous maintenance: last=2026-05-10T10:43:04+00:00 status=OK backups=5/5 integrity_failures=0 drift_flags=0
 -   PROTECT_TRADING mode: NO
 
 ## Timers
 ```
 NEXT                            LEFT LAST                              PASSED UNIT                                          ACTIVATES
-Sun 2026-05-10 12:10:30 CDT      10s Sun 2026-05-10 12:10:03 CDT      16s ago gemini-cushion-ds-scanner.timer               gemini-cushion-ds-scanner.service
-Sun 2026-05-10 12:11:00 CDT      40s Sun 2026-05-10 12:10:03 CDT      16s ago cushion-ds-multi-series-scanner.timer         cushion-ds-multi-series-scanner.service
-Sun 2026-05-10 12:11:06 CDT      47s Sun 2026-05-10 12:10:06 CDT      12s ago ibkr-scan-loop-watchdog.timer                 ibkr-scan-loop-watchdog.service
-Sun 2026-05-10 12:11:46 CDT 1min 26s Sun 2026-05-10 12:01:45 CDT     8min ago ds-shadow-continuous-archive.timer            ds-shadow-continuous-archive.service
-Sun 2026-05-10 12:13:08 CDT 2min 49s Sun 2026-05-10 11:58:08 CDT    12min ago ds-storage-pressure-monitor.timer             ds-storage-pressure-monitor.service
-Sun 2026-05-10 12:15:00 CDT 4min 40s Sun 2026-05-10 12:00:01 CDT    10min ago cushion-ds-multi-series-resolver.timer        cushion-ds-multi-series-resolver.service
-Sun 2026-05-10 12:15:00 CDT 4min 40s Sun 2026-05-10 12:00:01 CDT    10min ago gemini-cushion-ds-resolver.timer              gemini-cushion-ds-resolver.service
-Sun 2026-05-10 12:15:02 CDT 4min 42s Sun 2026-05-10 11:13:06 CDT    57min ago spread-capture-resolver.timer                 spread-capture-resolver.service
-Sun 2026-05-10 12:30:02 CDT    19min Sun 2026-05-10 11:29:06 CDT    41min ago consensus-tracking-resolver.timer             consensus-tracking-resolver.service
-Sun 2026-05-10 12:31:15 CDT    20min Sun 2026-05-10 11:31:06 CDT    39min ago moderate-favorites-unr-resolver.timer         moderate-favorites-unr-resolver.service
-Sun 2026-05-10 12:53:18 CDT    42min Sun 2026-05-10 11:52:12 CDT    18min ago moderate-favorites-finance-resolver.timer     moderate-favorites-finance-resolver.service
-Sun 2026-05-10 12:56:52 CDT    46min Sun 2026-05-10 11:55:06 CDT    15min ago moderate-favorites-weather-resolver.timer     moderate-favorites-weather-resolver.service
-Sun 2026-05-10 13:01:10 CDT    50min Sun 2026-05-10 12:00:01 CDT    10min ago moderate-favorites-economics-resolver.timer   moderate-favorites-economics-resolver.service
-Sun 2026-05-10 13:01:20 CDT    51min Sun 2026-05-10 12:01:11 CDT     9min ago macro-release-resolver.timer                  macro-release-resolver.service
-Sun 2026-05-10 13:08:24 CDT    58min Sun 2026-05-10 12:07:56 CDT 2min 23s ago ladder-coherence-resolver.timer               ladder-coherence-resolver.service
-Sun 2026-05-10 13:17:00 CDT  1h 6min Sun 2026-05-10 07:17:06 CDT 4h 53min ago ds-shadow-retention-engine.timer              ds-shadow-retention-engine.service
-Sun 2026-05-10 15:00:00 CDT 2h 49min Sun 2026-05-10 12:00:01 CDT    10min ago snap.firmware-updater.firmware-notifier.timer snap.firmware-updater.firmware-notifier.service
-Sun 2026-05-10 15:24:00 CDT 3h 13min Sun 2026-05-10 09:24:06 CDT 2h 46min ago ds-shadow-archive.timer                       ds-shadow-archive.service
-Sun 2026-05-10 15:40:00 CDT 3h 29min Sun 2026-05-10 09:40:00 CDT 2h 30min ago ds-storage-monitor.timer                      ds-storage-monitor.service
-Sun 2026-05-10 17:31:06 CDT 5h 20min Sun 2026-05-10 11:31:06 CDT    39min ago ds-shadow-db-maintenance.timer                ds-shadow-db-maintenance.service
-Sun 2026-05-10 23:35:00 CDT      11h Sat 2026-05-09 23:55:06 CDT      12h ago ibkr-deterministic-fx-poc.timer               ibkr-deterministic-fx-poc.service
-Mon 2026-05-11 04:39:59 CDT      16h Sun 2026-05-10 04:47:46 CDT       7h ago ds-archive-tier-rotation.timer                ds-archive-tier-rotation.service
-Mon 2026-05-11 05:20:00 CDT      17h Sun 2026-05-10 05:20:03 CDT       6h ago logrotate-user.timer                          logrotate-user.service
-Mon 2026-05-11 05:30:00 CDT      17h Sun 2026-05-10 05:30:04 CDT       6h ago disk-hygiene-audit.timer                      disk-hygiene-audit.service
-Mon 2026-05-11 05:40:00 CDT      17h Sun 2026-05-10 05:40:03 CDT       6h ago database-autonomous-maintenance.timer         database-autonomous-maintenance.service
-Mon 2026-05-11 09:14:16 CDT      21h Sun 2026-05-10 09:14:16 CDT 2h 56min ago launchpadlib-cache-clean.timer                launchpadlib-cache-clean.service
--                                  - Sun 2026-05-10 12:10:03 CDT      16s ago claude-chat-sync.timer                        claude-chat-sync.service
+Sun 2026-05-10 18:10:30 CDT       9s Sun 2026-05-10 18:10:03 CDT      17s ago gemini-cushion-ds-scanner.timer               gemini-cushion-ds-scanner.service
+Sun 2026-05-10 18:11:00 CDT      39s Sun 2026-05-10 18:10:03 CDT      17s ago cushion-ds-multi-series-scanner.timer         cushion-ds-multi-series-scanner.service
+Sun 2026-05-10 18:11:06 CDT      45s Sun 2026-05-10 18:10:06 CDT      14s ago ibkr-scan-loop-watchdog.timer                 ibkr-scan-loop-watchdog.service
+Sun 2026-05-10 18:13:48 CDT 3min 27s Sun 2026-05-10 18:03:47 CDT     6min ago ds-shadow-continuous-archive.timer            ds-shadow-continuous-archive.service
+Sun 2026-05-10 18:14:13 CDT 3min 52s Sun 2026-05-10 17:59:13 CDT    11min ago ds-storage-pressure-monitor.timer             ds-storage-pressure-monitor.service
+Sun 2026-05-10 18:14:36 CDT 4min 16s Sun 2026-05-10 17:14:06 CDT    56min ago ladder-coherence-resolver.timer               ladder-coherence-resolver.service
+Sun 2026-05-10 18:15:00 CDT 4min 39s Sun 2026-05-10 18:00:01 CDT    10min ago cushion-ds-multi-series-resolver.timer        cushion-ds-multi-series-resolver.service
+Sun 2026-05-10 18:15:00 CDT 4min 39s Sun 2026-05-10 18:00:01 CDT    10min ago gemini-cushion-ds-resolver.timer              gemini-cushion-ds-resolver.service
+Sun 2026-05-10 18:21:13 CDT    10min Sun 2026-05-10 17:20:48 CDT    49min ago spread-capture-resolver.timer                 spread-capture-resolver.service
+Sun 2026-05-10 18:26:06 CDT    15min Sun 2026-05-10 17:25:26 CDT    44min ago macro-release-resolver.timer                  macro-release-resolver.service
+Sun 2026-05-10 18:35:57 CDT    25min Sun 2026-05-10 17:34:09 CDT    36min ago consensus-tracking-resolver.timer             consensus-tracking-resolver.service
+Sun 2026-05-10 18:39:27 CDT    29min Sun 2026-05-10 17:39:06 CDT    31min ago moderate-favorites-unr-resolver.timer         moderate-favorites-unr-resolver.service
+Sun 2026-05-10 19:00:34 CDT    50min Sun 2026-05-10 17:59:46 CDT    10min ago moderate-favorites-finance-resolver.timer     moderate-favorites-finance-resolver.service
+Sun 2026-05-10 19:03:34 CDT    53min Sun 2026-05-10 18:03:06 CDT     7min ago moderate-favorites-weather-resolver.timer     moderate-favorites-weather-resolver.service
+Sun 2026-05-10 19:09:29 CDT    59min Sun 2026-05-10 18:07:48 CDT 2min 31s ago moderate-favorites-economics-resolver.timer   moderate-favorites-economics-resolver.service
+Sun 2026-05-10 19:17:00 CDT  1h 6min Sun 2026-05-10 13:17:06 CDT 4h 53min ago ds-shadow-retention-engine.timer              ds-shadow-retention-engine.service
+Sun 2026-05-10 21:00:00 CDT 2h 49min Sun 2026-05-10 18:00:01 CDT    10min ago snap.firmware-updater.firmware-notifier.timer snap.firmware-updater.firmware-notifier.service
+Sun 2026-05-10 21:24:00 CDT 3h 13min Sun 2026-05-10 15:24:06 CDT 2h 46min ago ds-shadow-archive.timer                       ds-shadow-archive.service
+Sun 2026-05-10 21:40:00 CDT 3h 29min Sun 2026-05-10 15:40:03 CDT 2h 30min ago ds-storage-monitor.timer                      ds-storage-monitor.service
+Sun 2026-05-10 23:31:06 CDT 5h 20min Sun 2026-05-10 17:31:06 CDT    39min ago ds-shadow-db-maintenance.timer                ds-shadow-db-maintenance.service
+Sun 2026-05-10 23:35:00 CDT 5h 24min Sat 2026-05-09 23:55:06 CDT      18h ago ibkr-deterministic-fx-poc.timer               ibkr-deterministic-fx-poc.service
+Mon 2026-05-11 04:39:59 CDT      10h Sun 2026-05-10 04:47:46 CDT      13h ago ds-archive-tier-rotation.timer                ds-archive-tier-rotation.service
+Mon 2026-05-11 05:20:00 CDT      11h Sun 2026-05-10 05:20:03 CDT      12h ago logrotate-user.timer                          logrotate-user.service
+Mon 2026-05-11 05:30:00 CDT      11h Sun 2026-05-10 05:30:04 CDT      12h ago disk-hygiene-audit.timer                      disk-hygiene-audit.service
+Mon 2026-05-11 05:40:00 CDT      11h Sun 2026-05-10 05:40:03 CDT      12h ago database-autonomous-maintenance.timer         database-autonomous-maintenance.service
+Mon 2026-05-11 09:14:16 CDT      15h Sun 2026-05-10 09:14:16 CDT       8h ago launchpadlib-cache-clean.timer                launchpadlib-cache-clean.service
+-                                  - Sun 2026-05-10 18:10:03 CDT      17s ago claude-chat-sync.timer                        claude-chat-sync.service
 
 27 timers listed.
 ```
 
 ## Repo State
-- gemini: head=167690c branch=master in_sync=true remote=https://github.com/PhotonRahm/gemini_prediction_bot.git dirty=no
+- gemini: head=83e47c6 branch=master in_sync=true remote=https://github.com/PhotonRahm/gemini_prediction_bot.git dirty=no
 - ibkr: head=e1a8d8b branch=master in_sync=true remote=https://github.com/PhotonRahm/ibkr_forecast_bot.git dirty=no
-- kalshi: head=1d1eed6 branch=master in_sync=true remote=https://github.com/PhotonRahm/kalshi_favorites_bot.git dirty=no
-- operations-knowledge: head=a19b5e8 branch=master in_sync=true remote=https://github.com/PhotonRahm/operations-knowledge.git dirty=no
-- workspace: head=0532386 branch=master in_sync=true remote=https://github.com/PhotonRahm/rahm-workspace.git dirty=yes
+- kalshi: head=d6ac516 branch=master in_sync=true remote=https://github.com/PhotonRahm/kalshi_favorites_bot.git dirty=no
+- operations-knowledge: head=b7aec62 branch=master in_sync=true remote=https://github.com/PhotonRahm/operations-knowledge.git dirty=no
+- workspace: head=e3b2f50 branch=master in_sync=true remote=https://github.com/PhotonRahm/rahm-workspace.git dirty=yes
 
 ## Deferred And Pending Items
 ```
@@ -295,7 +295,8 @@ specific trigger condition. Once the trigger is in the past, the item is due and
 should be handled in the next operational review.
 ## Pending
 | Key | Verification | Why deferred | Trigger | Due |
-| `gemini_proper_cushion_shadow_decision_gate` | Gemini full-universe proper cushion DS live/retire decision gate | Scope 3 scanner starts a clean forward cohort in `shadow_gemini_cushion_ds`; decision-grade promotion or retirement requires per-asset resolved evidence rather than favorite-tracking aggregates. | Once `shadow_gemini_cushion_ds` reaches n>=50 resolved per asset with Wilson lower above breakeven, evaluate per-asset live pilot, scale, or retire decision. | Trigger-based, estimated 2-4 weeks after deploy |
+| `gemini_proper_cushion_shadow_decision_gate` | Gemini full-universe proper cushion DS live/retire decision gate | Scope 3 scanner starts a clean forward cohort in `shadow_gemini_cushion_ds`; decision-grade promotion or retirement requires per-asset independent contract-settlement evidence rather than favorite-tracking aggregates or repeated row observations. Updated 2026-05-10 per AGENTS.md Principle 51. | Once `shadow_gemini_cushion_ds` reaches n>=30 independent executable contract-settlement events per asset with Wilson lower above breakeven and positive collapsed P&L, evaluate per-asset live pilot, scale, or retire decision. Row-level metrics remain descriptive only. | Trigger-based, estimated 2-4 weeks after deploy |
+| `weather_cushion_ds_contract_date_gate` | Weather cushion DS unit-of-independence and time-window gate | Weather cushion-DS rows are repeated observations of daily weather contracts. The 2026-05-10 Gemini weather forensic showed row-level LIVE_PILOT_CANDIDATE labels collapsed to only 4-7 independent executable contract-date groups. Dispatch-conventions now also pre-commits an actionable time-window rule for future weather live pilot consideration. Updated 2026-05-10 per AGENTS.md Principle 51. | Once `weather_cushion_ds_shadow` per-cell time-windowed contract-date-collapsed metrics reach n>=30 independent executable contract-date groups with Wilson lower above breakeven and positive collapsed P&L within the actionable window, evaluate per-cell live pilot or retire decision. Row-level and full-lifetime collapsed metrics remain descriptive/contextual for pilot promotion. | Trigger-based |
 | `shadow_coverage_inventory_review` | Comprehensive DS coverage map review | Phase 2b closed Gemini weather and depth, and mapped the only current Gemini sports single-game subset; review accumulation after first resolutions. | Review `SHADOW COVERAGE INVENTORY` after 7 days of accumulation and prioritize any newly listed marginal cells. | 2026-05-10 12:00 UTC |
 | `index_fx_salvage_methodology_review` | Kalshi Index/FX Longshot Fade salvage methodology review | First live taker-side cohorts resolved 0W-8L combined, dispositive against the promoted shadow hypothesis. | Opportunistic only: review a new forward-shadow methodology such as liquidity/depth filter or maker variant before any re-enable proposal. | Trigger-based |
 | `kalshi_ds_qty_225_cohort_50_resolution_review` | Kalshi DS qty 225 cohort review | Kalshi crypto DS operates per-asset: BTC qty 700 (cohort `filter_combined_qty_700_btc_pilot`, accumulating), ETH qty 275 since 2026-05-08 14:35:34 (cohort `filter_combined_qty_275_eth_pilot`, accumulating). Initial quarter-Kelly Wilson-lower qty=225 cohort closed PASSED at 38 resolved (37W-1L, +$117.74). | CLOSED at the qty-225 layer; forward review now tracked separately by per-asset cohort rows (`kalshi_ds_qty_700_btc_30_resolution_review` and `kalshi_ds_qty_275_eth_30_resolution_review`). | Completed 2026-05-08 |
@@ -304,12 +305,15 @@ should be handled in the next operational review.
 | `kalshi_ds_qty_400_30_resolution_review` | Kalshi DS qty 400 cohort review | Completed 2026-05-06: aggregate qty-400 cohort failed its gate at 30 resolved, 27W-3L, Wilson lower 74.4%, P&L -$691.95, and daily CB breach. Operator approved per-asset rollback: BTC stays qty 400, ETH returns to qty 225. | CLOSED. Evidence preserved in `ds_qty_cohort_tracker` as `filter_combined_qty_400_pilot`; no further action on aggregate cohort. | Completed 2026-05-06 |
 | `kalshi_ds_qty_500_btc_30_resolution_review` | Kalshi DS BTC qty 500 per-asset cohort review | Completed 2026-05-09: `filter_combined_qty_500_btc_pilot` reached 60 resolved, 59W-1L, WR 98.3%, Wilson lower 91.1%, P&L +$435.94, max DD $442.20, and no daily CB breach. Operator honored EXPANSION_CANDIDATE with qty 600. | CLOSED. Forward BTC review now tracked under `kalshi_ds_qty_600_btc_30_resolution_review`. | Completed 2026-05-09 |
 | `kalshi_ds_qty_600_btc_30_resolution_review` | Kalshi DS BTC qty 600 per-asset cohort review | Completed 2026-05-09 evening: `filter_combined_qty_600_btc_pilot` reached 38 resolved, 38W-0L, WR 100%, Wilson lower 90.8%, P&L +$833.07, max DD $0.00, and no daily CB breach. Operator honored EXPANSION_CANDIDATE with qty 700. | CLOSED. Forward BTC review now tracked under `kalshi_ds_qty_700_btc_30_resolution_review`. | Completed 2026-05-09 |
-| `kalshi_ds_qty_700_btc_30_resolution_review` | Kalshi DS BTC qty 700 per-asset cohort review | Operator honored the qty-600 BTC cohort's EXPANSION_CANDIDATE after 38 resolved, 38W-0L, Wilson lower 90.8%, +$833.07 P&L, max DD $0.00, and no daily CB breach. BTC qty/cap moved 600->700 as a one-parameter scale; ETH remains qty 275. | Once `ds_qty_cohort_tracker` `filter_combined_qty_700_btc_pilot` reaches 30+ resolved BTC trades, evaluate WR>=95%, Wilson lower>=88%, positive P&L, no daily CB breach, asset/settlement-hour cap block count, and cash-binding evidence before any BTC size change. Existing qty-600 rows are informative only and not inherited. | Trigger-based |
+| `kalshi_ds_qty_700_btc_30_resolution_review` | Kalshi DS BTC qty 700 per-asset cohort review | CLOSED FAILED 2026-05-10: `filter_combined_qty_700_btc_pilot` reached 26 resolved at 24W-2L, Wilson lower 75.9% (below 88% gate), P&L -$751.17, and daily CB breach. Operator honored ROLLBACK_RECOMMENDED by rolling BTC back to qty 600. | CLOSED. Evidence preserved in `ds_qty_cohort_tracker`; qty-700 rows are informative only and are not inherited into the rollback cohort. | Completed 2026-05-10 |
+| `kalshi_ds_qty_600_btc_rollback_30_resolution_review` | Kalshi DS BTC qty 600 rollback cohort review | Qty-700 BTC failed gate via daily CB breach and Wilson lower below threshold. New cohort `filter_combined_qty_600_btc_rollback_pilot` starts 2026-05-10 19:06:00 UTC with BTC qty/cap 600, daily CB -$600, lifetime CB -$1800. | Once `ds_qty_cohort_tracker` `filter_combined_qty_600_btc_rollback_pilot` reaches 30+ resolved BTC trades, evaluate WR>=95%, Wilson lower>=88%, positive P&L, no daily CB breach. If this rollback cohort fails, review further rollback to qty 500 or market-regime change. | Trigger-based |
+| `kalshi_ds_min_price_0_93_30_resolution_review` | Kalshi DS min-price $0.93 filter cohort review | The 2026-05-10 comprehensive loss forensic found the $0.93 entry-price floor was the only tested surgical filter that cleared the full lifetime statistical gate after Bonferroni correction. New cohort `filter_min_price_0_93_pilot` starts 2026-05-10 20:56:50 UTC with BTC qty 600, ETH qty 275, cushion floor 0.10%, and all other Kalshi DS parameters unchanged. Source forensic: `research/2026-05-10-kalshi-ds-comprehensive-loss-forensic.md` at commit 01f448b. | Once `ds_qty_cohort_tracker` `filter_min_price_0_93_pilot` reaches 30+ resolved post-filter trades, evaluate WR>=97%, Wilson lower>=94%, positive P&L, and no daily CB breach. If the post-filter cohort fails P&L or CB at n>=30, roll back to `DS_KALSHI_MIN_PRICE=0.90` or reduce BTC further to qty 500. Success does not authorize automatic scale-up. | Trigger-based |
 | `kalshi_ds_qty_225_eth_30_resolution_review` | Kalshi DS ETH qty 225 rollback cohort review | Completed 2026-05-08: `filter_combined_qty_225_eth_pilot` reached 38 resolved at 37W-1L, Wilson lower 86.5%, +$117.74, and the operator honored EXPANSION_CANDIDATE by scaling ETH to qty 275. | CLOSED. Forward ETH review now tracked under `kalshi_ds_qty_275_eth_30_resolution_review`. | Completed 2026-05-08 |
 | `kalshi_ds_max_open_5_to_8_utilization_review` | Kalshi DS max_open 5->8 utilization review | Max_open was restored from 5 to 8 after BTC qty 400 / ETH qty 225 per-asset split made ETH-heavy windows underutilize capital. The DS dollar exposure cap was effectively disabled on 2026-05-10 with `DETERMINISTIC_SETTLEMENT_MAX_EXPOSURE=999999`, so platform cash is now the binding dollar constraint. This is a capital-throughput monitor, not a new per-trade strategy gate. | Review the `5->8` cap era after 30+ resolved trades or two active trading days, whichever comes first. Check active-window capital utilization target 60-90%, daily P&L trend, no daily CB breach, asset-hour cap block count, and whether max_open or platform cash is binding. Rollback/review if daily CB breaches on 2 consecutive days or cap-era quality materially deteriorates versus the historical 6->8 cohort. | Trigger-based |
 | `kalshi_ds_cluster_cap_postfix_30_resolution_review` | Kalshi DS post-cluster-cap review | Qty-400 loss investigation found no filter or resolver bug, but did find funded-slot selection drift and correlated same asset/hour exposure. Max open was reduced to 5 and max asset/settlement-hour open positions capped at 4 on 2026-05-06. | Once 30 post-fix `strategy='deterministic_settlement'` rows have resolved, evaluate WR>=95%, Wilson lower>=88%, positive P&L, no daily CB breach, asset/hour cap block count, and whether qty 400 should continue, roll back, or pause. | Trigger-based |
+| `gemini_mr_kelly_075_50_resolution_review` | Gemini MR Kelly 0.75x forward review | Operator scaled Kelly multiplier from 0.625 to 0.75 on 2026-05-10 based on EB posteriors exceeding predicted probabilities across BTC/ETH/SOL cells. The 50% per-asset concentration cap remains the binding correlated-blowup control. Source: operator decision log 2026-05-10. | Once gemini-bot post-deploy resolved MR placements reach n>=50, compare per-asset W-L and P&L to the 0.625x era, evaluate drawdown profile, concentration-cap hit rate, daily CB consumption, and Kelly shadow delta. If daily CB breaches or max DD materially exceeds 0.625x cohort, roll back Kelly to 0.625. Success does not authorize further Kelly increase without explicit operator approval and a fresh 100-resolution review. | Trigger-based |
 | `gemini_mr_eb_kelly_50_trade_review` | Gemini MR empirical-Bayes half-Kelly review | Gemini MR now uses half-Kelly sizing with empirical-Bayes calibration and a permanent 50% per-asset concentration cap. Initial EB cells are mostly accumulating because per-asset n<30. | Once 50 post-deploy Gemini MR placements have resolved, compare raw vs calibrated probability, final qty, concentration-cap hits, per-asset W-L/P&L, and reconciliation state. | Trigger-based |
-| `kalshi_proper_index_fx_cushion_shadow_decision_gate` | Proper Index/FX cushion DS promotion gate | Existing large Index/FX shadow evidence is favorite-tracking/longshot methodology, while the proper final-30m cushion DS table now accumulates from the separate `cushion-ds-multi-series-scanner.timer` deployed 2026-05-10. Sports is intentionally separate because it lacks a numeric spot/strike cushion. The legacy live Index/FX longshot keys remain killed. | Once `shadow_index_fx_cushion_ds` reaches n>=50 resolved per series with Wilson lower above breakeven, evaluate per-series live pilot deployment. | Trigger-based, estimated 2-4 weeks after deploy depending on per-series accumulation rate |
+| `kalshi_proper_index_fx_cushion_shadow_decision_gate` | Proper Index/FX cushion DS promotion gate | Existing large Index/FX shadow evidence is favorite-tracking/longshot methodology, while the proper final-30m cushion DS table now accumulates from the separate `cushion-ds-multi-series-scanner.timer` deployed 2026-05-10. Sports is intentionally separate because it lacks a numeric spot/strike cushion. The legacy live Index/FX longshot keys remain killed. Updated 2026-05-10 per AGENTS.md Principle 51. | Once `shadow_index_fx_cushion_ds` reaches n>=30 independent executable contract-settlement events per series with Wilson lower above breakeven and positive collapsed P&L, evaluate per-series live pilot deployment. Row-level metrics remain descriptive only. | Trigger-based, estimated 2-4 weeks after deploy depending on per-series accumulation rate |
 | `gemini_ds_parallel_filter_30_resolution_review` | Gemini DS parallel-filter pilot review | Completed 2026-05-06: parallel filter reached 36 resolved, 33W-3L, Wilson lower 78.2%, P&L -$14.48. All three losses were SOL; operator approved removing SOL and continuing BTC/ETH only. | CLOSED. Evidence preserved in `gemini_ds_cohort_tracker` as closed `parallel_filter_pilot`; no further action on BTC/ETH/SOL cohort. | Completed 2026-05-06 |
 | `gemini_ds_parallel_filter_btc_eth_30_resolution_review` | Gemini DS BTC/ETH parallel-filter refinement review | Completed 2026-05-07: `parallel_filter_btc_eth_pilot` failed at 42 resolved, 37W-5L, Wilson lower 75.0%, P&L -$24.63, and daily CB breach. Loss-pattern review found all five losses below entry price 0.95. | CLOSED. Evidence preserved in `gemini_ds_cohort_tracker` as closed `parallel_filter_btc_eth_pilot`; no further action on the price>=0.90 BTC/ETH cohort. | Completed 2026-05-07 |
 | `gemini_ds_eth_high_price_30_resolution_review` | Gemini DS ETH-only high-price refinement review | Completed 2026-05-09: `filter_combined_eth_high_price_pilot` reached 52 resolved, 52W-0L, WR 100%, Wilson lower 93.1%, P&L +$15.50, max DD $0.00, and no daily CB breach. Operator honored EXPANSION_CANDIDATE with qty 50. | CLOSED. Forward ETH review now tracked under `gemini_ds_eth_qty_50_30_resolution_review`. | Completed 2026-05-09 |

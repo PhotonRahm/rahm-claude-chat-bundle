@@ -165,7 +165,14 @@ Shadow-only streams that should not be confused with live strategy keys:
   source: `gemini-weather-nws-mapping.md`. Reports show row-level descriptive
   metrics plus contract-date-collapsed decision-grade metrics; gate decisions
   require n>=30 independent executable contract-date groups with Wilson lower
-  above breakeven and positive collapsed P&L.
+  above breakeven and positive collapsed P&L. Gemini weather rows persist
+  actual NWS settlement temperatures forward-only at resolution time:
+  `actual_temp_f`, `actual_temp_station`, `actual_temp_event_date`,
+  `actual_temp_source`, and `actual_temp_fetched_at`. Future live pilot
+  consideration must use the pre-committed Weather DS time-window rule in
+  `dispatch-conventions.md`: high-temperature contracts use actionable
+  observations from 10:00 local station time through the stated high cutoff;
+  low-temperature contracts use 00:00-08:00 local station time.
 - Gemini sports mapping audit: workspace
   `scripts/gemini_sports_mapping_audit.py`, tables
   `gemini_sports_mapping_audit` and `gemini_sports_espn_mapping`.
