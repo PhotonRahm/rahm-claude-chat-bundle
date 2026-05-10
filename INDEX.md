@@ -26,12 +26,12 @@ Fetch this index first, then fetch Tier 1. Fetch Tier 2/3 only when the operator
 - MANIFEST.md: https://raw.githubusercontent.com/PhotonRahm/rahm-claude-chat-bundle/main/MANIFEST.md
 
 ## File checksums
-- AGENTS.md: sha256=e735f69719d92d7c45fafe24226ebf5b26252029ec658a1a94412f79d02039c5 bytes=39186
+- AGENTS.md: sha256=6eb379c7b3859d609f7e2bd01db0cc8b897eceee1b7511a5f39c5fc5d2ce5398 bytes=41154
 - CLAUDE-CHAT.md: sha256=3f38f02cc1b2ec312a967563e6a314a21d2b2d681d293c82a03b84a6f9c6d1fa bytes=3069
-- MANIFEST.md: sha256=8dd3990f01f87f017471b357235193adc7911b8cf99919dddfad943e6a6a21aa bytes=1498
-- VERIFICATION_DEFERRED.md: sha256=d2d158b3823db2b4b835cd94d11738233ef7b0522e2639b1d8da3f17b47735ce bytes=31692
+- MANIFEST.md: sha256=9a0c6f530c54d560440187eb0fb26e1a10fdfc3996df2fc089ac9888da154813 bytes=1498
+- VERIFICATION_DEFERRED.md: sha256=b0c356845c0be1940bd0d293faf99a279704edd3b60eb265fc92ff14ae1d6d01 bytes=32129
 - current-state.md: sha256=98b37a51e47493166e62e5e82e19ea87767a24600b1bd819325196f3cba637ac bytes=62222
-- dispatch-conventions.md: sha256=b2a6055a9b2d0b5fd61a323639c36a880b4f265aaa2b32637469877650d74a28 bytes=10236
+- dispatch-conventions.md: sha256=188128eca548c82410d34d84328c6e05ee3a73e58d8f50ade65b09c401db21cf bytes=11179
 - ds-storage-runbook.md: sha256=87055243d98c099d838fd6836ba2cef760e9e118d1c8ff353b2bcd7df144f1d4 bytes=11637
 - operator-decision-log.md: sha256=bde55466faa67360d539bc521158f7f1c3602ca23b3f5463f0b49b3d17fd0dff bytes=88426
 - storage-architecture.md: sha256=01e1044a1caa5ef5a547113dbf4029d6ad341c3c97741cf5aa0121126ea96dbb bytes=1057

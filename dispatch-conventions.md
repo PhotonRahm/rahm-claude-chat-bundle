@@ -136,6 +136,29 @@ The four tracked repos are:
 
 `~/.openclaw/workspace/ibkr_forecast_bot` is a nested git repo with its own remote at `https://github.com/PhotonRahm/ibkr_forecast_bot.git`; the workspace's `.gitignore` excludes it from the workspace tree. It is pushed by the same daily backup script.
 
+## Final report rule: paste full deliverable text
+
+If the dispatch produces a research file, decision document, analytical report,
+or any written deliverable that the operator needs to review, the final
+consolidated chat report MUST include the FULL TEXT of the deliverable.
+
+- Do NOT just provide the file path.
+- Do NOT just provide a summary.
+- Paste the complete content.
+
+The chat is the operator's interface. A file path is a deferred handoff.
+
+For unusually long deliverables (>15,000 words), paste the executive summary
+plus all section verdicts and recommendations; provide the file path for the
+remainder. Pure file-path-only is not acceptable.
+
+This rule is also encoded as AGENTS.md Principle 50 (the cross-agent operating
+principle); this dispatch-conventions.md entry is the per-dispatch reference
+for the final-report section.
+
+Cross-reference: AGENTS.md Principle 50 — Codex pastes full deliverable text
+into final reports.
+
 ## Cross-agent context
 
 Dispatches authored by Claude-in-chat:
