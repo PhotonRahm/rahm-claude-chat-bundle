@@ -1,5 +1,76 @@
 # Operator Decision Log
 
+## 2026-05-10 - Fix create_union_view() missing-table regression
+
+Decision:
+- Fix the test regression introduced by commit e3b2f50 (weather
+  persistence dispatch) in
+  `~/.openclaw/workspace/scripts/ds_shadow_archive_reader.py`.
+- The function now returns `None` when the main schema does not contain
+  the requested table, symmetric with how missing archive schemas are
+  already handled silently.
+
+Issue diagnosis:
+- Commit e3b2f50 changed `create_union_view()` from
+  `"SELECT * FROM main.<table>"` to a column-projected form via
+  `_project_columns(main_columns, main_available, "main", table)`.
+- When `_table_columns()` returns `[]` (main schema doesn't have the
+  table), `_project_columns([], ...)` emits
+  `"SELECT  FROM main.<table>"` - invalid SQL, syntax error on view
+  creation.
+- Production: not affected. All 7 tables that
+  `shadow_research_status.format_report_lines()` requests exist in
+  `ds_shadow_expansion.db`.
+- Tests: `test_shadow_research_status.py` fixtures only create
+  `ds_shadow_expansion_signals`; calls for the other 6 tables hit the
+  syntax error.
+
+Implementation boundary:
+- Modify `ds_shadow_archive_reader.create_union_view()` to add an
+  early-return when `main_columns` is empty. Drop any stale temp view
+  with the same name before returning None. Update docstring to
+  document the new `str | None` return contract. Return type of
+  `create_union_views()` widened to `dict[str, str | None]` because the
+  dict can now carry None values for missing tables.
+- Add regression test
+  `test_create_union_view_returns_none_when_main_table_missing` in
+  `test_ds_shadow_archive.py` exercising both the present-table and
+  missing-table paths.
+- No env changes, no schema changes, no service restarts.
+- All existing callers of `create_union_view` / `create_union_views`
+  reviewed: production paths guard with `_table_exists()` before
+  using view names, so the new None possibility is harmless in
+  production. The dict-style callers
+  (`shadow_research_status.py`, `ds_shadow_coverage_inventory.py`,
+  `ibkr_goal_readiness.py`) all read view names only after a
+  `_table_exists()` gate. The single-table callers
+  (`ds_shadow_expansion_lib.py`, `weather_cushion_ds_shadow.py`,
+  `gemini_cushion_ds_shadow.py`, `index_fx_cushion_ds_shadow.py`,
+  `data_freshness_aggregator.py`) operate on the production DB where
+  all expected tables exist.
+
+Production impact: NONE.
+
+Test impact:
+- Pre-fix: 297 total, 294 passing, 2 non-IBKR errors (the regression),
+  1 IBKR-scope failure (pre-existing, out of scope per Principle 49).
+- Post-fix: 298 total, 297 passing, 0 non-IBKR errors, 1 IBKR-scope
+  failure remains per Principle 49.
+- 1 new regression test added (the +1 to total).
+
+Cross-references:
+- Surfaced by Claude Code audit dispatch 2026-05-10 post-afternoon
+  (see audit consolidated report).
+- Original commit introducing regression: e3b2f50 (weather persistence
+  dispatch, 2026-05-10).
+- Related dispatches: 2026-05-10 unit-of-independence (Principle 51)
+  shared the broader weather persistence release window.
+
+Next review trigger:
+- None mandatory. The fix is self-contained and the regression test
+  locks in the missing-table contract so future changes cannot
+  silently break it.
+
 ## 2026-05-09 evening - Kalshi DS BTC qty 700 deploy
 
 Decision:
@@ -1469,128 +1540,3 @@ The existing daily backup phase produces zstd-compressed backups of all
 five DBs (DS shadow, Polymarket, Kalshi, Gemini, IBKR) in
 `~/.openclaw/workspace/backups/`. These are local-only until the
 operator provides offsite credentials.
-
-## 2026-05-09 night - AGENTS.md/CLAUDE.md auto-load audit cleanup
-
-The 2026-05-09 evening audit raised six FLAGs against the AGENTS.md/CLAUDE.md
-auto-load architecture. Five are addressed in this dispatch; FLAG 4 (Rahm
-principle-update lifecycle) is deferred with concrete operator-input
-requirements documented below.
-
-### IBKR Active strategies tables — Weather DS state was stale
-
-Workspace `CLAUDE.md` row read "IBKR Weather DS | PAUSED" with reasoning about
-the 2026-05-05 blanket pause. Verified actuals contradict this: the kill
-switch file `~/.openclaw/workspace/ibkr_forecast_bot/KILL_DETERMINISTIC_SETTLEMENT_WEATHER`
-does not exist, the running IBKR bot env shows `DETERMINISTIC_SETTLEMENT_WEATHER_ENABLED=true`,
-and `ibkr_status_report.py` lists Weather DS as `✓ Weather DS: -$2.50 | 1W-7L | open: 6 | weather`.
-The 2026-05-08 per-cell pilot resumed Weather DS as bounded-cell-list
-deployment after Option A tightening + BUG_CLASSES #17 fix; the workspace
-table was never updated.
-
-Action taken:
-
-- Workspace `CLAUDE.md` Active strategies row "IBKR Weather DS | PAUSED"
-  replaced with "IBKR Weather DS Per-Cell Pilots | LIVE PILOT" carrying the
-  current cohort start (2026-05-08 15:20:00 UTC), the five active cells, the
-  qty 25 / max_open 2 / per-cell CB -$75/-$150 / aggregate -$200/-$400
-  config, the dropped cells now in shadow review, and the env-flag truth.
-- IBKR `CLAUDE.md` `### Active strategies` table extended from one row to
-  three: "IBKR bot strategy" preserved; "IBKR Weather DS Per-Cell Pilots
-  LIVE PILOT" and "IBKR Maker Pilot weather OBSERVING" added with full
-  current config and the same source-of-truth wording.
-
-### Polymarket cross-agent context block
-
-Polymarket CLAUDE.md was missing the "Cross-agent context is sourced from
-`~/operations-knowledge/AGENTS.md`..." paragraph that Kalshi/Gemini/IBKR
-CLAUDE.mds added on 2026-05-09. Added the same paragraph as a 2026-05-09
-entry under Recent audit conclusions.
-
-### Workspace CLAUDE.md cross-agent heading
-
-Workspace CLAUDE.md discussed cross-agent context inside a
-`## Cross-bot operational knowledge` paragraph but had no heading by that
-name for grep-discoverability. Added a new `## Cross-agent context` section
-adjacent to the existing one with a four-bullet summary covering: AGENTS.md
-sourcing, the dual-load Codex behavior (workspace identity + global trading
-principles), Claude Code's CLAUDE.md walking, and the
-`claude-chat-sync.timer` flow direction (ops-knowledge → staging → clone →
-GitHub, one-directional).
-
-### Bundle staging-drift guard
-
-`build_claude_chat_bundle.py` already wipes the staging directory before
-each rebuild, so any hand-edits to staging are silently lost. Added
-`detect_staging_drift(bundle)` which is called at the top of `build()`:
-for each file in `FILES`, if the staging copy has a newer mtime than the
-canonical AND the contents differ, surface a `STAGING_DRIFT` warning to
-both stdout and the redaction log. The build still proceeds (canonical
-remains the source of truth) but the operator gets a chance to rescue any
-intended change before it disappears. Three new unit tests cover the
-warn-fires / silent-on-clean / silent-when-no-staging branches; full
-workspace test discover 264/264 OK.
-
-### Section 5 — Rahm principle-update lifecycle (deferred)
-
-The dispatch asked for a forced-reload trigger so that AGENTS.md commits
-propagate to Rahm's continuously-running session within ≤30 minutes.
-Investigation findings:
-
-- `openclaw-gateway.service` runs `node openclaw gateway --port 18789` with
-  `Restart=always`. PID 657840, started 2026-05-03; uptime ~6 days. Stop
-  timeout 30s, start timeout 30s.
-- The OpenClaw gateway is a Node.js daemon that bridges between Codex CLI
-  and the system; it is not the Codex/Rahm AI brain itself.
-- There is no documented "restart Rahm" procedure in
-  `~/operations-knowledge/`, `~/.openclaw/workspace/`, or any of the bot
-  CLAUDE.mds. `find … -name '*.md' | xargs grep -l 'Rahm.*restart\|Rahm.*reload\|Rahm.*lifecycle'`
-  returns only two unrelated docs.
-- The heartbeat config (every 30m, 08:00-23:00 CDT, `directPolicy: allow`)
-  doesn't tell us whether Rahm's session-state persists across heartbeats
-  or whether each heartbeat starts a new Codex session.
-- Whether restarting `openclaw-gateway.service` would (a) lose Rahm's
-  in-flight work, (b) reset some session state without affecting the brain,
-  (c) cause Discord/SMS communication interruption, or (d) be safe and
-  fast — none of these are knowable from this audit's vantage point.
-
-The dispatch explicitly authorized deferral when restart safety can't be
-fully resolved. Deferring to a focused follow-up that requires operator
-input on the following questions before any reload mechanism is wired:
-
-1. **Lifecycle**: does Rahm's "session" persist across heartbeats, or does
-   each heartbeat start a fresh Codex CLI invocation? If fresh, AGENTS.md
-   is auto-loaded every 30 minutes already and FLAG 4 is closed-by-design.
-2. **Restart safety**: if the session persists, what command/script
-   restarts Rahm? Is `systemctl --user restart openclaw-gateway.service`
-   sufficient? Does it preserve in-flight order placement state?
-3. **Reload mechanism preference**: forced-restart (heavier) vs. flag-file
-   sentinel that Rahm checks at next heartbeat (lighter). The flag-file
-   approach needs Rahm-side code to read a sentinel like
-   `~/.openclaw/agents/main/AGENTS_MD_RELOAD_PENDING` and trigger a
-   self-reload — this requires knowing how Rahm's session is hosted.
-
-Concrete proposal for the follow-up dispatch:
-
-- Operator confirms session lifecycle (one of "fresh per heartbeat" /
-  "persistent with restart-safe gateway" / "persistent without
-  restart-safety today").
-- If "fresh per heartbeat": close FLAG 4 with no implementation needed;
-  document in dispatch-conventions and AGENTS.md that Rahm gets fresh
-  AGENTS.md on every heartbeat, putting it on parity with Codex CLI /
-  Claude Code / Claude-in-chat.
-- If "persistent with restart-safe gateway": add a one-line addition to
-  the existing `claude-chat-sync.service` that runs
-  `systemctl --user restart openclaw-gateway.service` after the AGENTS.md
-  push, gated by the safety checks (no in-flight orders in last 60s,
-  cash_gap $0.00, no active Discord conversation). Daily report
-  surfaces deferred reloads.
-- If "persistent without restart-safety today": implement the flag-file
-  sentinel write in `claude-chat-sync.service` post-push, then a separate
-  dispatch wires Rahm-side code to consume it.
-
-Implementing any of these blindly without operator input on the three
-questions above carries a real risk of breaking Rahm's runtime, which is
-the prime directive to preserve. The dispatch explicitly permitted
-deferral of Section 5 when restart safety isn't resolvable in one pass.
-This dispatch defers in line with that permission.
