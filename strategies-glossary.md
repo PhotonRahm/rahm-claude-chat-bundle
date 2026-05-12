@@ -1,6 +1,6 @@
 # Rahm Live Strategy Glossary
 
-Last updated: 2026-05-11
+Last updated: 2026-05-12
 
 This glossary names each live strategy by actual mechanism. Legacy strategy keys
 and kill-switch paths are preserved where changing them would create operational
@@ -10,8 +10,8 @@ risk.
 | --- | --- | --- | --- | --- |
 | Gemini Mean Reversion | mean_reversion | Prediction-market mean reversion with 0.75x Kelly live sizing, empirical-Bayes probability calibration where per-asset forward sample is sufficient, and permanent 50% per-asset concentration cap | Live MR with evidence-gated Kelly multiplier scale-up from 0.625 to 0.75 on 2026-05-10; 50 resolved post-deploy MR placements required before any further multiplier review | Gemini MR kill paths in repo CLAUDE.md |
 | Gemini Crypto DS High-Cushion ETH Pilot | deterministic_settlement | Final-window ETH cushion settlement with price >=0.95 and cushion >=0.40%, no depth enforcement, qty 10, max_open 3, daily CB -$20, lifetime CB -$60; depth is still recorded for bucket analysis. Active cohort name: `filter_combined_eth_high_cushion_qty_10_pilot` (started 2026-05-11 23:16:00 UTC / 18:16:00 CDT). Closed cohort names include `filter_combined_eth_high_price_qty_10_rollback_pilot` (closed failed 2026-05-11 at 78 resolved, 73W-5L, Wilson 85.9%, P&L -$22.77), `filter_combined_eth_high_price_qty_50_pilot` (closed failed 2026-05-10 at 39 resolved, 37W-2L, P&L -$35.79), `filter_combined_eth_high_price_pilot` (qty-10 ETH high-price pilot, passed 2026-05-09 at 52 resolved, 52W-0L, Wilson 93.1%, P&L +$15.50), `filter_combined_btc_eth_high_price_pilot`, `parallel_filter_btc_eth_pilot`, `parallel_filter_pilot`, and `strict_filter_pilot`. | Live bounded qty-10 ETH continuation after surgical high-cushion forensic. Lifetime price>=0.95/cushion>=0.40% rows were 75W-0L, Wilson 95.1%, +$18.13; no automatic scale-up. | `KILL_DETERMINISTIC_SETTLEMENT` |
-| Kalshi Mean Reversion | mean_reversion | Prediction-market mean reversion with surgical cell controls: KXHIGH/KXETHD/KXBTCD retired via MR-only pattern blocks, ETH fully blocked through MR asset-side controls, WEATHER_LOW YES fully blocked, INDEX capped at max 2 per underlier/event and max 4 total INDEX positions per settlement hour, and NO side active where not otherwise retired | Live MR with forward post-surgical-block review from 2026-05-11; WEATHER_LOW NO, SOL, and post-cap INDEX/OTHER remain eligible where other gates pass | Kalshi MR kill paths in repo CLAUDE.md |
-| Kalshi Crypto DS | deterministic_settlement | Final-window crypto cushion settlement on BTC/ETH, per-asset sizing BTC qty 500 / ETH qty 300, daily CB -$500, lifetime CB -$1,500, max_open 8, max 4 open positions per asset/settlement-hour, combined filter price >=0.93 and cushion >=0.10%, qty and filter cohort trackers active | Proper cushion DS with $0.93 min-price filter active. On 2026-05-11 the operator elected a beyond-CVaR-aggressive scale-up after BTC qty-400 CVaR, ETH qty-275, and $0.93 filter cohorts all cleared gates; fresh cohorts are `filter_combined_qty_500_btc_redeploy_pilot` and `filter_combined_qty_300_eth_pilot`. The old `filter_combined_qty_500_btc_pilot` remains preserved as a prior closed cohort. | `KILL_DETERMINISTIC_SETTLEMENT` |
+| Kalshi Mean Reversion | mean_reversion | Prediction-market mean reversion with surgical cell controls: KXHIGH/KXETHD/KXBTCD retired via MR-only pattern blocks, ETH fully blocked through MR asset-side controls, WEATHER_LOW fully blocked through MR asset-side controls, INDEX capped at max 2 per underlier/event and max 4 total INDEX positions per settlement hour, and NO side active where not otherwise retired | Live MR with forward post-full-WEATHER_LOW-block review from 2026-05-12; SOL and post-cap INDEX/OTHER remain eligible where other gates pass | Kalshi MR kill paths in repo CLAUDE.md |
+| Kalshi Crypto DS | deterministic_settlement | Final-window crypto cushion settlement on BTC/ETH, per-asset sizing BTC qty 600 / ETH qty 300, daily CB -$600, lifetime CB -$1,800, max_open 8, max 4 open positions per asset/settlement-hour, combined filter price >=0.93 and cushion >=0.10%, qty and filter cohort trackers active | Proper cushion DS with $0.93 min-price filter active. On 2026-05-12 the operator elected BTC qty 600 after the qty-500 redeploy cohort cleared cleanly; active cohorts are `filter_combined_qty_600_btc_redeploy_pilot` and `filter_combined_qty_300_eth_pilot`. Hard stop at qty 600; no qty 700+ scale-up without fresh CVaR/forensic and explicit operator decision. | `KILL_DETERMINISTIC_SETTLEMENT` |
 | Kalshi Index Longshot Fade | deterministic_settlement_index | Cheap-side longshot fade using audited TTE-bucketed heuristic rows | Paused: first live cohort 0W-4L on 2026-05-04 | `KILL_DETERMINISTIC_SETTLEMENT_INDEX` |
 | Kalshi FX Longshot Fade | deterministic_settlement_fx | Cheap-side longshot fade using audited TTE-bucketed heuristic rows | Paused: first live cohort 0W-4L on 2026-05-04 | `KILL_DETERMINISTIC_SETTLEMENT_FX` |
 | Kalshi Moderate Favorites | moderate_favorites | Narrow-band favorite pilot | Paused live pilot | `KILL_MODERATE_FAVORITES` |
@@ -83,9 +83,9 @@ Kalshi MR retired subseries and permanent controls:
   lifetime tail-loss asymmetry even though some recent BTC slices were
   positive. Runtime enforcement remains the MR-only `MR_BLOCKED_PATTERNS`
   prefix.
-- WEATHER_LOW YES total_cost >= $150 is permanent MR policy. The cap preserves
-  the small-cost WEATHER_LOW YES slice and blocks the above-cap tail; today it
-  blocked 4/4 attempts around $331-$345. WEATHER_LOW NO remains unrestricted.
+- WEATHER_LOW is fully blocked for MR as of 2026-05-12. The earlier
+  WEATHER_LOW YES-only block and prior total_cost cap were superseded after
+  WEATHER_LOW NO showed the same loss-asymmetry pattern.
 - INDEX cluster cap is permanent MR policy as of 2026-05-07: max 2 open
   positions per underlier/event and max 4 total open INDEX positions per
   settlement hour. Existing open positions at deploy are grandfathered.
