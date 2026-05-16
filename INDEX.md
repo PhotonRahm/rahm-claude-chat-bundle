@@ -1,6 +1,6 @@
 # Rahm Operation - Claude-in-Chat Bundle Index
 
-Last updated: 2026-05-16T17:10:03+00:00
+Last updated: 2026-05-16T23:10:05+00:00
 Bundle commit: pending-sync; exact pushed SHA is written to claude_chat_sync_status.json
 
 ## Startup
@@ -26,13 +26,13 @@ Fetch this index first, then fetch Tier 1. Fetch Tier 2/3 only when the operator
 - MANIFEST.md: https://raw.githubusercontent.com/PhotonRahm/rahm-claude-chat-bundle/main/MANIFEST.md
 
 ## File checksums
-- AGENTS.md: sha256=311a0b4a547886fea6c8ac31ed51a6a92a7446962acbd3d8b526de2998b3ca16 bytes=47964
+- AGENTS.md: sha256=d16d79c2bbaf05419089a86cad2adff49847417194be4629b57eadeed482f73f bytes=52953
 - CLAUDE-CHAT.md: sha256=3f38f02cc1b2ec312a967563e6a314a21d2b2d681d293c82a03b84a6f9c6d1fa bytes=3069
-- MANIFEST.md: sha256=01b1d2c2b3e36ce1d2c8f705b54866e1b9afa1c72e59b444dd59e273f2b625f1 bytes=1498
-- VERIFICATION_DEFERRED.md: sha256=690e366b454ea98924935fa8b444acc993a9c8412d885b3f893237d7493c1974 bytes=54631
-- current-state.md: sha256=494ceb690dfeaaa1d4c3b0cbe589b14f12fd0a7b323716dc76afe160d0ead0e6 bytes=79883
+- MANIFEST.md: sha256=706827f4738ace619996cd49dcfe43aedd2ef18426ad6605e86662f2f858b8b1 bytes=1498
+- VERIFICATION_DEFERRED.md: sha256=46097a5f1c656c531c19629ed6c97c5e05e1ddfd5495b79c8606bcf28832c375 bytes=54439
+- current-state.md: sha256=67bc80c83a71772996ce057999e96a14efb13ddd5c86987ec4624929b2c3defa bytes=79960
 - dispatch-conventions.md: sha256=597a82528f51b403ef3487fadf905ecd719c93f5acc08db3f39a00944bebe24f bytes=14119
 - ds-storage-runbook.md: sha256=87055243d98c099d838fd6836ba2cef760e9e118d1c8ff353b2bcd7df144f1d4 bytes=11637
 - operator-decision-log.md: sha256=7b97655fb49392431a640c84f37fd90d4bfff97c6fb532ea48dfee4d8f3f6bd6 bytes=77941
 - storage-architecture.md: sha256=01e1044a1caa5ef5a547113dbf4029d6ad341c3c97741cf5aa0121126ea96dbb bytes=1057
-- strategies-glossary.md: sha256=3aa56dea2b97ae30457a800a415d36ad762ddc92d2959db00a1dafca5ab431c4 bytes=22116
+- strategies-glossary.md: sha256=6c759a1bb28fec6be90188356a2c7a20534214b72e59c1dfe92778847e1ce2c2 bytes=22155
