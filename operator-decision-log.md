@@ -71,6 +71,20 @@ Next review trigger:
   locks in the missing-table contract so future changes cannot
   silently break it.
 
+## 2026-05-16 - Gemini DS hard kill and Kalshi DS BTC qty rollback
+
+Gemini DS:
+
+- Hard-killed Gemini Deterministic Settlement after `filter_combined_eth_high_cushion_qty_10_pilot` reached 50 resolved, 47W-3L, WR 94.0%, Wilson lower 83.8%, and P&L -$19.62.
+- Implemented with `DETERMINISTIC_SETTLEMENT_ENABLED=false` and `KILL_DETERMINISTIC_SETTLEMENT`.
+- Re-entry requires a new shadow cell with decision-grade independent-unit metrics and positive forward P&L; no tuning of the killed live methodology is authorized.
+
+Kalshi DS:
+
+- Rolled BTC qty/cap 600 -> 225 after `filter_combined_qty_600_btc_post_rollback_pilot` reached 65 resolved, 60W-5L, Wilson lower 83.2%, P&L -$1807.79, and rollback status.
+- ETH remains qty/cap 400 because its own cohort is still accumulating cleanly.
+- New BTC cohort: `filter_combined_qty_225_btc_post_rollback_pilot`, start `2026-05-16 08:53:26-0500`, gate n>=30, WR>=95%, Wilson lower>=88%, positive P&L, no daily CB breach.
+
 ## 2026-05-09 evening - Kalshi DS BTC qty 700 deploy
 
 Decision:
@@ -1382,161 +1396,3 @@ needed; reporting convention should reference the correct field name.
 - IBKR-scan-loop PID 2049139, NRestarts 0, ActiveEnterTimestamp 2026-05-08 10:53:36 CDT.
 - All three unchanged from the audit pre-flight reading. No service restart
   occurred during this remediation dispatch.
-
-## 2026-05-09 evening - Final cleanup dispatch (post-remediation chain)
-
-The audit + remediation chain raised three findings that the remediation
-deferred or got wrong. This dispatch closes them.
-
-### GitHub remotes — the audit and remediation were both wrong
-
-Earlier audit/remediation reported "no remotes configured on any of the four
-repos." This was incorrect. All four repos have GitHub remotes configured to
-the operator's PhotonRahm GitHub account:
-
-| Repo | Remote URL |
-|---|---|
-| `~/kalshi_favorites_bot` | `https://github.com/PhotonRahm/kalshi_favorites_bot.git` |
-| `~/gemini_prediction_bot` | `https://github.com/PhotonRahm/gemini_prediction_bot.git` |
-| `~/.openclaw/workspace` | `https://github.com/PhotonRahm/rahm-workspace.git` |
-| `~/operations-knowledge` | `https://github.com/PhotonRahm/operations-knowledge.git` |
-
-The audit's check used `git rev-parse origin/HEAD` which fails because
-origin/HEAD is not symbolic-set on these clones. The correct check is
-`git remote -v` or `git rev-parse origin/master`. `gh auth status` confirms
-the operator is authenticated as PhotonRahm with token scope including `repo`,
-and `gh repo list` shows all four repos plus `ibkr_forecast_bot` and
-`polymarket_shadow_bot` as private repos owned by PhotonRahm.
-
-Existing crontab already pushes three of the four repos daily at 04:00 CST
-via `~/.local/bin/backup-trading-repos.sh`: gemini_prediction_bot,
-kalshi_favorites_bot, and ibkr_forecast_bot. The script was missing
-`~/.openclaw/workspace` and `~/operations-knowledge`. Today's audit-response
-commits in those two repos were pushed manually during the chain
-(workspace `0bacc2b` pushed in this dispatch; ops-knowledge `de69666` was
-pushed by Codex after that commit).
-
-Action taken in this dispatch:
-
-- Pushed workspace's pending commit `0bacc2b` to `origin/master`. Verified
-  via `git rev-list --left-right --count master...origin/master = 0 0`.
-- Updated `~/.local/bin/backup-trading-repos.sh` to include
-  `~/.openclaw/workspace` and `~/operations-knowledge` in the daily
-  backup loop. The script's existing pattern (`git add -A`, commit if
-  changes, then `git push origin master`) handles both repos correctly.
-- Added `verify_repo_sync()` and `repo_sync_check()` to
-  `database_autonomous_maintenance.py`. The daily 05:40 maintenance run
-  now reports per-repo sync state. If any repo has no remote, or has
-  unpushed commits older than 24h, it surfaces as TOP_RISK.
-- Three new unit tests cover the check (no-remote / in-sync / ahead-recent
-  branches). Total maintenance test count: 6/6 OK.
-- Documented in `~/operations-knowledge/dispatch-conventions.md` the
-  correct remote-verification commands so future audits use
-  `git remote -v` and `git rev-parse origin/master` rather than
-  `origin/HEAD`.
-
-### 325a87c6 SHA — the remediation was wrong
-
-Earlier remediation said "325a87c6 does not appear in either
-operations-knowledge or workspace." It actually exists in
-operations-knowledge as commit `325a87c Classify Kalshi sports storage and
-retention escalation`. The earlier `git log --oneline --all | grep` failed
-to find it because the search was apparently shallow or had a buffering
-issue; `git rev-parse 325a87c6` resolves to the full SHA
-`[REDACTED:long_hex]`.
-
-The dispatch report's reference to `325a87c6` was correct; the previous
-remediation's "doesn't exist" finding was wrong. No action needed beyond
-this correction note. Dispatch-conventions now requires
-`git rev-parse <sha>` as the verification method (already a hash-prefix
-match) rather than grep against log output.
-
-### Gemini documented_baseline — deployed in this dispatch
-
-The remediation deferred this; this dispatch finishes it.
-
-Mirror of Kalshi pattern. Added `_get_documented_baseline()` to
-`gemini_status_report.py` querying `gemini_documented_baseline` rows from
-`reconciliation_adjustments`. Modified `_compute_hard_reconciliation()` to
-subtract the baseline from raw_residual so recon_adj reads only the residual.
-Updated the `[7] RECONCILIATION` render to display the baseline when
-non-zero.
-
-INSERTed one row of type `gemini_documented_baseline` with amount $3,241.50
-(the recon_adj value at the moment of absorption) and a rationale string
-documenting the source class (pre-Mean-Reversion strategy realized P&L
-offset; legacy strategy losses present in `trades.pnl`=-$13,077.60 vs
-post-MR "current strategy" lifetime P&L of +$4,288.57; the difference
-between cash + open positions + fees and deposits + post-MR P&L is the
-structural unattributable variance).
-
-Verification:
-
-- Cash gap before INSERT: $0.00 (HARD CHECK PASSED).
-- Cash gap after INSERT: $0.00 (HARD CHECK PASSED).
-- recon_adj before INSERT: $3,241.50.
-- recon_adj after INSERT: $0.00.
-- Documented baseline displayed: $3,241.50 (pre-MR structural offset; absorbed).
-- Drift on first post-INSERT report run: -$3,241.50 (one-time absorption
-  step; expected). Drift on second report run: $0.00 stable.
-- Bot PID unchanged at 2329966; NRestarts=0; service untouched.
-
-The Gemini bot's running process has the old code cached. The new
-documented_baseline absorption is visible whenever the report code runs
-(CLI or other consumer). At next bot restart, the in-bot reconciliation
-cycle picks up the new code path automatically. Until then, the bot's
-internal state is unaffected because the cached code never queries for
-the new `gemini_documented_baseline` row.
-
-### Test memoization fix — deployed
-
-Added `setUp` to `DSShadowExpansionTests` in
-`scripts/test_ds_shadow_expansion.py` that clears
-`dsx._WEATHER_ACTUAL_MEMO` and `dsx._FRED_FX_MEMO` before each test. This
-removes the cross-module cache pollution that caused
-`test_gemini_weather_range_actual_outcome_from_cached_nws` to fail in full
-discover but pass in module isolation.
-
-Verification: ran `python3 -m unittest discover scripts -p 'test_*.py'`
-three consecutive times. All three runs report 254/254 OK in 12.5-13.3
-seconds. Determinism confirmed.
-
-### Sports row count clarification
-
-The audit could not reproduce the dispatch report's "401,173 active rows"
-figure. Current state across all kalshi:sports tables (verified via
-sqlite3 queries):
-
-| Location | Rows |
-|---|---|
-| Active `ds_shadow_external_observations` (kalshi, sports) | 0 |
-| Active `ds_shadow_expansion_signals` (kalshi, sports) | 199,303 |
-| Archive `ds_shadow_expansion_signals` (kalshi, sports) | 1,720,538 |
-| Archive `ds_shadow_external_observations` (kalshi, sports) | 1,988,756 |
-| **Total active + archive** | **3,908,597** |
-
-The dispatch report's 401,173 was a point-in-time figure during the
-storage stabilization cycle when retention was actively running. Numbers
-shift through the day as autonomous engines run. Per dispatch-conventions
-update, all numeric claims about row counts must specify the table, the
-timestamp, and the query.
-
-### Offsite backup replication — deferred to operator
-
-`rclone` is not installed; no AWS or B2 credentials present in the
-environment. Per dispatch instructions, this requires operator credentials.
-Pre-staging is not done in this dispatch because (a) installing rclone
-without a clear destination doesn't add value, and (b) the existing
-crontab already pushes the four code repos to GitHub daily, which is
-itself an offsite copy of code (not data).
-
-Operator action when ready: provide one of (Backblaze B2 application key
-+ bucket, AWS S3 access key + bucket, any other rclone-compatible
-target). Then `apt install rclone && rclone config` to set up the remote
-and a daily timer to push `~/.openclaw/workspace/backups/` after the
-05:40 backup phase completes.
-
-The existing daily backup phase produces zstd-compressed backups of all
-five DBs (DS shadow, Polymarket, Kalshi, Gemini, IBKR) in
-`~/.openclaw/workspace/backups/`. These are local-only until the
-operator provides offsite credentials.
