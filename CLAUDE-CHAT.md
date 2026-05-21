@@ -39,9 +39,34 @@ files consume context tokens, so be deliberate.
 
 ## Step 4: Verify Freshness
 
-Check the `current-state.md` timestamp. If it is older than 12 hours, surface:
+Use a two-layer freshness check.
+
+### Layer 1: Pipeline Heartbeat (Primary)
+
+Check `pipeline_heartbeat_utc` from `INDEX.md` first. Compare it with the
+operator wall-clock. If it is older than 12 hours, surface:
+
+`Bundle pipeline_heartbeat is <X> hours old. Either the autonomous sync is failing OR a caching layer is serving stale content. Investigate before relying on operational claims.`
+
+This is the primary freshness signal because it is written from wall-clock time
+at sync/generation time and catches both server-side sync failure and
+consumer-side stale-cache reads.
+
+### Layer 2: Current-State Timestamp (Secondary)
+
+Check the `last_updated_utc` timestamp in `current-state.md`. If it is older
+than 12 hours, surface:
 
 `Current-state is from <X> hours ago; the autonomous sync runs every 6 hours, so this may indicate a sync failure. Should we investigate?`
+
+### What This Catches
+
+- `pipeline_heartbeat_utc` stale: the bundle you fetched may be old even if a
+  cached `current-state.md` appears internally consistent.
+- `last_updated_utc` stale: the generated operational snapshot itself may be
+  old even if the index was reachable.
+- Both stale: treat the bundle as operationally unsafe until Codex verifies the
+  sync pipeline from Rahm.
 
 ## Step 5: Respond
 
