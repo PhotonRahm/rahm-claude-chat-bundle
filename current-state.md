@@ -1,28 +1,85 @@
 # Rahm Current State
 
-last_updated_utc: 2026-05-23T17:10:06+00:00
-pipeline_heartbeat_utc: 2026-05-23T17:10:06+00:00
+last_updated_utc: 2026-05-23T23:10:06+00:00
+pipeline_heartbeat_utc: 2026-05-23T23:10:06+00:00
 generator: Codex generate_current_state.py
-workspace_head: f950977
+workspace_head: dbbf2ca
 
 ## Trading Bot Runtime
 ### gemini
 - unit: gemini-bot.service
 - active: active/running
-- pid: 2786793
+- pid: 2910744
 - nrestarts: 0
-- active_enter: Sat 2026-05-23 12:05:45 CDT
+- active_enter: Sat 2026-05-23 18:05:09 CDT
 - reconciliation:
-  - Reconciliation: resolved_pnl=$-18367.47 open_cost=$0.00 open_fees=$0.00 recon_adj=$122.65 expected_cash=$36.68 cash_gap=$+0.00 unrealized=+$0.00 [MATCH]
+  - Reconciliation: resolved_pnl=$-18382.53 open_cost=$0.00 open_fees=$0.00 recon_adj=$122.72 expected_cash=$21.69 cash_gap=$+0.00 unrealized=+$0.00 [MATCH]
   - ✓ HARD CHECK PASSED — gap $0.00
-  - Reconciliation adjustment: $122.65 (auto-computed from exchange balance)
-  - Expected cash: $36.68
-  - Actual cash (API): $36.68
+  - Reconciliation adjustment: $122.72 (auto-computed from exchange balance)
+  - Expected cash: $21.69
+  - Actual cash (API): $21.69
 - selected env:
   - `BLOCKED_ASSETS=WTI,BTC,ETH,SOL,XRP,ZEC,BRENT,COPPER,NGAS`
   - `BTC_QTY=600`
+  - `BTC_SAT_NO_CONTRARIAN_PILOT_ALLOWED_OUTCOMES=no`
+  - `BTC_SAT_NO_CONTRARIAN_PILOT_ALLOWED_UTC_DAYS=Sat`
+  - `BTC_SAT_NO_CONTRARIAN_PILOT_DAILY_CB=-5`
+  - `BTC_SAT_NO_CONTRARIAN_PILOT_LIFETIME_CB=-10`
+  - `BTC_SAT_NO_CONTRARIAN_PILOT_MAX_OPEN=2`
+  - `BTC_SAT_NO_CONTRARIAN_PILOT_QTY=10`
+  - `BTC_SUN_NO_CONTRARIAN_PILOT_ALLOWED_OUTCOMES=no`
+  - `BTC_SUN_NO_CONTRARIAN_PILOT_ALLOWED_UTC_DAYS=Sun`
+  - `BTC_SUN_NO_CONTRARIAN_PILOT_DAILY_CB=-5`
+  - `BTC_SUN_NO_CONTRARIAN_PILOT_LIFETIME_CB=-10`
+  - `BTC_SUN_NO_CONTRARIAN_PILOT_MAX_OPEN=2`
+  - `BTC_SUN_NO_CONTRARIAN_PILOT_QTY=10`
+  - `BTC_THU_NO_CONTRARIAN_PILOT_ALLOWED_OUTCOMES=no`
+  - `BTC_THU_NO_CONTRARIAN_PILOT_ALLOWED_UTC_DAYS=Thu`
+  - `BTC_THU_NO_CONTRARIAN_PILOT_DAILY_CB=-5`
+  - `BTC_THU_NO_CONTRARIAN_PILOT_LIFETIME_CB=-10`
+  - `BTC_THU_NO_CONTRARIAN_PILOT_MAX_OPEN=2`
+  - `BTC_THU_NO_CONTRARIAN_PILOT_QTY=10`
+  - `BTC_TUE_NO_CONTRARIAN_PILOT_ALLOWED_OUTCOMES=no`
+  - `BTC_TUE_NO_CONTRARIAN_PILOT_ALLOWED_UTC_DAYS=Tue`
+  - `BTC_TUE_NO_CONTRARIAN_PILOT_DAILY_CB=-5`
+  - `BTC_TUE_NO_CONTRARIAN_PILOT_LIFETIME_CB=-10`
+  - `BTC_TUE_NO_CONTRARIAN_PILOT_MAX_OPEN=2`
+  - `BTC_TUE_NO_CONTRARIAN_PILOT_QTY=10`
   - `CONTRARIAN_MAX_EXPOSURE=500`
   - `CONTRARIAN_QTY=100`
+  - `CRYPTO_BTC_LATE_HIGH_CUSHION_YES_DS_PILOT_ENABLED=true`
+  - `CRYPTO_BTC_LATE_HIGH_CUSHION_YES_DS_PILOT_KILL_SWITCH=/home/kingeric/gemini_prediction_bot/KILL_CRYPTO_BTC_LATE_HIGH_CUSHION_YES_DS_PILOT`
+  - `CRYPTO_BTC_LATE_HIGH_CUSHION_YES_DS_PILOT_START=2026-05-23 14:28:00`
+  - `CRYPTO_BTC_LOW_MID_NO_DS_PILOT_ENABLED=true`
+  - `CRYPTO_BTC_LOW_MID_NO_DS_PILOT_KILL_SWITCH=/home/kingeric/gemini_prediction_bot/KILL_CRYPTO_BTC_LOW_MID_NO_DS_PILOT`
+  - `CRYPTO_BTC_LOW_MID_NO_DS_PILOT_START=2026-05-23 13:47:43`
+  - `CRYPTO_BTC_MID_NO_DS_PILOT_ENABLED=true`
+  - `CRYPTO_BTC_MID_NO_DS_PILOT_KILL_SWITCH=/home/kingeric/gemini_prediction_bot/KILL_CRYPTO_BTC_MID_NO_DS_PILOT`
+  - `CRYPTO_BTC_MID_NO_DS_PILOT_START=2026-05-23 13:38:09`
+  - `CRYPTO_BTC_MID_WEEKDAY_YES_DS_PILOT_ENABLED=true`
+  - `CRYPTO_BTC_MID_WEEKDAY_YES_DS_PILOT_KILL_SWITCH=/home/kingeric/gemini_prediction_bot/KILL_CRYPTO_BTC_MID_WEEKDAY_YES_DS_PILOT`
+  - `CRYPTO_BTC_MID_WEEKDAY_YES_DS_PILOT_START=2026-05-23 13:12:31`
+  - `CRYPTO_BTC_UTC12_YES_DS_PILOT_ENABLED=true`
+  - `CRYPTO_BTC_UTC12_YES_DS_PILOT_KILL_SWITCH=/home/kingeric/gemini_prediction_bot/KILL_CRYPTO_BTC_UTC12_YES_DS_PILOT`
+  - `CRYPTO_BTC_UTC12_YES_DS_PILOT_START=2026-05-23 12:59:58`
+  - `CRYPTO_BTC_UTC18_NO_DS_PILOT_ENABLED=true`
+  - `CRYPTO_BTC_UTC18_NO_DS_PILOT_KILL_SWITCH=/home/kingeric/gemini_prediction_bot/KILL_CRYPTO_BTC_UTC18_NO_DS_PILOT`
+  - `CRYPTO_BTC_UTC18_NO_DS_PILOT_START=2026-05-23 12:25:00`
+  - `CRYPTO_ETH_LATE_HIGH_CUSHION_NO_DS_PILOT_ENABLED=true`
+  - `CRYPTO_ETH_LATE_HIGH_CUSHION_NO_DS_PILOT_KILL_SWITCH=/home/kingeric/gemini_prediction_bot/KILL_CRYPTO_ETH_LATE_HIGH_CUSHION_NO_DS_PILOT`
+  - `CRYPTO_ETH_LATE_HIGH_CUSHION_NO_DS_PILOT_START=2026-05-23 14:45:00`
+  - `CRYPTO_ETH_LATE_HIGH_NO_DS_PILOT_ENABLED=true`
+  - `CRYPTO_ETH_LATE_HIGH_NO_DS_PILOT_KILL_SWITCH=/home/kingeric/gemini_prediction_bot/KILL_CRYPTO_ETH_LATE_HIGH_NO_DS_PILOT`
+  - `CRYPTO_ETH_LATE_HIGH_NO_DS_PILOT_START=2026-05-23 12:40:00`
+  - `CRYPTO_ETH_LOWER_LATE_NO_DS_PILOT_ENABLED=true`
+  - `CRYPTO_ETH_LOWER_LATE_NO_DS_PILOT_KILL_SWITCH=/home/kingeric/gemini_prediction_bot/KILL_CRYPTO_ETH_LOWER_LATE_NO_DS_PILOT`
+  - `CRYPTO_ETH_LOWER_LATE_NO_DS_PILOT_START=2026-05-23 14:06:00`
+  - `CRYPTO_ETH_LOWER_LATE_YES_DS_PILOT_ENABLED=true`
+  - `CRYPTO_ETH_LOWER_LATE_YES_DS_PILOT_KILL_SWITCH=/home/kingeric/gemini_prediction_bot/KILL_CRYPTO_ETH_LOWER_LATE_YES_DS_PILOT`
+  - `CRYPTO_ETH_LOWER_LATE_YES_DS_PILOT_START=2026-05-23 14:13:00`
+  - `CRYPTO_ETH_MIDDAY_MID_NO_DS_PILOT_ENABLED=true`
+  - `CRYPTO_ETH_MIDDAY_MID_NO_DS_PILOT_KILL_SWITCH=/home/kingeric/gemini_prediction_bot/KILL_CRYPTO_ETH_MIDDAY_MID_NO_DS_PILOT`
+  - `CRYPTO_ETH_MIDDAY_MID_NO_DS_PILOT_START=2026-05-23 14:57:00`
   - `CRYPTO_FINAL_HIGH_PRICE_ETH_NO_DS_PILOT_ENABLED=true`
   - `CRYPTO_FINAL_HIGH_PRICE_ETH_NO_DS_PILOT_KILL_SWITCH=/home/kingeric/gemini_prediction_bot/KILL_CRYPTO_FINAL_HIGH_PRICE_ETH_NO_DS_PILOT`
   - `CRYPTO_FINAL_HIGH_PRICE_ETH_NO_DS_PILOT_START=2026-05-23 03:06:00`
@@ -42,66 +99,9 @@ workspace_head: f950977
   - `CRYPTO_LATE_MID_PRICE_NO_DS_PILOT_KILL_SWITCH=/home/kingeric/gemini_prediction_bot/KILL_CRYPTO_LATE_MID_PRICE_NO_DS_PILOT`
   - `CRYPTO_LATE_MID_PRICE_NO_DS_PILOT_START=2026-05-23 02:32:00`
   - `CRYPTO_LOW_PRICE_NO_DS_PILOT_ENABLED=false`
-  - `CRYPTO_LOW_PRICE_NO_DS_PILOT_KILL_SWITCH=/home/kingeric/gemini_prediction_bot/KILL_CRYPTO_LOW_PRICE_NO_DS_PILOT`
-  - `CRYPTO_LOW_PRICE_NO_DS_PILOT_START=2026-05-23 01:07:15`
-  - `CRYPTO_MID_PRICE_NO_DS_PILOT_ENABLED=false`
-  - `CRYPTO_MID_PRICE_NO_DS_PILOT_KILL_SWITCH=/home/kingeric/gemini_prediction_bot/KILL_CRYPTO_MID_PRICE_NO_DS_PILOT`
-  - `CRYPTO_MID_PRICE_NO_DS_PILOT_START=2026-05-23 01:45:00`
-  - `CRYPTO_WEEKDAY_MR_PILOT_DAILY_CB=-30`
-  - `CRYPTO_WEEKDAY_MR_PILOT_LIFETIME_CB=-75`
-  - `CRYPTO_WEEKDAY_MR_PILOT_MAX_OPEN_PER_EVENT=1`
-  - `CRYPTO_WEEKDAY_MR_PILOT_MAX_OPEN_PER_SYMBOL=1`
-  - `CRYPTO_WEEKDAY_MR_PILOT_QTY=10`
-  - `DEFAULT_QTY=600`
-  - `DETERMINISTIC_SETTLEMENT_ALLOWED_ASSETS=ETH`
-  - `DETERMINISTIC_SETTLEMENT_COHORT_START=2026-05-11 23:16:00`
-  - `DETERMINISTIC_SETTLEMENT_DAILY_CB=-20`
-  - `DETERMINISTIC_SETTLEMENT_DAILY_RESET_AT=2026-05-11 23:16:00`
-  - `DETERMINISTIC_SETTLEMENT_ENABLED=false`
-  - `DETERMINISTIC_SETTLEMENT_HIGH_CUSHION_START=2026-05-11 23:16:00`
-  - `DETERMINISTIC_SETTLEMENT_LIFETIME_CB=-60`
-  - `DETERMINISTIC_SETTLEMENT_MAX_OPEN=3`
-  - `DETERMINISTIC_SETTLEMENT_MIN_CUSHION=0.0040`
-  - `DETERMINISTIC_SETTLEMENT_MIN_DEPTH=0`
-  - `DETERMINISTIC_SETTLEMENT_MIN_NET_EDGE=0.0`
-  - `DETERMINISTIC_SETTLEMENT_MIN_PRICE=0.95`
-  - `DETERMINISTIC_SETTLEMENT_PER_TRADE_DOLLAR_CAP=10`
-  - `DETERMINISTIC_SETTLEMENT_PILOT_START=2026-05-06 16:28:46`
-  - `DETERMINISTIC_SETTLEMENT_PREVIOUS_PILOT_START=2026-05-05 18:12:00`
-  - `DETERMINISTIC_SETTLEMENT_QTY=10`
-  - `DETERMINISTIC_SETTLEMENT_QTY_10_ETH_ROLLBACK_START=2026-05-10 15:20:00`
-  - `DETERMINISTIC_SETTLEMENT_QTY_50_ETH_START=2026-05-09 14:01:37`
-  - `DETERMINISTIC_SETTLEMENT_THRESHOLD_PCT=0.0007`
-  - `DETERMINISTIC_SETTLEMENT_WINDOW_MINUTES=30`
-  - `ENABLE_SPREAD_CAPTURE=false`
-  - `ETH_QTY=600`
-  - `ETH_WEEKDAY_MR_PILOT_DAILY_CB=-30`
-  - `ETH_WEEKDAY_MR_PILOT_LIFETIME_CB=-75`
-  - `ETH_WEEKDAY_MR_PILOT_MAX_OPEN_PER_EVENT=2`
-  - `ETH_WEEKDAY_MR_PILOT_MAX_OPEN_PER_SYMBOL=1`
-  - `ETH_WEEKDAY_MR_PILOT_QTY=10`
-  - `FAV_QTY=200`
-  - `GEMINI_FAST_DS_CADENCE_ENABLED=true`
-  - `GEMINI_MR_DAILY_CB=-600`
-  - `GEMINI_MR_DAILY_CB_RESET_AT=2026-05-13 19:39:42-0500`
-  - `GEMINI_MR_KELLY_0625X_ROLLBACK_PILOT_START=2026-05-13 19:39:42-0500`
-  - `GEMINI_MR_KELLY_MULTIPLIER=0.625`
-  - `KELLY_HIGH_PROB_SOFTCAP=0.7`
-  - `KELLY_MULTIPLIER=0.625`
-  - `KELLY_PER_ASSET_CONCENTRATION_CAP=0.50`
-  - `KELLY_SIZING_ENABLED=true`
-  - `MAX_EXPOSURE=10000`
-  - `MEAN_REVERSION_BLOCKED_ASSETS=WTI,ZEC,BRENT,XRP`
-  - `MEAN_REVERSION_MAX_EXPOSURE=999999`
-  - `MEAN_REVERSION_QTY=400`
-  - `MEAN_REVERSION_QTY_UNVALIDATED=100`
-  - `MR_WEEKEND_BLOCKED_ASSETS=`
-  - `POSITION_CAP=600`
-  - `SPREAD_QTY=15`
-  - `VALUE_QTY=10`
 - strategy/cohort excerpts:
   - Live-strategy P&L (Mean Reversion only): -$913.55 across 296 resolved trades
-  - Full broker-resolved P&L (all historical strategies): -$18,367.47 across 1989 resolved trades
+  - Full broker-resolved P&L (all historical strategies): -$18,382.53 across 1991 resolved trades
   - 24h P&L: +$0.00 (0W-0L resolved, 0 placed)
   - Permanently killed strategies (1):
   - ✗ [Gemini] Mean Reversion: KILLED 2026-05-21 | -$913.55 | 251W-45L | lifetime breaker breached; Kelly 0.625x rollback failed; no revival authorized
@@ -124,9 +124,9 @@ workspace_head: f950977
 ### ibkr
 - unit: ibkr-scan-loop.service
 - active: active/running
-- pid: 2788130
+- pid: 2907068
 - nrestarts: 0
-- active_enter: Sat 2026-05-23 12:10:09 CDT
+- active_enter: Sat 2026-05-23 17:52:58 CDT
 - reconciliation:
   - Formula: expected cash/NLV uses broker_ledger realized P&L + latest Flex statement snapshot
   - ✓ HARD CHECK PASSED — cash gap $0.00
@@ -166,7 +166,7 @@ workspace_head: f950977
   - [bot_strategy_short_fx_qty150] Short-FX qty-150 cohort: 0 placed | 0 resolved (0W-0L) | P&L +$0.00 | open 0 | avg qty 0.0 | avg cost $0.00 | daily CB +$0.00 / $-300.00 | rollback ARMED
   - Qty-150 rollback gates: 2L/10=0/2 | 3L/30=0/3 | daily_pre_n20=+$0.00/-$300.00 (n=0) | lifetime=+$0.00/-$200.00 | max_single_loss=+$0.00/-$130.00 | breaches=none
   - [bot_strategy_short_fx_qty100] Short-FX cohort: 4 placed | 4 resolved (4W-0L) | P&L +$18.39 | open 0 | avg qty 66.8 | avg cost $62.15 | cap-limited 2 | daily CB +$0.00 / $-300.00
-  - Qty-100 blocked shadow: 281 rows | 75 symbols | 7 resolved (7W-0L) | P&L +$13.22 | avg qty 112.6 | latest 2026-05-23 10:38:29
+  - Qty-100 blocked shadow: 282 rows | 76 symbols | 7 resolved (7W-0L) | P&L +$13.22 | avg qty 112.7 | latest 2026-05-23 18:06:06
   - Sizing blocked shadow: 12 rows | 12 symbols | 0 resolved (0W-0L) | P&L +$0.00 | avg qty 100.0 | latest 2026-05-18 18:50:13
   - [bot_strategy_long_fx_qty30] Long-FX cohort: status PAUSED_EMPTY_SURFACE (paused_empty_surface_ec_2026_05_22) | 0 placed | 0 resolved (0W-0L) | P&L +$0.00 | open 0 | avg qty 0.0 | avg cost $0.00 | daily CB +$0.00 / $-50.00 | lifetime CB +$0.00 / $-150.00
   - [bot_strategy_legacy_qty60] Legacy pre-split cohort: 88 placed | 85 resolved (82W-3L) | P&L +$119.01 | preserved for history, not a current expansion signal
@@ -174,7 +174,7 @@ workspace_head: f950977
   - Qty-150 cohort: START 2026-05-22T22:45:49Z | active qty 150 | rollback-to-100 flag absent | pre-committed gates 2L/10, 3L/30, daily CB -$300 before n=20, lifetime CB -$200, single loss > $130
   - Qty-100 cohort: START 2026-05-17T18:48:00-05:00 | preserved as prior sizing measurement | prior qty-60 rows preserved
   - Qty-30 long-FX cohort: PAUSED (paused_empty_surface_ec_2026_05_22) | START 2026-05-22T09:33:00-05:00 | underliers JPUSD/USCAD/USEUR/USGBP | expiry 48-168h | qty 30 | max open 10 | CB daily $-50 lifetime $-150 | reactivation requires fresh venue contracts plus operator decision | USCAD/NO excluded
-  - P&L since deploy: $79.19
+  - [bot_strategy_ibkr_econ_pilot] ECONOMICS pilot: 0 placed | 0 resolved (0W-0L) | P&L +$0.00 | open 0 | open exposure $0.00/$50.00 | lifetime exposure tracked $0.00 / cap UNLIMITED | kill switch absent | breaches none
 
 ### kalshi
 - unit: kalshi-bot.service
@@ -183,11 +183,11 @@ workspace_head: f950977
 - nrestarts: 0
 - active_enter: Fri 2026-05-22 05:59:31 CDT
 - reconciliation:
-  - Reconciliation: resolved_pnl=$-2176.62 open_cost=$0.00 open_fees=$0.00 recon_adj=$233.08 expected_cash=$647.01 cash_gap=$+0.00 unrealized=$+90.55 [MATCH]
+  - Reconciliation: resolved_pnl=$-2140.04 open_cost=$0.00 open_fees=$0.00 recon_adj=$233.14 expected_cash=$683.65 cash_gap=$+0.00 unrealized=$+90.55 [MATCH]
   - ✓ HARD CHECK PASSED — gap $0.00
-  - Reconciliation adjustment: $233.08 (auto-computed from exchange balance)
-  - Expected cash: $647.01
-  - Actual cash (API): $647.01
+  - Reconciliation adjustment: $233.14 (auto-computed from exchange balance)
+  - Expected cash: $683.65
+  - Actual cash (API): $683.65
 - selected env:
   - `BTC_DS_PRICE_CEILING_H5_THRESHOLD=0.97`
   - `BTC_DS_PRICE_CEILING_H6_THRESHOLD=0.95`
@@ -270,8 +270,8 @@ workspace_head: f950977
   - `KALSHI_MR_WEATHER_LOW_YES_CAP_START=2026-05-05 19:23:46`
   - `KALSHI_MR_WEATHER_LOW_YES_COST_CAP=0`
 - strategy/cohort excerpts:
-  - Lifetime P&L: -$2,176.62 across 3020 resolved trades
-  - 24h P&L: -$355.39 (8W-2L resolved, 13 placed)
+  - Lifetime P&L: -$2,140.04 across 3026 resolved trades
+  - 24h P&L: +$73.42 (13W-1L resolved, 19 placed)
   - Record: 358W-58L (86%) | P&L: -$744.35
   - Status: KILLED 2026-05-17 (KILL_MEAN_REVERSION)
   - Kill reason: post-cutoff allowed cohort -$730.69; 84.2% nonzero WR vs 91.0% breakeven
@@ -299,65 +299,66 @@ workspace_head: f950977
 ## Storage State
 - DATABASE STORAGE HEALTH
 -   Overall status: GREEN / TARGET
--   Disk: 263.79 GiB used / 936.79 GiB total (28.2%), 625.34 GiB free
+-   Disk: 277.16 GiB used / 936.79 GiB total (29.6%), 611.97 GiB free
 -   Envelope: TARGET 50.0%, WARN 65.0%, CRITICAL 75.0%, HARD_LIMIT 85.0%
--   DS storage: active 11.15 GiB (state TARGET), hot 21.11 GiB, warm 0.95 GiB, cold 0.00 GiB, archive_state TARGET, total 33.20 GiB (3.5% of disk)
+-   DS storage: active 11.28 GiB (state TARGET), hot 21.86 GiB, warm 0.95 GiB, cold 0.00 GiB, archive_state TARGET, total 34.11 GiB (3.6% of disk)
 -   Archive sidecars: OK
--   Retention engine: last=2026-05-23T12:17:06+00:00 status=OK dry_run=False rows_selected=0 rows_archived=0 rows_pruned=0
+-   Retention engine: last=2026-05-23T18:17:07+00:00 status=OK dry_run=False rows_selected=0 rows_archived=0 rows_pruned=0
 -   Archive compression: status=OK actions=0 warm_days=7 min_file_mb=100
--   Tier rotation: last=2026-05-23T12:17:06+00:00 status=OK actions=0
+-   Tier rotation: last=2026-05-23T18:17:07+00:00 status=OK actions=0
 -   Autonomous maintenance: last=2026-05-23T13:04:43+00:00 status=OK backups=5/5 integrity_failures=0 drift_flags=0
 -   PROTECT_TRADING mode: NO
 
 ## Timers
 ```
 NEXT                            LEFT LAST                              PASSED UNIT                                          ACTIVATES
-Sat 2026-05-23 12:10:49 CDT      14s Sat 2026-05-23 12:00:46 CDT     9min ago ds-shadow-continuous-archive.timer            ds-shadow-continuous-archive.service
-Sat 2026-05-23 12:11:00 CDT      24s Sat 2026-05-23 12:10:06 CDT      29s ago cushion-ds-multi-series-scanner.timer         cushion-ds-multi-series-scanner.service
-Sat 2026-05-23 12:11:00 CDT      24s Sat 2026-05-23 12:10:30 CDT       5s ago gemini-cushion-ds-scanner.timer               gemini-cushion-ds-scanner.service
-Sat 2026-05-23 12:11:09 CDT      34s Sat 2026-05-23 12:10:09 CDT      25s ago gemini-two-leg-scanner.timer                  gemini-two-leg-scanner.service
-Sat 2026-05-23 12:11:09 CDT      34s Sat 2026-05-23 12:10:09 CDT      25s ago ibkr-scan-loop-watchdog.timer                 ibkr-scan-loop-watchdog.service
-Sat 2026-05-23 12:12:06 CDT 1min 30s Sat 2026-05-23 12:02:06 CDT     8min ago ibkr-yes-no-complementarity-scanner.timer     ibkr-yes-no-complementarity-scanner.service
-Sat 2026-05-23 12:12:20 CDT 1min 45s Sat 2026-05-23 11:11:50 CDT    58min ago moderate-favorites-economics-resolver.timer   moderate-favorites-economics-resolver.service
-Sat 2026-05-23 12:13:26 CDT 2min 50s Sat 2026-05-23 11:13:06 CDT    57min ago ladder-coherence-resolver.timer               ladder-coherence-resolver.service
-Sat 2026-05-23 12:14:07 CDT 3min 31s Sat 2026-05-23 11:44:07 CDT    26min ago ds-storage-monitor.timer                      ds-storage-monitor.service
-Sat 2026-05-23 12:15:00 CDT 4min 24s Sat 2026-05-23 12:00:01 CDT    10min ago cushion-ds-multi-series-resolver.timer        cushion-ds-multi-series-resolver.service
-Sat 2026-05-23 12:15:00 CDT 4min 24s Sat 2026-05-23 12:00:01 CDT    10min ago gemini-cushion-ds-resolver.timer              gemini-cushion-ds-resolver.service
-Sat 2026-05-23 12:15:09 CDT 4min 34s Sat 2026-05-23 12:00:09 CDT    10min ago ds-storage-pressure-monitor.timer             ds-storage-pressure-monitor.service
-Sat 2026-05-23 12:16:05 CDT     5min Sat 2026-05-23 11:15:04 CDT    55min ago spread-capture-weather-resolver.timer         spread-capture-weather-resolver.service
-Sat 2026-05-23 12:26:32 CDT    15min Sat 2026-05-23 11:25:56 CDT    44min ago spread-capture-resolver.timer                 spread-capture-resolver.service
-Sat 2026-05-23 12:29:33 CDT    18min Sat 2026-05-23 11:28:09 CDT    42min ago macro-release-resolver.timer                  macro-release-resolver.service
-Sat 2026-05-23 12:47:52 CDT    37min Sat 2026-05-23 11:46:26 CDT    24min ago moderate-favorites-unr-resolver.timer         moderate-favorites-unr-resolver.service
-Sat 2026-05-23 12:55:19 CDT    44min Sat 2026-05-23 11:53:46 CDT    16min ago consensus-tracking-resolver.timer             consensus-tracking-resolver.service
-Sat 2026-05-23 12:56:28 CDT    45min Sat 2026-05-23 11:55:56 CDT    14min ago ladder-coherence-two-leg-resolver.timer       ladder-coherence-two-leg-resolver.service
-Sat 2026-05-23 13:00:41 CDT    50min Sat 2026-05-23 11:59:06 CDT    11min ago moderate-favorites-weather-resolver.timer     moderate-favorites-weather-resolver.service
-Sat 2026-05-23 13:01:25 CDT    50min Sat 2026-05-23 12:00:01 CDT    10min ago moderate-favorites-finance-resolver.timer     moderate-favorites-finance-resolver.service
-Sat 2026-05-23 13:17:00 CDT  1h 6min Sat 2026-05-23 07:17:00 CDT 4h 53min ago ds-shadow-retention-engine.timer              ds-shadow-retention-engine.service
-Sat 2026-05-23 14:10:57 CDT  2h 0min Sat 2026-05-23 10:10:57 CDT 1h 59min ago deal-scout.timer                              deal-scout.service
-Sat 2026-05-23 14:17:00 CDT  2h 6min Sat 2026-05-23 08:17:01 CDT 3h 53min ago ds-contract-universe-refresh.timer            ds-contract-universe-refresh.service
-Sat 2026-05-23 15:00:00 CDT 2h 49min Sat 2026-05-23 12:00:01 CDT    10min ago snap.firmware-updater.firmware-notifier.timer snap.firmware-updater.firmware-notifier.service
-Sat 2026-05-23 15:24:20 CDT 3h 13min Sat 2026-05-23 09:24:41 CDT 2h 45min ago ds-shadow-archive.timer                       ds-shadow-archive.service
-Sat 2026-05-23 17:34:09 CDT 5h 23min Sat 2026-05-23 11:34:09 CDT    36min ago ds-shadow-db-maintenance.timer                ds-shadow-db-maintenance.service
-Sun 2026-05-24 04:30:00 CDT      16h Sat 2026-05-23 04:30:06 CDT       7h ago tax-ledger-ingest.timer                       tax-ledger-ingest.service
-Sun 2026-05-24 04:38:20 CDT      16h Sat 2026-05-23 04:35:12 CDT       7h ago ds-archive-tier-rotation.timer                ds-archive-tier-rotation.service
-Sun 2026-05-24 05:20:00 CDT      17h Sat 2026-05-23 05:20:06 CDT       6h ago logrotate-user.timer                          logrotate-user.service
-Sun 2026-05-24 05:30:00 CDT      17h Sat 2026-05-23 05:30:06 CDT       6h ago disk-hygiene-audit.timer                      disk-hygiene-audit.service
-Sun 2026-05-24 05:40:00 CDT      17h Sat 2026-05-23 05:40:06 CDT       6h ago database-autonomous-maintenance.timer         database-autonomous-maintenance.service
-Sun 2026-05-24 06:40:00 CDT      18h Sat 2026-05-23 08:05:06 CDT  4h 5min ago ibkr-deterministic-fx-poc.timer               ibkr-deterministic-fx-poc.service
-Sun 2026-05-24 07:20:00 CDT      19h Sat 2026-05-23 07:20:00 CDT 4h 50min ago ibkr-release-monitor-auto.timer               ibkr-release-monitor-auto.service
-Sun 2026-05-24 08:00:00 CDT      19h Sat 2026-05-23 08:00:00 CDT 4h 10min ago deal-scout-daily.timer                        deal-scout-daily.service
-Sun 2026-05-24 09:16:06 CDT      21h Sat 2026-05-23 09:16:06 CDT 2h 54min ago launchpadlib-cache-clean.timer                launchpadlib-cache-clean.service
--                                  - Sat 2026-05-23 12:10:06 CDT      29s ago claude-chat-sync.timer                        claude-chat-sync.service
+Sat 2026-05-23 18:10:39 CDT       7s Sat 2026-05-23 17:09:06 CDT  1h 1min ago moderate-favorites-finance-resolver.timer     moderate-favorites-finance-resolver.service
+Sat 2026-05-23 18:11:00 CDT      27s Sat 2026-05-23 18:10:06 CDT      25s ago cushion-ds-multi-series-scanner.timer         cushion-ds-multi-series-scanner.service
+Sat 2026-05-23 18:11:00 CDT      27s Sat 2026-05-23 18:10:30 CDT       1s ago gemini-cushion-ds-scanner.timer               gemini-cushion-ds-scanner.service
+Sat 2026-05-23 18:11:03 CDT      31s Sat 2026-05-23 14:11:03 CDT 3h 59min ago deal-scout.timer                              deal-scout.service
+Sat 2026-05-23 18:11:06 CDT      34s Sat 2026-05-23 17:56:06 CDT    14min ago gemini-ds-source-parity.timer                 gemini-ds-source-parity.service
+Sat 2026-05-23 18:11:21 CDT      49s Sat 2026-05-23 18:10:21 CDT      10s ago gemini-two-leg-scanner.timer                  gemini-two-leg-scanner.service
+Sat 2026-05-23 18:11:21 CDT      49s Sat 2026-05-23 18:10:21 CDT      10s ago ibkr-scan-loop-watchdog.timer                 ibkr-scan-loop-watchdog.service
+Sat 2026-05-23 18:15:00 CDT 4min 27s Sat 2026-05-23 18:00:00 CDT    10min ago cushion-ds-multi-series-resolver.timer        cushion-ds-multi-series-resolver.service
+Sat 2026-05-23 18:15:00 CDT 4min 27s Sat 2026-05-23 18:00:00 CDT    10min ago gemini-cushion-ds-resolver.timer              gemini-cushion-ds-resolver.service
+Sat 2026-05-23 18:15:01 CDT 4min 29s Sat 2026-05-23 18:05:01 CDT     5min ago ibkr-yes-no-complementarity-scanner.timer     ibkr-yes-no-complementarity-scanner.service
+Sat 2026-05-23 18:15:09 CDT 4min 37s Sat 2026-05-23 17:45:09 CDT    25min ago ds-storage-monitor.timer                      ds-storage-monitor.service
+Sat 2026-05-23 18:17:03 CDT     6min Sat 2026-05-23 18:02:03 CDT     8min ago ds-storage-pressure-monitor.timer             ds-storage-pressure-monitor.service
+Sat 2026-05-23 18:19:01 CDT     8min Sat 2026-05-23 17:18:49 CDT    51min ago spread-capture-weather-resolver.timer         spread-capture-weather-resolver.service
+Sat 2026-05-23 18:19:04 CDT     8min Sat 2026-05-23 17:18:03 CDT    52min ago moderate-favorites-economics-resolver.timer   moderate-favorites-economics-resolver.service
+Sat 2026-05-23 18:20:00 CDT     9min Sat 2026-05-23 17:19:50 CDT    50min ago ladder-coherence-resolver.timer               ladder-coherence-resolver.service
+Sat 2026-05-23 18:20:09 CDT     9min Sat 2026-05-23 18:10:06 CDT      25s ago ds-shadow-continuous-archive.timer            ds-shadow-continuous-archive.service
+Sat 2026-05-23 18:35:44 CDT    25min Sat 2026-05-23 17:34:53 CDT    35min ago spread-capture-resolver.timer                 spread-capture-resolver.service
+Sat 2026-05-23 18:38:44 CDT    28min Sat 2026-05-23 17:36:54 CDT    33min ago macro-release-resolver.timer                  macro-release-resolver.service
+Sat 2026-05-23 18:55:38 CDT    45min Sat 2026-05-23 17:54:06 CDT    16min ago moderate-favorites-unr-resolver.timer         moderate-favorites-unr-resolver.service
+Sat 2026-05-23 19:00:34 CDT    50min Sat 2026-05-23 17:58:42 CDT    11min ago consensus-tracking-resolver.timer             consensus-tracking-resolver.service
+Sat 2026-05-23 19:05:18 CDT    54min Sat 2026-05-23 18:04:06 CDT     6min ago ladder-coherence-two-leg-resolver.timer       ladder-coherence-two-leg-resolver.service
+Sat 2026-05-23 19:07:09 CDT    56min Sat 2026-05-23 18:06:52 CDT 3min 39s ago moderate-favorites-weather-resolver.timer     moderate-favorites-weather-resolver.service
+Sat 2026-05-23 19:17:00 CDT  1h 6min Sat 2026-05-23 13:17:06 CDT 4h 53min ago ds-shadow-retention-engine.timer              ds-shadow-retention-engine.service
+Sat 2026-05-23 20:17:00 CDT  2h 6min Sat 2026-05-23 14:17:06 CDT 3h 53min ago ds-contract-universe-refresh.timer            ds-contract-universe-refresh.service
+Sat 2026-05-23 21:00:00 CDT 2h 49min Sat 2026-05-23 18:00:00 CDT    10min ago snap.firmware-updater.firmware-notifier.timer snap.firmware-updater.firmware-notifier.service
+Sat 2026-05-23 21:24:20 CDT 3h 13min Sat 2026-05-23 15:24:21 CDT 2h 46min ago ds-shadow-archive.timer                       ds-shadow-archive.service
+Sat 2026-05-23 23:34:09 CDT 5h 23min Sat 2026-05-23 17:34:09 CDT    36min ago ds-shadow-db-maintenance.timer                ds-shadow-db-maintenance.service
+Sun 2026-05-24 04:30:00 CDT      10h Sat 2026-05-23 04:30:06 CDT      13h ago tax-ledger-ingest.timer                       tax-ledger-ingest.service
+Sun 2026-05-24 04:45:00 CDT      10h Sat 2026-05-23 04:35:12 CDT      13h ago ds-archive-tier-rotation.timer                ds-archive-tier-rotation.service
+Sun 2026-05-24 05:20:00 CDT      11h Sat 2026-05-23 05:20:06 CDT      12h ago logrotate-user.timer                          logrotate-user.service
+Sun 2026-05-24 05:30:00 CDT      11h Sat 2026-05-23 05:30:06 CDT      12h ago disk-hygiene-audit.timer                      disk-hygiene-audit.service
+Sun 2026-05-24 05:40:00 CDT      11h Sat 2026-05-23 05:40:06 CDT      12h ago database-autonomous-maintenance.timer         database-autonomous-maintenance.service
+Sun 2026-05-24 06:40:00 CDT      12h Sat 2026-05-23 08:05:06 CDT      10h ago ibkr-deterministic-fx-poc.timer               ibkr-deterministic-fx-poc.service
+Sun 2026-05-24 07:20:00 CDT      13h Sat 2026-05-23 07:20:00 CDT      10h ago ibkr-release-monitor-auto.timer               ibkr-release-monitor-auto.service
+Sun 2026-05-24 08:00:00 CDT      13h Sat 2026-05-23 08:00:00 CDT      10h ago deal-scout-daily.timer                        deal-scout-daily.service
+Sun 2026-05-24 09:16:06 CDT      15h Sat 2026-05-23 09:16:06 CDT       8h ago launchpadlib-cache-clean.timer                launchpadlib-cache-clean.service
+-                                  - Sat 2026-05-23 18:10:06 CDT      25s ago claude-chat-sync.timer                        claude-chat-sync.service
 
-36 timers listed.
+37 timers listed.
 ```
 
 ## Repo State
-- gemini: head=cfdeef7 branch=master in_sync=true remote=https://github.com/PhotonRahm/gemini_prediction_bot.git dirty=no
-- ibkr: head=d63ed32 branch=master in_sync=true remote=https://github.com/PhotonRahm/ibkr_forecast_bot.git dirty=no
+- gemini: head=dae9c7c branch=master in_sync=true remote=https://github.com/PhotonRahm/gemini_prediction_bot.git dirty=yes
+- ibkr: head=a176443 branch=master in_sync=true remote=https://github.com/PhotonRahm/ibkr_forecast_bot.git dirty=no
 - kalshi: head=c1afc0a branch=master in_sync=true remote=https://github.com/PhotonRahm/kalshi_favorites_bot.git dirty=no
-- operations-knowledge: head=c8645ce branch=master in_sync=true remote=https://github.com/PhotonRahm/operations-knowledge.git dirty=no
-- workspace: head=f950977 branch=master in_sync=true remote=https://github.com/PhotonRahm/rahm-workspace.git dirty=no
+- operations-knowledge: head=ff1f92a branch=master in_sync=true remote=https://github.com/PhotonRahm/operations-knowledge.git dirty=no
+- workspace: head=dbbf2ca branch=master in_sync=true remote=https://github.com/PhotonRahm/rahm-workspace.git dirty=no
 
 ## Active User Services
 ```
@@ -440,6 +441,8 @@ xdg-permission-store.service
 - research/2026-05-23-eg-ws4-kalshi-db-maintenance-planning.md
 - research/2026-05-23-eh-ws1-calibration-overlay-collapse-audit.md
 - research/2026-05-23-eh-ws2-eth-no-side-viability.md
+- research/2026-05-23-fa-ibkr-economics-pilot.md
+- research/2026-05-23-fb-ibkr-econ-pilot-cap-removal.md
 
 ## Deferred And Pending Items
 ```
