@@ -1,7 +1,7 @@
 # Rahm Current State
 
-last_updated_utc: 2026-06-20T10:41:16+00:00
-pipeline_heartbeat_utc: 2026-06-20T10:41:16+00:00
+last_updated_utc: 2026-06-20T11:10:00+00:00
+pipeline_heartbeat_utc: 2026-06-20T11:10:00+00:00
 generator: Codex generate_current_state.py
 workspace_head: 0710930
 
@@ -112,7 +112,7 @@ workspace_head: 0710930
   - Historical realized buckets (7; sum must equal lifetime):
   - • [Gemini] API Settlement/Cashout Reconciliation Adjustment: -$104.98 | 0W-1L | realized rows: 0 | fees: $0.00 | Gemini settled-positions API netProfit plus cashOuts wins over reconstructed DB sell/cost-basis P&L.
   - ✓ Gemini: lifetime -$12,975.97 / 2351 realized rows; bucket sum -$12,975.97 / 2351 rows
-  - Next decision gate: 2026-06-20T11:30:00+00:00 - direct-index DS next resolution (337 rows/5 events unresolved | current qty5: 227 rows/5 events unresolved | micro qty1: 110 rows/5 events unresolved) resolution checks; no live expansion before event-collapsed results
+  - Next decision gate: 2026-06-20T12:30:00+00:00 - direct-index DS next resolution (108 rows/5 events unresolved | current qty5: 71 rows/5 events unresolved | micro qty1: 37 rows/5 events unresolved) resolution checks; no live expansion before event-collapsed results
   - Status: ⚠ Warnings: deterministic settlement killed | crypto DS micro-pilots source-blocked | contrarian pilots killed | non-strategy legacy/manual open position present
   - [2.1] Mean Reversion (YES-only)  |  Status: PERMANENT_KILL 2026-05-21 (lifetime breaker breached; Kelly 0.625x rollback failed; no revival authorized)
   - Record: 168W-30L (85%) | P&L: +$488.51
@@ -276,69 +276,70 @@ workspace_head: 0710930
 ## Storage State
 - DATABASE STORAGE HEALTH
 -   Overall status: GREEN / TARGET
--   Disk: 216.81 GiB used / 936.79 GiB total (23.1%), 672.32 GiB free
+-   Disk: 217.83 GiB used / 936.79 GiB total (23.3%), 671.30 GiB free
 -   Envelope: TARGET 50.0%, WARN 65.0%, CRITICAL 75.0%, HARD_LIMIT 85.0%
--   DS storage: active 0.57 GiB (state TARGET), hot 0.84 GiB, warm 0.00 GiB, cold 0.00 GiB, archive_state TARGET, total 1.42 GiB (0.2% of disk)
+-   DS storage: active 0.57 GiB (state TARGET), hot 0.85 GiB, warm 0.00 GiB, cold 0.00 GiB, archive_state TARGET, total 1.42 GiB (0.2% of disk)
 -   Archive sidecars: OK
 -   Retention engine: last=2026-06-17T02:12:07+00:00 status=OK dry_run=False rows_selected=885 rows_archived=851 rows_pruned=34
 -   Archive compression: status=OK actions=0 warm_days=7 min_file_mb=100
 -   Tier rotation: last=2026-06-20T09:40:55+00:00 status=OK actions=0
--   Autonomous maintenance: last=2026-06-19T10:41:20+00:00 status=OK backups=4/5 integrity_failures=1 drift_flags=0
+-   Autonomous maintenance: last=2026-06-20T10:41:52+00:00 status=OK backups=4/5 integrity_failures=1 drift_flags=0
 -   PROTECT_TRADING mode: NO
 -   TOP_RISK: database integrity issue polymarket_shadow status=MISSING
+-   TOP_RISK: gemini_trades trading DB may need operator-approved maintenance window
 
 ## Timers
 ```
 NEXT                                  LEFT LAST                              PASSED UNIT                                                   ACTIVATES
-Sat 2026-06-20 05:42:00 CDT            12s Sat 2026-06-20 05:41:00 CDT      47s ago cushion-ds-multi-series-scanner.timer                  cushion-ds-multi-series-scanner.service
-Sat 2026-06-20 05:42:00 CDT            12s Sat 2026-06-20 05:41:30 CDT      16s ago gemini-cushion-ds-scanner.timer                        gemini-cushion-ds-scanner.service
-Sat 2026-06-20 05:42:06 CDT            19s Sat 2026-06-20 05:41:06 CDT      40s ago gemini-reward-inventory-exit.timer                     gemini-reward-inventory-exit.service
-Sat 2026-06-20 05:42:09 CDT            22s Sat 2026-06-20 05:41:09 CDT      37s ago gemini-ds-index-parity.timer                           gemini-ds-index-parity.service
-Sat 2026-06-20 05:42:24 CDT            37s Sat 2026-06-20 04:40:44 CDT  1h 1min ago ladder-coherence-two-leg-resolver.timer                ladder-coherence-two-leg-resolver.service
-Sat 2026-06-20 05:42:49 CDT        1min 2s Sat 2026-06-20 05:40:49 CDT      57s ago gemini-ds-index-micro-parity.timer                     gemini-ds-index-micro-parity.service
-Sat 2026-06-20 05:43:06 CDT       1min 19s Sat 2026-06-20 05:38:06 CDT 3min 40s ago btc-moderate-v2-shadow-scanner.timer                   btc-moderate-v2-shadow-scanner.service
-Sat 2026-06-20 05:43:06 CDT       1min 19s Sat 2026-06-20 05:38:06 CDT 3min 40s ago gemini-categorical-scanner.timer                       gemini-categorical-scanner.service
-Sat 2026-06-20 05:43:06 CDT       1min 19s Sat 2026-06-20 05:38:06 CDT 3min 40s ago gemini-fp-orderbook-capture.timer                      gemini-fp-orderbook-capture.service
-Sat 2026-06-20 05:43:06 CDT       1min 19s Sat 2026-06-20 05:38:06 CDT 3min 40s ago gemini-maker-fill-simulator.timer                      gemini-maker-fill-simulator.service
-Sat 2026-06-20 05:43:06 CDT       1min 19s Sat 2026-06-20 05:38:06 CDT 3min 40s ago kalshi-side-equivalence-scanner.timer                  kalshi-side-equivalence-scanner.service
-Sat 2026-06-20 05:43:07 CDT       1min 19s Sat 2026-06-20 05:13:07 CDT    28min ago ds-storage-monitor.timer                               ds-storage-monitor.service
-Sat 2026-06-20 05:43:07 CDT       1min 19s Sat 2026-06-20 05:13:07 CDT    28min ago gemini-db-size-monitor.timer                           gemini-db-size-monitor.service
-Sat 2026-06-20 05:44:00 CDT       2min 13s Sat 2026-06-20 05:39:00 CDT 2min 46s ago gemini-reward-post-only-safety.timer                   gemini-reward-post-only-safety.service
-Sat 2026-06-20 05:44:01 CDT       2min 14s Sat 2026-06-20 05:41:01 CDT      45s ago gemini-reward-live-readiness.timer                     gemini-reward-live-readiness.service
-Sat 2026-06-20 05:44:01 CDT       2min 14s Sat 2026-06-20 05:39:01 CDT 2min 45s ago gemini-reward-account-monitor.timer                    gemini-reward-account-monitor.service
-Sat 2026-06-20 05:44:22 CDT       2min 35s Sat 2026-06-20 05:29:22 CDT    12min ago ds-storage-pressure-monitor.timer                      ds-storage-pressure-monitor.service
-Sat 2026-06-20 05:44:49 CDT        3min 2s Sat 2026-06-20 05:14:49 CDT    26min ago eth-ds-fg-filter-blocks-resolver.timer                 eth-ds-fg-filter-blocks-resolver.service
-Sat 2026-06-20 05:45:00 CDT       3min 12s Sat 2026-06-20 05:30:00 CDT    11min ago cushion-ds-multi-series-resolver.timer                 cushion-ds-multi-series-resolver.service
-Sat 2026-06-20 05:45:00 CDT       3min 12s Sat 2026-06-20 05:30:00 CDT    11min ago gemini-cushion-ds-resolver.timer                       gemini-cushion-ds-resolver.service
-Sat 2026-06-20 05:45:51 CDT        4min 3s Sat 2026-06-20 05:30:51 CDT    10min ago btc-moderate-v2-shadow-resolver.timer                  btc-moderate-v2-shadow-resolver.service
-Sat 2026-06-20 05:45:51 CDT        4min 3s Sat 2026-06-20 05:30:51 CDT    10min ago gemini-categorical-resolver.timer                      gemini-categorical-resolver.service
-Sat 2026-06-20 05:45:51 CDT        4min 3s Sat 2026-06-20 05:30:51 CDT    10min ago kalshi-side-equivalence-resolver.timer                 kalshi-side-equivalence-resolver.service
-Sat 2026-06-20 05:47:30 CDT           5min Sat 2026-06-20 05:32:30 CDT     9min ago gemini-ds-source-parity.timer                          gemini-ds-source-parity.service
-Sat 2026-06-20 05:50:00 CDT           8min Sat 2026-06-20 05:40:00 CDT 1min 47s ago full-picture-latest-refresh.timer                      full-picture-latest-refresh.service
-Sat 2026-06-20 05:50:13 CDT           8min Sat 2026-06-20 05:40:13 CDT 1min 34s ago ds-shadow-continuous-archive.timer                     ds-shadow-continuous-archive.service
-Sat 2026-06-20 06:00:00 CDT          18min Sat 2026-06-20 03:00:00 CDT 2h 41min ago snap.firmware-updater.firmware-notifier.timer          snap.firmware-updater.firmware-notifier.service
-Sat 2026-06-20 06:10:00 CDT          28min Sat 2026-06-20 00:10:00 CDT 5h 31min ago claude-chat-sync.timer                                 claude-chat-sync.service
-Sat 2026-06-20 06:12:12 CDT          30min Sat 2026-06-20 03:12:12 CDT 2h 29min ago db-auto-vacuum.timer                                   db-auto-vacuum.service
-Sat 2026-06-20 06:12:41 CDT          30min Sat 2026-06-20 05:12:41 CDT    29min ago gemini-db-retention.timer                              gemini-db-retention.service
-Sat 2026-06-20 06:30:00 CDT          48min Sat 2026-06-20 05:30:00 CDT    11min ago gemini-direct-index-ds-first-resolution-verifier.timer gemini-direct-index-ds-first-resolution-verifier.service
-Sat 2026-06-20 06:42:24 CDT        1h 0min Sat 2026-06-20 05:41:25 CDT      21s ago macro-release-resolver.timer                           macro-release-resolver.service
-Sat 2026-06-20 07:17:00 CDT       1h 35min Sat 2026-06-20 01:17:00 CDT 4h 24min ago ds-shadow-retention-engine.timer                       ds-shadow-retention-engine.service
-Sat 2026-06-20 09:12:11 CDT       3h 30min Sat 2026-06-20 03:12:11 CDT 2h 29min ago ds-shadow-db-maintenance.timer                         ds-shadow-db-maintenance.service
-Sat 2026-06-20 09:24:20 CDT       3h 42min Sat 2026-06-20 03:24:20 CDT 2h 17min ago ds-shadow-archive.timer                                ds-shadow-archive.service
+Sat 2026-06-20 06:10:30 CDT          988ms Sat 2026-06-20 06:10:00 CDT      29s ago gemini-cushion-ds-scanner.timer                        gemini-cushion-ds-scanner.service
+Sat 2026-06-20 06:10:47 CDT            18s Sat 2026-06-20 06:09:47 CDT      42s ago gemini-reward-inventory-exit.timer                     gemini-reward-inventory-exit.service
+Sat 2026-06-20 06:10:53 CDT            24s Sat 2026-06-20 06:08:53 CDT 1min 35s ago gemini-ds-index-micro-parity.timer                     gemini-ds-index-micro-parity.service
+Sat 2026-06-20 06:11:00 CDT            30s Sat 2026-06-20 06:10:00 CDT      29s ago cushion-ds-multi-series-scanner.timer                  cushion-ds-multi-series-scanner.service
+Sat 2026-06-20 06:11:18 CDT            49s Sat 2026-06-20 06:10:18 CDT      10s ago gemini-ds-index-parity.timer                           gemini-ds-index-parity.service
+Sat 2026-06-20 06:11:45 CDT       1min 16s Sat 2026-06-20 06:08:34 CDT 1min 54s ago gemini-reward-live-readiness.timer                     gemini-reward-live-readiness.service
+Sat 2026-06-20 06:12:12 CDT       1min 43s Sat 2026-06-20 03:12:12 CDT 2h 58min ago db-auto-vacuum.timer                                   db-auto-vacuum.service
+Sat 2026-06-20 06:12:41 CDT       2min 12s Sat 2026-06-20 05:12:41 CDT    57min ago gemini-db-retention.timer                              gemini-db-retention.service
+Sat 2026-06-20 06:13:08 CDT       2min 39s Sat 2026-06-20 05:43:08 CDT    27min ago ds-storage-monitor.timer                               ds-storage-monitor.service
+Sat 2026-06-20 06:13:08 CDT       2min 39s Sat 2026-06-20 05:43:08 CDT    27min ago gemini-db-size-monitor.timer                           gemini-db-size-monitor.service
+Sat 2026-06-20 06:13:09 CDT       2min 40s Sat 2026-06-20 06:08:09 CDT 2min 19s ago btc-moderate-v2-shadow-scanner.timer                   btc-moderate-v2-shadow-scanner.service
+Sat 2026-06-20 06:13:09 CDT       2min 40s Sat 2026-06-20 06:08:09 CDT 2min 19s ago gemini-categorical-scanner.timer                       gemini-categorical-scanner.service
+Sat 2026-06-20 06:13:09 CDT       2min 40s Sat 2026-06-20 06:08:09 CDT 2min 19s ago gemini-fp-orderbook-capture.timer                      gemini-fp-orderbook-capture.service
+Sat 2026-06-20 06:13:09 CDT       2min 40s Sat 2026-06-20 06:08:09 CDT 2min 19s ago gemini-maker-fill-simulator.timer                      gemini-maker-fill-simulator.service
+Sat 2026-06-20 06:13:09 CDT       2min 40s Sat 2026-06-20 06:08:09 CDT 2min 19s ago kalshi-side-equivalence-scanner.timer                  kalshi-side-equivalence-scanner.service
+Sat 2026-06-20 06:14:23 CDT       3min 54s Sat 2026-06-20 05:59:23 CDT    11min ago ds-storage-pressure-monitor.timer                      ds-storage-pressure-monitor.service
+Sat 2026-06-20 06:14:35 CDT        4min 6s Sat 2026-06-20 06:09:33 CDT      55s ago gemini-reward-post-only-safety.timer                   gemini-reward-post-only-safety.service
+Sat 2026-06-20 06:14:36 CDT        4min 7s Sat 2026-06-20 06:09:33 CDT      55s ago gemini-reward-account-monitor.timer                    gemini-reward-account-monitor.service
+Sat 2026-06-20 06:14:50 CDT       4min 21s Sat 2026-06-20 05:44:50 CDT    25min ago eth-ds-fg-filter-blocks-resolver.timer                 eth-ds-fg-filter-blocks-resolver.service
+Sat 2026-06-20 06:15:00 CDT       4min 30s Sat 2026-06-20 06:00:00 CDT    10min ago cushion-ds-multi-series-resolver.timer                 cushion-ds-multi-series-resolver.service
+Sat 2026-06-20 06:15:00 CDT       4min 30s Sat 2026-06-20 06:00:00 CDT    10min ago gemini-cushion-ds-resolver.timer                       gemini-cushion-ds-resolver.service
+Sat 2026-06-20 06:15:51 CDT           5min Sat 2026-06-20 06:00:51 CDT     9min ago btc-moderate-v2-shadow-resolver.timer                  btc-moderate-v2-shadow-resolver.service
+Sat 2026-06-20 06:15:51 CDT           5min Sat 2026-06-20 06:00:51 CDT     9min ago gemini-categorical-resolver.timer                      gemini-categorical-resolver.service
+Sat 2026-06-20 06:15:51 CDT           5min Sat 2026-06-20 06:00:51 CDT     9min ago kalshi-side-equivalence-resolver.timer                 kalshi-side-equivalence-resolver.service
+Sat 2026-06-20 06:17:30 CDT           7min Sat 2026-06-20 06:02:30 CDT     7min ago gemini-ds-source-parity.timer                          gemini-ds-source-parity.service
+Sat 2026-06-20 06:20:15 CDT           9min Sat 2026-06-20 06:10:15 CDT      13s ago ds-shadow-continuous-archive.timer                     ds-shadow-continuous-archive.service
+Sat 2026-06-20 06:30:00 CDT          19min Sat 2026-06-20 05:30:00 CDT    40min ago gemini-direct-index-ds-first-resolution-verifier.timer gemini-direct-index-ds-first-resolution-verifier.service
+Sat 2026-06-20 06:42:24 CDT          31min Sat 2026-06-20 05:41:25 CDT    29min ago macro-release-resolver.timer                           macro-release-resolver.service
+Sat 2026-06-20 06:43:44 CDT          33min Sat 2026-06-20 05:42:25 CDT    28min ago ladder-coherence-two-leg-resolver.timer                ladder-coherence-two-leg-resolver.service
+Sat 2026-06-20 07:17:00 CDT        1h 6min Sat 2026-06-20 01:17:00 CDT 4h 53min ago ds-shadow-retention-engine.timer                       ds-shadow-retention-engine.service
+Sat 2026-06-20 09:00:00 CDT       2h 49min Sat 2026-06-20 06:00:00 CDT    10min ago snap.firmware-updater.firmware-notifier.timer          snap.firmware-updater.firmware-notifier.service
+Sat 2026-06-20 09:12:11 CDT        3h 1min Sat 2026-06-20 03:12:11 CDT 2h 58min ago ds-shadow-db-maintenance.timer                         ds-shadow-db-maintenance.service
+Sat 2026-06-20 09:24:20 CDT       3h 13min Sat 2026-06-20 03:24:20 CDT 2h 46min ago ds-shadow-archive.timer                                ds-shadow-archive.service
 Sat 2026-06-20 17:22:53 CDT            11h Fri 2026-06-19 17:22:53 CDT      12h ago launchpadlib-cache-clean.timer                         launchpadlib-cache-clean.service
 Sat 2026-06-20 21:12:09 CDT            15h Fri 2026-06-19 21:12:09 CDT       8h ago gemini-fp-retention.timer                              gemini-fp-retention.service
-Sun 2026-06-21 02:00:00 CDT            20h -                                      - gemini-archive-compression.timer                       gemini-archive-compression.service
-Sun 2026-06-21 04:30:00 CDT            22h Sat 2026-06-20 04:30:00 CDT 1h 11min ago tax-ledger-ingest.timer                                tax-ledger-ingest.service
-Sun 2026-06-21 04:35:27 CDT            22h Sat 2026-06-20 04:40:55 CDT  1h 0min ago ds-archive-tier-rotation.timer                         ds-archive-tier-rotation.service
-Sun 2026-06-21 05:20:00 CDT            23h Sat 2026-06-20 05:20:00 CDT    21min ago logrotate-user.timer                                   logrotate-user.service
-Sun 2026-06-21 05:30:00 CDT            23h Sat 2026-06-20 05:30:00 CDT    11min ago disk-hygiene-audit.timer                               disk-hygiene-audit.service
-Sun 2026-06-21 05:30:00 CDT            23h Sat 2026-06-20 05:30:00 CDT    11min ago full-picture-daily-save.timer                          full-picture-daily-save.service
+Sun 2026-06-21 02:00:00 CDT            19h -                                      - gemini-archive-compression.timer                       gemini-archive-compression.service
+Sun 2026-06-21 04:30:00 CDT            22h Sat 2026-06-20 04:30:00 CDT 1h 40min ago tax-ledger-ingest.timer                                tax-ledger-ingest.service
+Sun 2026-06-21 04:35:27 CDT            22h Sat 2026-06-20 04:40:55 CDT 1h 29min ago ds-archive-tier-rotation.timer                         ds-archive-tier-rotation.service
+Sun 2026-06-21 05:20:00 CDT            23h Sat 2026-06-20 05:20:00 CDT    50min ago logrotate-user.timer                                   logrotate-user.service
+Sun 2026-06-21 05:30:00 CDT            23h Sat 2026-06-20 05:30:00 CDT    40min ago disk-hygiene-audit.timer                               disk-hygiene-audit.service
+Sun 2026-06-21 05:30:00 CDT            23h Sat 2026-06-20 05:30:00 CDT    40min ago full-picture-daily-save.timer                          full-picture-daily-save.service
+Sun 2026-06-21 05:40:00 CDT            23h Sat 2026-06-20 05:40:00 CDT    30min ago database-autonomous-maintenance.timer                  database-autonomous-maintenance.service
 Tue 2026-06-23 17:25:52 CDT         3 days Tue 2026-06-16 17:25:52 CDT   3 days ago ubuntu-insights-upload.timer                           ubuntu-insights-upload.service
 Fri 2026-07-17 03:52:52 CDT 3 weeks 5 days Tue 2026-06-16 17:22:52 CDT   3 days ago ubuntu-insights-collect.timer                          ubuntu-insights-collect.service
--                                        - Sat 2026-06-20 05:40:00 CDT 1min 47s ago database-autonomous-maintenance.timer                  database-autonomous-maintenance.service
--                                        - Sat 2026-06-20 05:41:16 CDT      31s ago gemini-liquidity-rewards-scanner.timer                 gemini-liquidity-rewards-scanner.service
--                                        - Sat 2026-06-20 05:41:24 CDT      22s ago gemini-reward-quote-pilot.timer                        gemini-reward-quote-pilot.service
--                                        - Sat 2026-06-20 05:39:30 CDT 2min 16s ago gemini-trade-print-capture.timer                       gemini-trade-print-capture.service
+-                                        - Sat 2026-06-20 06:10:00 CDT      29s ago claude-chat-sync.timer                                 claude-chat-sync.service
+-                                        - Sat 2026-06-20 06:10:00 CDT      29s ago full-picture-latest-refresh.timer                      full-picture-latest-refresh.service
+-                                        - Sat 2026-06-20 06:09:47 CDT      42s ago gemini-liquidity-rewards-scanner.timer                 gemini-liquidity-rewards-scanner.service
+-                                        - Sat 2026-06-20 06:09:55 CDT      33s ago gemini-reward-quote-pilot.timer                        gemini-reward-quote-pilot.service
+-                                        - Sat 2026-06-20 06:09:33 CDT      55s ago gemini-trade-print-capture.timer                       gemini-trade-print-capture.service
 
 49 timers listed.
 ```
@@ -347,7 +348,7 @@ Fri 2026-07-17 03:52:52 CDT 3 weeks 5 days Tue 2026-06-16 17:22:52 CDT   3 days 
 - gemini: head=fd8d19d branch=master in_sync=true remote=https://github.com/PhotonRahm/gemini_prediction_bot.git dirty=yes
 - ibkr: head=3a580e4 branch=master in_sync=true remote=https://github.com/PhotonRahm/ibkr_forecast_bot.git dirty=yes
 - kalshi: head=99546b4 branch=master in_sync=true remote=https://github.com/PhotonRahm/kalshi_favorites_bot.git dirty=yes
-- operations-knowledge: head=637e3f3 branch=master in_sync=true remote=https://github.com/PhotonRahm/operations-knowledge.git dirty=yes
+- operations-knowledge: head=c9c2002 branch=master in_sync=true remote=https://github.com/PhotonRahm/operations-knowledge.git dirty=yes
 - workspace: head=0710930 branch=master in_sync=true remote=https://github.com/PhotonRahm/rahm-workspace.git dirty=yes
 
 ## Active User Services
