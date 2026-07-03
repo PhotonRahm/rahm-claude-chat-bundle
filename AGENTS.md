@@ -139,6 +139,18 @@ This file defines operation-wide rules for any Codex session involving the Rahm 
 - `current-state.md` is generated every 6 hours and is the source for live
   runtime state. This file is stable policy; it should not contain fast-moving
   balances, PIDs, or open-position details.
+- FX-AM resilient autonomy discipline: autonomous Codex and Claude Code goal
+  loops must keep restart pointers in
+  `~/.openclaw/workspace/goal_state/{codex,claude}_goal_state.json`. At every
+  meaningful boundary (charter commit, study completion, pilot placement,
+  settlement, halt, or next-action change), update the checkpoint with the
+  current charter/phase, pending studies, last completed step, open pilot
+  identities/caps, and next action on resume. The checkpoint references durable
+  sources of truth (`current-state.md`, charters, ledgers, JSONL logs, research
+  files); it must not duplicate fast-moving ledgers or alter `/goal` text.
+  Startup verification runs in parallel with resume. Do not add an aggregate
+  loss cap; per-pilot caps and existing kill switches remain the only loss
+  controls unless the operator explicitly changes that policy.
 
 ## Reporting style
 
