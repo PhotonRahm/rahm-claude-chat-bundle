@@ -1,12 +1,12 @@
 # Rahm Current State
 
-last_updated_utc: 2026-07-04T05:06:38+00:00
-pipeline_heartbeat_utc: 2026-07-04T05:06:38+00:00
+last_updated_utc: 2026-07-04T05:10:00+00:00
+pipeline_heartbeat_utc: 2026-07-04T05:10:00+00:00
 generator: Codex generate_current_state.py
 workspace_head: 0710930
 
 ## Chat Startup Critical Summary
-- Generated for Claude-in-chat startup at 2026-07-04T00:06:38-05:00; missing artifacts render UNAVAILABLE instead of breaking sync.
+- Generated for Claude-in-chat startup at 2026-07-04T00:10:00-05:00; missing artifacts render UNAVAILABLE instead of breaking sync.
 - Full-picture artifact: FULL PICTURE - 2026-07-04 12:00 AM
 
 ### Reconciliation and Cash
@@ -162,7 +162,7 @@ workspace_head: 0710930
   - Historical realized buckets (8; sum must equal lifetime):
   - • [Gemini] API Settlement/Cashout Reconciliation Adjustment: -$104.68 | 0W-1L | realized rows: 0 | fees: $0.00 | Gemini settled-positions API netProfit plus cashOuts wins over reconstructed DB sell/cost-basis P&L.
   - ✓ Gemini: lifetime -$12,975.97 / 2354 realized rows; bucket sum -$12,975.97 / 2354 rows
-  - Next decision gate: 2026-07-04T06:30:00+00:00 - direct-index DS next resolution (81 rows/5 events unresolved | current qty5: 57 rows/5 events unresolved | micro qty1: 24 rows/5 events unresolved) resolution checks; no live expansion before event-collapsed results
+  - Next decision gate: 2026-07-04T06:30:00+00:00 - direct-index DS next resolution (126 rows/5 events unresolved | current qty5: 84 rows/5 events unresolved | micro qty1: 42 rows/5 events unresolved) resolution checks; no live expansion before event-collapsed results
   - Status: ⚠ Warnings: deterministic settlement killed | crypto DS micro-pilots source-blocked | contrarian pilots killed | non-strategy legacy/manual open position present
   - [2.1] Mean Reversion (YES-only)  |  Status: PERMANENT_KILL 2026-05-21 (lifetime breaker breached; Kelly 0.625x rollback failed; no revival authorized)
   - Record: 168W-30L (85%) | P&L: +$488.51
@@ -329,10 +329,10 @@ workspace_head: 0710930
   - BTC MODERATE V2 FS SHADOW:
   - SHADOW: Longshot Fading (research-backed)
   - Live-matched v2 (full filter stack): 348W-13L (96.4%) | maker +$1,317.00  -> taker +$574.04
-  - Live-matched v2 first-ticker: 229W-13L (94.6%) | taker -$116.93 | Wilson 91.0% vs BE 95.1% | 7d -$365.31 | gate=NOT_LIVE_DEPLOYABLE
+  - Live-matched v2 first-ticker: 229W-13L (94.6%) | taker -$116.93 | Wilson 91.0% vs BE 95.1% | 7d -$271.85 | gate=NOT_LIVE_DEPLOYABLE
   - v1→v2 drops: tier=4981, volume=2791, excluded=1149, category=173, spread=56, nws=52, hours=36
   - [2.5] Moderate Favorites Pilot ($0.80-$0.85 only)
-  - Validation vs shadow: shadow WR 83.0% / -$99.00 (spread<=0.05 + allowed assets, matches pilot) | live WR 82.8% | shadow P&L negative; no revival
+  - Validation vs shadow: shadow WR 83.0% / -$82.00 (spread<=0.05 + allowed assets, matches pilot) | live WR 82.8% | shadow P&L negative; no revival
   - No-revival audit: late-settled live rows do not override the permanent kill; the matching shadow bucket remains loss-asymmetric after fees and repeated observations.
   - Scale-up criteria: disabled while KILL_MODERATE_FAVORITES is present; any revival requires a new forward-only strategy identity and explicit operator approval.
   - Mean reversion shadow freshness: last_row=2026-04-22T03:02:54Z age=73.1d live_match_last=2026-04-21T02:43:31Z post_kill_shadow_rows=0 post_kill_live_placements=0 | gate=STALE_NO_FORWARD_EVIDENCE
@@ -341,12 +341,12 @@ workspace_head: 0710930
   - Forecast accuracy YES 90-93 above-live-threshold: event-first 118W-2L n=120 | +$1,514.16 avg_ask=0.915 | Wilson 94.1% vs BE 92.6% margin=+1.6pp | recent 38W-1L n=39 Wilson 86.8% vs BE 92.7% | pending=4 stale_pending=3 | gate=THIN_MARGIN_RECENT_UNDERPOWERED_FORWARD_ONLY | next_pending=KXLOWTPHIL-26JUL03-B82.5 city=PHIL due=2026-07-04T04:59:59.757304+00:00 ask=0.92 reason=ask_above_max(0.92>0.90)
   - Forecast accuracy high-ask NO event-first: ask>=0.98 all 949W-5L n=954 | +$1,559.40 avg_ask=0.986 | Wilson 98.8% vs BE 98.8%
   - Forecast accuracy high-ask NO ex-LAX: 871W-2L n=873 | +$1,941.78 avg_ask=0.986 | Wilson 99.2% vs BE 98.8% | unresolved_live_est_events=33 | gate=FORWARD_WATCH_ONLY
-  - Forecast accuracy high-ask NO native preflight: rows=50490 events=204 actionable_qty1=863 latest=2026-07-04T05:01:58+00:00 | reasons: missing_native_no_ask=44729, nonpositive_qty1_win:0.0000=3252, actionable_qty1_fee_positive=863, native_no_ask_out_of_band:0.0100=307 | latest_run=2026-07-04T05:01:58+00:00 candidates=20 checked=20 actionable=1 run_reasons={"actionable_qty1_fee_positive": 1, "missing_native_no_ask": 15, "native_no_ask_out_of_band:0.0100": 1, "native_no_ask_out_of_band:0.9000": 1, "nonpositive_qty1_win:0.0000": 2}
-  - Forecast accuracy high-ask NO latest actionables: captured=2026-07-04T05:01:58+00:00 events=20 actionable_events=1 best=KXHIGHMIA-26JUL04-T95 city=MIA event=KXHIGHMIA-26JUL04 due=2026-07-05T14:00:00+00:00 no_ask=0.98 depth=300.11 win1=+$0.01 loss1=-$0.99
+  - Forecast accuracy high-ask NO native preflight: rows=50510 events=204 actionable_qty1=864 latest=2026-07-04T05:07:03+00:00 | reasons: missing_native_no_ask=44744, nonpositive_qty1_win:0.0000=3254, actionable_qty1_fee_positive=864, native_no_ask_out_of_band:0.0100=308 | latest_run=2026-07-04T05:07:03+00:00 candidates=20 checked=20 actionable=1 run_reasons={"actionable_qty1_fee_positive": 1, "missing_native_no_ask": 15, "native_no_ask_out_of_band:0.0100": 1, "native_no_ask_out_of_band:0.8200": 1, "nonpositive_qty1_win:0.0000": 2}
+  - Forecast accuracy high-ask NO latest actionables: captured=2026-07-04T05:07:03+00:00 events=20 actionable_events=1 best=KXHIGHMIA-26JUL04-T95 city=MIA event=KXHIGHMIA-26JUL04 due=2026-07-05T14:00:00+00:00 no_ask=0.98 depth=300.11 win1=+$0.01 loss1=-$0.99
   - Forecast accuracy high-ask NO native gate: native_events=49 resolved=45 pending=4 43W-2L native_pnl=-$1.55 Wilson 85.2% vs BE 99.0% next_pending=KXLOWTNYC-26JUL03-T77 city=NYC event=KXLOWTNYC-26JUL03 due=2026-07-04T19:00:00+00:00 ttl=37.4h no_ask=0.98 depth=100.00 win1=+$0.01 loss1=-$0.99
-  - Forecast accuracy NO candidate-cell preflight: rows=34192 cohorts=2 events=76 actionable_qty1=9303 latest=2026-07-04T05:01:57+00:00 | latest_run=2026-07-04T05:01:57+00:00 candidates=14 checked=14 actionable=4 run_reasons={"no_90_95_min_probe_v1:missing_native_no_ask": 1, "no_90_95_min_probe_v1:native_no_ask_out_of_band:0.9900": 1, "no_95_98_zero_loss_cities_v1:actionable_qty1_fee_positive": 4, "no_95_98_zero_loss_cities_v1:missing_native_no_ask": 7, "no_95_98_zero_loss_cities_v1:native_no_ask_out_of_band:0.8600": 1}
-  - Forecast accuracy NO candidate-cell cohorts: no_95_98_zero_loss_cities_v1 rows=30863 events=75 actionable=8499; no_90_95_min_probe_v1 rows=3329 events=10 actionable=804
-  - Forecast accuracy NO candidate-cell latest cohort actionables: no_90_95_min_probe_v1 captured=2026-07-04T05:01:57+00:00 events=2 actionable_events=0 top_reason=native_no_ask_out_of_band:0.9900; no_95_98_zero_loss_cities_v1 captured=2026-07-04T05:01:57+00:00 events=12 actionable_events=4 best=KXHIGHTOKC-26JUL04-B104.5 city=OKC event=KXHIGHTOKC-26JUL04 due=2026-07-05T19:00:00+00:00 no_ask=0.97 depth=168.83 win1=+$0.02 loss1=-$0.98
+  - Forecast accuracy NO candidate-cell preflight: rows=34206 cohorts=2 events=76 actionable_qty1=9307 latest=2026-07-04T05:06:57+00:00 | latest_run=2026-07-04T05:06:57+00:00 candidates=14 checked=14 actionable=4 run_reasons={"no_90_95_min_probe_v1:missing_native_no_ask": 1, "no_90_95_min_probe_v1:native_no_ask_out_of_band:0.9900": 1, "no_95_98_zero_loss_cities_v1:actionable_qty1_fee_positive": 4, "no_95_98_zero_loss_cities_v1:missing_native_no_ask": 7, "no_95_98_zero_loss_cities_v1:native_no_ask_out_of_band:0.8600": 1}
+  - Forecast accuracy NO candidate-cell cohorts: no_95_98_zero_loss_cities_v1 rows=30875 events=75 actionable=8503; no_90_95_min_probe_v1 rows=3331 events=10 actionable=804
+  - Forecast accuracy NO candidate-cell latest cohort actionables: no_90_95_min_probe_v1 captured=2026-07-04T05:06:57+00:00 events=2 actionable_events=0 top_reason=native_no_ask_out_of_band:0.9900; no_95_98_zero_loss_cities_v1 captured=2026-07-04T05:06:57+00:00 events=12 actionable_events=4 best=KXHIGHTOKC-26JUL04-B104.5 city=OKC event=KXHIGHTOKC-26JUL04 due=2026-07-05T19:00:00+00:00 no_ask=0.97 depth=168.83 win1=+$0.02 loss1=-$0.98
   - Forecast accuracy NO candidate-cell historical control: all-city 95-98 905W-25L n=930 Wilson 96.1% vs BE 96.7%; selected-cities 310W-2L n=312 Wilson 97.7% vs BE 96.8%; weakest_city=AUS 40W-1L n=41 Wilson 87.4% vs BE 96.8% | selected-city filter is in-sample; no live order
   - Forecast accuracy NO candidate-cell forward gate: no_90_95_min_probe_v1 native_events=10 resolved=8 pending=2 7W-1L native_pnl=-$0.58 Wilson 52.9% vs BE 94.6% next_pending=KXHIGHTMIN-26JUL03-B87.5 city=MIN event=KXHIGHTMIN-26JUL03 due=2026-07-04T19:00:00+00:00 ttl=37.7h no_ask=0.91 depth=1.00 win1=+$0.08 loss1=-$0.92; no_95_98_zero_loss_cities_v1 native_events=71 resolved=58 pending=13 56W-2L native_pnl=-$0.56 Wilson 88.3% vs BE 97.5% next_pending=KXHIGHMIA-26JUL03-B88.5 city=MIA event=KXHIGHMIA-26JUL03 due=2026-07-04T14:00:00+00:00 ttl=32.7h no_ask=0.96 depth=25.96 win1=+$0.03 loss1=-$0.97
   - Legacy untapped FX/Index NO shadow: bid=0.85-0.90 12-24h first-ticker-side 483W-33L n=516 | +$3,334.03 | avg_bid=0.865 | Wilson 91.2% vs modeled BE 87.1% margin=+4.1pp | pending=0 | gate=LEGACY_MAKER_FORWARD_REQUIRED
@@ -372,11 +372,11 @@ workspace_head: 0710930
   - Crypto favorite taker latest cohort actionables: crypto_favorite_no_90_95_12_24h captured=2026-07-03T20:58:01+00:00 contracts=2 actionable_contracts=0; crypto_near_certain_95_99_12_24h captured=2026-07-04T05:06:16+00:00 contracts=1 actionable_contracts=1 best=KXBTCD-26JUL0417-T64499.99 side=NO asset=BTC event=KXBTCD-26JUL0417 due=2026-07-04T20:59:59.946773+00:00 ask=0.98 depth=849.17 win1=+$0.01 loss1=-$0.99
   - Crypto favorite taker native gate: crypto_favorite_no_90_95_12_24h first_actionable_contracts=10 resolved=10 pending=0 8W-2L native_pnl=-$1.21 Wilson 49.0% vs BE 92.1% gate=NATIVE_FORWARD_ACCUMULATING; crypto_near_certain_95_99_12_24h first_actionable_contracts=40 resolved=39 pending=1 38W-1L native_pnl=-$0.08 Wilson 86.8% vs BE 97.7% next_pending=KXBTCD-26JUL0417-T64499.99 side=NO asset=BTC event=KXBTCD-26JUL0417 due=2026-07-04T20:59:59.946773+00:00 ask=0.97 depth=14.00 win1=+$0.02 loss1=-$0.98 gate=NATIVE_FORWARD_ACCUMULATING
   - Crypto contrarian NO underdog shadow: ask=0.20-0.25 18-24h event-first 21W-41L n=62 +$601.04 avg_ask=0.229 Wilson 23.3% vs modeled BE 24.2% pending=1 active_pending=0 stale_pending=1 old_live_match_events=5/63 | gate=ALL_PERIOD_BELOW_BREAKEVEN_POSTHOC
-  - Crypto contrarian NO recency: since_2026-06-17 13W-14L n=27 +$638.16 pending=0 Wilson 30.7% vs modeled BE 24.5% | forward_since_2026-06-25T10:40Z resolved=9 pending=0 | 2026-04 8W-27L -$37.12, 2026-06 13W-11L +$711.92 | BTC 8W-18L +$167.58 pending=0, ETH 9W-9L +$477.11 pending=0, SOL 4W-14L -$43.65 pending=1 | next_pending=KXSOLD-26APR2417-T83.9999 event=KXSOLD-26APR2417 due_est=2026-04-24T20:59:59.002927+00:00 ttl=-1688.1h ask=0.22 spread=0.09 active_pending=0 stale_pending=1 unknown_pending=0 | exploratory ask-priced shadow; no live orders
+  - Crypto contrarian NO recency: since_2026-06-17 13W-14L n=27 +$638.16 pending=0 Wilson 30.7% vs modeled BE 24.5% | forward_since_2026-06-25T10:40Z resolved=9 pending=0 | 2026-04 8W-27L -$37.12, 2026-06 13W-11L +$711.92 | BTC 8W-18L +$167.58 pending=0, ETH 9W-9L +$477.11 pending=0, SOL 4W-14L -$43.65 pending=1 | next_pending=KXSOLD-26APR2417-T83.9999 event=KXSOLD-26APR2417 due_est=2026-04-24T20:59:59.002927+00:00 ttl=-1688.2h ask=0.22 spread=0.09 active_pending=0 stale_pending=1 unknown_pending=0 | exploratory ask-priced shadow; no live orders
   - Crypto last-hour longshot NO shadow: event-first 1212W-79L n=1291 | +$6,344.45 avg_ask=0.883 | Wilson 92.4% vs modeled BE 89.0% | recent 791W-65L +$2,510.63 | gate=LIQUIDITY_PROXY_FAIL_FORWARD_ONLY
   - Crypto last-hour longshot liquidity: volume=0 603W-9L +$6,825.14; volume>=500/spread<=5c 400W-42L -$91.92 Wilson 87.4% vs BE 90.7%; 80-85c volume-backed 41W-5L +$243.03 Wilson 77.0% vs BE 83.8%; 90-95c volume-backed 263W-21L -$67.72 Wilson 89.0% vs BE 92.8%; 95-99c volume-backed 602W-23L -$511.41 Wilson 94.5% vs BE 97.1%; forward_since_2026-06-25T11:20Z 415W-41L +$524.85 Wilson 88.0% vs BE 89.9% resolved=456 pending=1 | no live orders
-  - Crypto last-hour longshot native preflight: rows=5918 events=456 actionable_qty1=1602 latest=2026-07-04T05:04:10+00:00 | latest_run=2026-07-04T05:04:10+00:00 candidates=1 checked=1 actionable=1 reasons={"actionable_qty1_fee_positive": 1} | no order path
-  - Crypto last-hour longshot latest actionables: captured=2026-07-04T05:04:10+00:00 events=1 contracts=1 actionable_contracts=1 best=KXBTCD-26JUL0402-T62799.99 asset=BTC event=KXBTCD-26JUL0402 due=2026-07-04T05:59:59.894123+00:00 no_ask=0.90 depth=13661.86 win1=+$0.09 loss1=-$0.91
+  - Crypto last-hour longshot native preflight: rows=5919 events=456 actionable_qty1=1603 latest=2026-07-04T05:07:35+00:00 | latest_run=2026-07-04T05:07:35+00:00 candidates=1 checked=1 actionable=1 reasons={"actionable_qty1_fee_positive": 1} | no order path
+  - Crypto last-hour longshot latest actionables: captured=2026-07-04T05:07:35+00:00 events=1 contracts=1 actionable_contracts=1 best=KXBTCD-26JUL0402-T62799.99 asset=BTC event=KXBTCD-26JUL0402 due=2026-07-04T05:59:59.894123+00:00 no_ask=0.90 depth=8285.34 win1=+$0.09 loss1=-$0.91
   - Crypto last-hour longshot native gate: native_events=343 resolved=342 pending=1 active_pending=1 stale_pending=0 unknown_pending=0 307W-35L native_pnl=-$3.50 Wilson 86.1% vs BE 90.8% next_pending=KXBTCD-26JUL0402-T62799.99 asset=BTC event=KXBTCD-26JUL0402 due=2026-07-04T05:59:59.894123+00:00 no_ask=0.90 depth=13661.86 win1=+$0.09 loss1=-$0.91 | gate=NATIVE_FORWARD_ACCUMULATING
   - SOL vol model executable shadow: would_place_live row 47W-38L resolved=86 -$1,824.00 flat=1 pending=5 | first-ticker 35W-11L resolved=46 +$157.00 pending=2 | first-event 7W-4L resolved=11 -$108.00 pending=1 avg_ask=0.685 Wilson 35.4% | gate=EVENT_FORWARD_RECENCY_FAIL
   - SOL vol model recency: since_2026-06-17 first-event 2W-3L resolved=5 -$186.00 Wilson 11.8% | last_candidate=2026-06-29 02:15:07 | live_placements=0 open=0 | stored taker-fee P&L; no new live orders
@@ -389,7 +389,7 @@ workspace_head: 0710930
   - [2.3I] High-Price Maker/Cancel Shadow
   - Cohort: fx_aq_high_price_maker_cancel_shadow_600s_2026_06_24 | scanner=v2_high_price_maker_cancel_ttl_precedence_600s
   - Protocol: discovery cadence target 300s | quote TTL 600s | series fetch delay 2.0s | TTL checked before fill simulation.
-  - Summary: rows=7680 open=200 fills=1970 markets=1767 cancels=5510 late_cross_ttl=472 resolved=1490 markets=1369 pnl=-3308.17 last=2026-07-04T05:01:52+00:00
+  - Summary: rows=7683 open=200 fills=1970 markets=1767 cancels=5513 late_cross_ttl=472 resolved=1490 markets=1369 pnl=-3308.17 last=2026-07-04T05:08:14+00:00
   - Pending fills: unresolved=480 markets=398 next=KXHIGHNY-26JUL03-T98 weather NO close=2026-07-04T04:59:00+00:00 expiration=2026-07-10T14:00:00+00:00 | units=480 active=470 stale=10 unknown=0
   - Overall independent fills: resolved=1490 973W-517L pnl=-3308.17 wilson_low=62.8% breakeven=87.5% toxic=517 status=NO_GO_REVIEW
   - Review progress: best_cell=sports NO resolved_independent=467/50 indep=357W-110L pnl=-515.92 wilson_low=72.4% breakeven=87.5% toxic=110 pending_markets=275 filled_markets=742 next_close=2026-07-04T16:35:00+00:00 status=NO_GO_REVIEW
@@ -422,7 +422,7 @@ workspace_head: 0710930
   - Post-kill pending NO: rows=0 markets=0 actionable=0 qty50=0 avg_price=n/a first=none last=none
   - Post-kill pending NO <10c first-eligible: rows=0 markets=0 actionable=0 qty50=0 avg_price=n/a first=none last=none
   - Post-kill NO <10c first-eligible pending horizon: resolved=19/50 pending_markets=0 max_if_all_pending_resolve=19/50 need_new_after_pending=31 next_due=unknown last_due=unknown next_backfill_after=unknown last_backfill_after=unknown
-  - Post-kill NO <10c first-eligible live pending preview: pending_first_eligible=0 live_actionable=0 settlement_pending_or_ineligible=0 now=2026-07-04T05:06:54+00:00 | no order path
+  - Post-kill NO <10c first-eligible live pending preview: pending_first_eligible=0 live_actionable=0 settlement_pending_or_ineligible=0 now=2026-07-04T05:10:16+00:00 | no order path
   - Pilot readiness: NOT_READY | proposed_strategy=kalshi_crypto_no_lt10c_first_eligible_pilot | new identity required; do not revive ds_low_price_no | reason=resolved 19/50; needs 31 new markets after pending; native taker NO ask <10c evidence absent
   - DS CONTRACT-HOUR CLUSTER CAP TRACKER:
   - Shadow blocked candidates: 138 total | 50 resolved (50W-0L) | qty-backed causal 0/50 resolved | P&L unavailable: resolved rows have candidate_qty=0/non-causal; stored +$0.00 is not economic
@@ -443,7 +443,7 @@ workspace_head: 0710930
   - Review: first-30 progress 52/30 status=FAILED
   - KALSHI INDEX/FX SIDE-EQUIVALENCE FS SHADOW
   - Status: REJECTED_NATIVE_CONTROL | no live pilot
-  - Pending native-actionable rows: FX=5205, INDEX=1108
+  - Pending native-actionable rows: FX=5235, INDEX=1143
   - Gate: failed; native executable rows disprove Index/FX favorite-tracking salvage
 
 ## Storage State
@@ -565,7 +565,7 @@ workspace_head: 0710930
 
 ## Kalshi Native Preflight Cut Miner
 - command: `python3 scripts/kalshi_native_preflight_cut_miner.py --limit 8`
-- status: NO_NATIVE_CUT_READY | ready=false | observations=15451 | cuts=2307 | display_cuts=509 | candidate_cuts=0 | ready_cuts=0 | min_resolved=30 | min_display_resolved=10 | edge_buffer=+2.0pp | scope=posthoc_native_executable_cut_discovery_requires_predeclared_forward_gate
+- status: NO_NATIVE_CUT_READY | ready=false | observations=15452 | cuts=2307 | display_cuts=509 | candidate_cuts=0 | ready_cuts=0 | min_resolved=30 | min_display_resolved=10 | edge_buffer=+2.0pp | scope=posthoc_native_executable_cut_discovery_requires_predeclared_forward_gate
 - best: crypto_last_hour_longshot_no|captured_weekday=Tue | gate=NATIVE_CUT_ACCUMULATING | type=single | observations=52 resolved=52 pending=0 active=0 stale=0 unknown=0 | 52W-0L | pnl=+$4.54 | Wilson 93.1% vs target 93.3% (BE 91.3%) | gap=-0.1pp | blockers=wilson<BE+2pp | promotion_blockers=none | perfect_wins_needed=2
 - rank 1: crypto_last_hour_longshot_no|captured_weekday=Tue | gate=NATIVE_CUT_ACCUMULATING | type=single | observations=52 resolved=52 pending=0 active=0 stale=0 unknown=0 | 52W-0L | pnl=+$4.54 | Wilson 93.1% vs target 93.3% (BE 91.3%) | gap=-0.1pp | blockers=wilson<BE+2pp | promotion_blockers=none | perfect_wins_needed=2
 - rank 2: crypto_last_hour_longshot_no|minutes_to_expiry_band=20-40m|native_ask_band=80-85 | gate=NATIVE_CUT_ACCUMULATING | type=pair | observations=61 resolved=61 pending=0 active=0 stale=0 unknown=0 | 57W-4L | pnl=+$5.84 | Wilson 84.3% vs target 85.9% (BE 83.9%) | gap=-1.6pp | blockers=wilson<BE+2pp | promotion_blockers=none | perfect_wins_needed=8
@@ -591,7 +591,7 @@ workspace_head: 0710930
 
 ## Kalshi Native Preflight Walk-Forward Validation
 - command: `python3 scripts/kalshi_native_preflight_walkforward.py --limit 8`
-- status: NO_WALKFORWARD_NATIVE_CUT | ready=false | observations=15451 | cuts=2307 | display_cuts=229 | validated_cuts=0 | ready_cuts=0 | split_cutoff=2026-06-30T00:31:10+00:00 | min_train=30 | min_validation=15 | edge_buffer=+2.0pp | scope=posthoc_walkforward_native_cut_validation_requires_predeclared_forward_gate
+- status: NO_WALKFORWARD_NATIVE_CUT | ready=false | observations=15452 | cuts=2307 | display_cuts=229 | validated_cuts=0 | ready_cuts=0 | split_cutoff=2026-06-30T00:31:10+00:00 | min_train=30 | min_validation=15 | edge_buffer=+2.0pp | scope=posthoc_walkforward_native_cut_validation_requires_predeclared_forward_gate
 - best: crypto_last_hour_longshot_no|shadow_entry_band=80-85 | gate=WALKFORWARD_REJECT | type=single | train=21 resolved 19W-2L +$0.73 Wilson 71.1% vs target 89.0% gap=-17.9pp | validation=28 resolved 28W-0L +$3.87 Wilson 87.9% vs target 88.2% gap=-0.2pp | blockers=train_resolved<30;train_wilson<BE+buffer;validation_wilson<BE+buffer | promotion_blockers=none
 - rank 1: crypto_last_hour_longshot_no|shadow_entry_band=80-85 | gate=WALKFORWARD_REJECT | type=single | train=21 resolved 19W-2L +$0.73 Wilson 71.1% vs target 89.0% gap=-17.9pp | validation=28 resolved 28W-0L +$3.87 Wilson 87.9% vs target 88.2% gap=-0.2pp | blockers=train_resolved<30;train_wilson<BE+buffer;validation_wilson<BE+buffer | promotion_blockers=none
 - rank 2: crypto_last_hour_longshot_no|captured_weekday=Tue | gate=WALKFORWARD_REJECT | type=single | train=1 resolved 1W-0L +$0.09 Wilson 20.7% vs target 93.0% gap=-72.3pp | validation=51 resolved 51W-0L +$4.45 Wilson 93.0% vs target 93.3% gap=-0.3pp | blockers=train_resolved<30;train_wilson<BE+buffer;validation_wilson<BE+buffer | promotion_blockers=none
@@ -628,8 +628,8 @@ workspace_head: 0710930
 
 ## Kalshi Crypto Ladder Dislocation Preflight
 - command: `python3 scripts/kalshi_crypto_ladder_dislocation_preflight.py --json`
-- latest_run: captured_at=2026-07-04T05:06:07+00:00 | lookahead=75m | events=5 rows_per_event=40 | candidates=107 checked=107 dislocation_qty1=0 | min_source_edge=0.03 max_source_age=300s | top_reasons=missing_native_no_ask=105, source_edge_below_min:-0.0100=1, source_edge_below_min:0.0000=1
-- latest_rows: KXSOLD-26JUL0402-T83.9999 SOL/extreme source_no=0.95 native_no_ask=0.95 edge=0.00 age=210s spread=0.01 depth=2042 win=0.04 due=2026-07-04T05:59:59.194400+00:00 reason=source_edge_below_min:0.0000 ; KXSOLD-26JUL0402-T84.9999 SOL/extreme source_no=0.97 native_no_ask=0.98 edge=-0.01 age=210s spread=0.01 depth=4 win=0.01 due=2026-07-04T05:59:59.198570+00:00 reason=source_edge_below_min:-0.0100 ; KXSOLD-26JUL0402-T100.9999 SOL/extreme source_no=0.99 native_no_ask=missing edge=missing age=210s spread=missing depth=0 win=missing due=2026-07-04T05:59:59.111459+00:00 reason=missing_native_no_ask ; KXSOLD-26JUL0402-T101.9999 SOL/extreme source_no=0.99 native_no_ask=missing edge=missing age=210s spread=missing depth=0 win=missing due=2026-07-04T05:59:59.116013+00:00 reason=missing_native_no_ask ; KXSOLD-26JUL0402-T102.9999 SOL/extreme source_no=0.99 native_no_ask=missing edge=missing age=210s spread=missing depth=0 win=missing due=2026-07-04T05:59:59.121359+00:00 reason=missing_native_no_ask ; KXSOLD-26JUL0402-T103.9999 SOL/extreme source_no=0.99 native_no_ask=missing edge=missing age=210s spread=missing depth=0 win=missing due=2026-07-04T05:59:59.126169+00:00 reason=missing_native_no_ask
+- latest_run: captured_at=2026-07-04T05:11:09+00:00 | lookahead=75m | events=5 rows_per_event=40 | candidates=109 checked=109 dislocation_qty1=0 | min_source_edge=0.03 max_source_age=300s | top_reasons=missing_native_no_ask=107, source_age_too_old:512s=1, source_edge_below_min:0.0000=1
+- latest_rows: KXETHD-26JUL0402-T1759.99 ETH/weak source_no=0.82 native_no_ask=0.82 edge=0.00 age=54s spread=0.01 depth=300 win=0.16 due=2026-07-04T05:59:59.063170+00:00 reason=source_edge_below_min:0.0000 ; KXSOLD-26JUL0402-T83.9999 SOL/extreme source_no=0.95 native_no_ask=0.95 edge=0.00 age=512s spread=0.02 depth=63 win=0.04 due=2026-07-04T05:59:59.194400+00:00 reason=source_age_too_old:512s ; KXBTCD-26JUL0402-T63199.99 BTC/extreme source_no=0.99 native_no_ask=missing edge=missing age=512s spread=missing depth=0 win=missing due=2026-07-04T05:59:59.913462+00:00 reason=missing_native_no_ask ; KXBTCD-26JUL0402-T63299.99 BTC/extreme source_no=0.99 native_no_ask=missing edge=missing age=512s spread=missing depth=0 win=missing due=2026-07-04T05:59:59.918285+00:00 reason=missing_native_no_ask ; KXBTCD-26JUL0402-T63399.99 BTC/extreme source_no=0.99 native_no_ask=missing edge=missing age=512s spread=missing depth=0 win=missing due=2026-07-04T05:59:59.923401+00:00 reason=missing_native_no_ask ; KXBTCD-26JUL0402-T63499.99 BTC/extreme source_no=0.99 native_no_ask=missing edge=missing age=512s spread=missing depth=0 win=missing due=2026-07-04T05:59:59.928393+00:00 reason=missing_native_no_ask
 
 ## Kalshi Crypto Ladder Dislocation Forward Audit
 - command: `python3 scripts/kalshi_crypto_ladder_dislocation_audit.py --limit 8`
@@ -846,11 +846,11 @@ workspace_head: 0710930
 
 ## Kalshi Moderate Favorites ETH YES Native Preflight
 - command: `python3 scripts/kalshi_moderate_favorites_eth_yes_preflight.py --json --fetch-delay-seconds 0`
-- latest_run: captured_at=2026-07-04T05:03:33+00:00 | cohort=moderate_favorites_eth_yes_80_90_0_1h_v1 | start=2026-07-03T16:50:00+00:00 | include_pre_cutoff_live=false | candidates=0 checked=0 actionable_qty1=0 | top_reasons=none
+- latest_run: captured_at=2026-07-04T05:08:42+00:00 | cohort=moderate_favorites_eth_yes_80_90_0_1h_v1 | start=2026-07-03T16:50:00+00:00 | include_pre_cutoff_live=false | candidates=0 checked=0 actionable_qty1=0 | top_reasons=none
 
 ## Kalshi Weather YES 90-93 Native Preflight
 - command: `python3 scripts/kalshi_weather_yes_90_93_preflight.py --json --fetch-delay-seconds 0`
-- latest_run: captured_at=2026-07-04T05:06:27+00:00 | cohort=yes_90_93_above_live_threshold_v1 | start=2026-06-25T11:45:00+00:00 | include_pre_cutoff_live=true | candidates=1 checked=1 actionable_qty1=0 | top_reasons=yes_90_93_above_live_threshold_v1:missing_native_yes_ask=1
+- latest_run: captured_at=2026-07-04T05:11:29+00:00 | cohort=yes_90_93_above_live_threshold_v1 | start=2026-06-25T11:45:00+00:00 | include_pre_cutoff_live=true | candidates=1 checked=1 actionable_qty1=0 | top_reasons=yes_90_93_above_live_threshold_v1:missing_native_yes_ask=1
 - latest_rows: KXHIGHTSEA-26JUL03-B73.5 city=SEA yes_ask=missing no_depth=0 reason=missing_native_yes_ask
 
 ## Kalshi Weather NO Candidate Native Preflight
@@ -860,7 +860,7 @@ workspace_head: 0710930
 
 ## Kalshi Other Longshot NO Native Preflight
 - command: `python3 scripts/kalshi_other_longshot_no_80_90_preflight.py --json --fetch-delay-seconds 0`
-- latest_run: captured_at=2026-07-04T05:06:26+00:00 | cohort=all | start=2026-06-25T20:00:00+00:00 | include_pre_cutoff_live=true | candidates=0 checked=0 actionable_qty1=0 | top_reasons=none
+- latest_run: captured_at=2026-07-04T05:11:31+00:00 | cohort=all | start=2026-06-25T20:00:00+00:00 | include_pre_cutoff_live=true | candidates=0 checked=0 actionable_qty1=0 | top_reasons=none
 
 ## Kalshi Index/FX Low-Price NO Favtrack Native Preflight
 - command: `python3 scripts/kalshi_index_fx_low_price_no_favorite_tracking_preflight.py --json --fetch-delay-seconds 0`
@@ -870,12 +870,12 @@ workspace_head: 0710930
 ## Kalshi Maker Forward Proxy Leaderboard
 - command: `python3 scripts/kalshi_maker_forward_leaderboard.py --json`
 - status: NO_LIVE_READY | ready=false | cells=15 | ready_cells=0 | review_min=50 | fills=1970 pending_units=480 active=470 stale=10 unknown=0 overall_resolved_indep=1490 toxic=517 | next_pending=cell_weather_no:KXHIGHCHI-26JUL03-B89.5 status=active close=2026-07-04T05:59:00+00:00
-- best: cell_sports_no | gate=NO_GO_REVIEW | resolved_indep=467/50 max_if_pending_resolve=742 new_needed_after_pending=0 | 357W-110L | pnl=-515.92 | Wilson 72.4% vs BE 87.5% | gap=-15.1pp | fills=742/2602 fill_rate=28.5% pending_units=275 active=275 stale=0 unknown=0 toxic=110 | blockers=pnl<=0; wilson<=BE; toxic>0 | perfect_benign_wins_needed=blocked_or_>5000 | next_pending=KXMLBSPREAD-26JUL011235CWSBAL-BAL3 status=active close=2026-07-04T16:35:00+00:00 price=0.81
-- rank 1: cell_sports_no | gate=NO_GO_REVIEW | resolved_indep=467/50 max_if_pending_resolve=742 new_needed_after_pending=0 | 357W-110L | pnl=-515.92 | Wilson 72.4% vs BE 87.5% | gap=-15.1pp | fills=742/2602 fill_rate=28.5% pending_units=275 active=275 stale=0 unknown=0 toxic=110 | blockers=pnl<=0; wilson<=BE; toxic>0 | perfect_benign_wins_needed=blocked_or_>5000 | next_pending=KXMLBSPREAD-26JUL011235CWSBAL-BAL3 status=active close=2026-07-04T16:35:00+00:00 price=0.81
+- best: cell_sports_no | gate=NO_GO_REVIEW | resolved_indep=467/50 max_if_pending_resolve=742 new_needed_after_pending=0 | 357W-110L | pnl=-515.92 | Wilson 72.4% vs BE 87.5% | gap=-15.1pp | fills=742/2603 fill_rate=28.5% pending_units=275 active=275 stale=0 unknown=0 toxic=110 | blockers=pnl<=0; wilson<=BE; toxic>0 | perfect_benign_wins_needed=blocked_or_>5000 | next_pending=KXMLBSPREAD-26JUL011235CWSBAL-BAL3 status=active close=2026-07-04T16:35:00+00:00 price=0.81
+- rank 1: cell_sports_no | gate=NO_GO_REVIEW | resolved_indep=467/50 max_if_pending_resolve=742 new_needed_after_pending=0 | 357W-110L | pnl=-515.92 | Wilson 72.4% vs BE 87.5% | gap=-15.1pp | fills=742/2603 fill_rate=28.5% pending_units=275 active=275 stale=0 unknown=0 toxic=110 | blockers=pnl<=0; wilson<=BE; toxic>0 | perfect_benign_wins_needed=blocked_or_>5000 | next_pending=KXMLBSPREAD-26JUL011235CWSBAL-BAL3 status=active close=2026-07-04T16:35:00+00:00 price=0.81
 - rank 2: cell_crypto_yes | gate=NO_GO_REVIEW | resolved_indep=320/50 max_if_pending_resolve=346 new_needed_after_pending=0 | 176W-144L | pnl=-1002.41 | Wilson 49.5% vs BE 86.3% | gap=-36.8pp | fills=346/1193 fill_rate=29.0% pending_units=26 active=26 stale=0 unknown=0 toxic=144 | blockers=pnl<=0; wilson<=BE; toxic>0 | perfect_benign_wins_needed=blocked_or_>5000 | next_pending=KXBTCD-26JUL0417-T61499.99 status=active close=2026-07-04T21:00:00+00:00 price=0.94
 - rank 3: cell_crypto_no | gate=NO_GO_REVIEW | resolved_indep=296/50 max_if_pending_resolve=320 new_needed_after_pending=0 | 163W-133L | pnl=-944.45 | Wilson 49.4% vs BE 87.0% | gap=-37.6pp | fills=320/1057 fill_rate=30.3% pending_units=24 active=24 stale=0 unknown=0 toxic=133 | blockers=pnl<=0; wilson<=BE; toxic>0 | perfect_benign_wins_needed=blocked_or_>5000 | next_pending=KXBTCD-26JUL0417-T59749.99 status=active close=2026-07-04T21:00:00+00:00 price=0.79
 - rank 4: cell_sports_yes | gate=NO_GO_REVIEW | resolved_indep=158/50 max_if_pending_resolve=283 new_needed_after_pending=0 | 63W-95L | pnl=-736.54 | Wilson 32.6% vs BE 86.5% | gap=-53.9pp | fills=283/448 fill_rate=63.2% pending_units=125 active=125 stale=0 unknown=0 toxic=95 | blockers=pnl<=0; wilson<=BE; toxic>0 | perfect_benign_wins_needed=blocked_or_>5000 | next_pending=KXMLBSPREAD-26JUL011235CWSBAL-BAL2 status=active close=2026-07-04T16:35:00+00:00 price=0.91
-- rank 5: cell_index_no | gate=NO_GO_REVIEW | resolved_indep=113/50 max_if_pending_resolve=113 new_needed_after_pending=0 | 101W-12L | pnl=-29.57 | Wilson 82.4% vs BE 91.9% | gap=-9.6pp | fills=113/2023 fill_rate=5.6% pending_units=0 active=0 stale=0 unknown=0 toxic=12 | blockers=pnl<=0; wilson<=BE; toxic>0 | perfect_benign_wins_needed=blocked_or_>5000
+- rank 5: cell_index_no | gate=NO_GO_REVIEW | resolved_indep=113/50 max_if_pending_resolve=113 new_needed_after_pending=0 | 101W-12L | pnl=-29.57 | Wilson 82.4% vs BE 91.9% | gap=-9.6pp | fills=113/2025 fill_rate=5.6% pending_units=0 active=0 stale=0 unknown=0 toxic=12 | blockers=pnl<=0; wilson<=BE; toxic>0 | perfect_benign_wins_needed=blocked_or_>5000
 - rank 6: cell_weather_no | gate=NO_GO_REVIEW | resolved_indep=110/50 max_if_pending_resolve=137 new_needed_after_pending=0 | 90W-20L | pnl=-87.20 | Wilson 73.6% vs BE 89.7% | gap=-16.2pp | fills=137/293 fill_rate=46.8% pending_units=27 active=19 stale=8 unknown=0 toxic=20 | blockers=pnl<=0; wilson<=BE; toxic>0 | perfect_benign_wins_needed=blocked_or_>5000 | next_pending=KXHIGHCHI-26JUL03-B89.5 status=active close=2026-07-04T05:59:00+00:00 price=0.84
 - rank 7: watch_crypto_bid_90_95 | gate=NO_GO_REVIEW | resolved_indep=103/50 max_if_pending_resolve=111 new_needed_after_pending=0 | 95W-8L | pnl=-14.13 | Wilson 85.4% vs BE 93.6% | gap=-8.2pp | fills=111/503 fill_rate=22.1% pending_units=8 active=8 stale=0 unknown=0 toxic=8 | blockers=pnl<=0; wilson<=BE; toxic>0 | perfect_benign_wins_needed=blocked_or_>5000 | next_pending=KXBTCD-26JUL0417-T61499.99 status=active close=2026-07-04T21:00:00+00:00 price=0.94
 - rank 8: watch_crypto_bid_92_94 | gate=NO_GO_REVIEW | resolved_indep=58/50 max_if_pending_resolve=62 new_needed_after_pending=0 | 54W-4L | pnl=-6.17 | Wilson 83.6% vs BE 94.2% | gap=-10.6pp | fills=62/269 fill_rate=23.0% pending_units=4 active=4 stale=0 unknown=0 toxic=4 | blockers=pnl<=0; wilson<=BE; toxic>0 | perfect_benign_wins_needed=blocked_or_>5000 | next_pending=KXBTCD-26JUL0417-T61499.99 status=active close=2026-07-04T21:00:00+00:00 price=0.94
@@ -889,10 +889,10 @@ workspace_head: 0710930
 - rank 2: weather YES maker_band=<85 | gate=ACCUMULATING | resolved_indep=14/50 | 12W-2L | pnl=+4.93 | Wilson 60.1% vs BE 82.2% | gap=-22.1pp | candidates=27 fills=15 fill_rate=55.6% pending_units=1 toxic=2 | blockers=resolved<50; wilson<=BE; toxic>0
 - rank 3: weather YES maker_band=85-90 | gate=ACCUMULATING | resolved_indep=9/50 | 8W-1L | pnl=+0.48 | Wilson 56.5% vs BE 88.4% | gap=-31.9pp | candidates=18 fills=11 fill_rate=61.1% pending_units=2 toxic=1 | blockers=resolved<50; wilson<=BE; toxic>0
 - rank 4: crypto YES maker_band=90-95 | gate=NO_GO_REVIEW | resolved_indep=95/50 | 85W-10L | pnl=-34.58 | Wilson 81.7% vs BE 93.1% | gap=-11.4pp | candidates=383 fills=100 fill_rate=26.1% pending_units=5 toxic=10 | blockers=pnl<=0; wilson<=BE; toxic>0
-- rank 5: index NO maker_band=90-95 | gate=NO_GO_REVIEW | resolved_indep=94/50 | 83W-11L | pnl=-44.59 | Wilson 80.2% vs BE 93.0% | gap=-12.7pp | candidates=1788 fills=94 fill_rate=5.3% pending_units=0 toxic=11 | blockers=pnl<=0; wilson<=BE; toxic>0
+- rank 5: index NO maker_band=90-95 | gate=NO_GO_REVIEW | resolved_indep=94/50 | 83W-11L | pnl=-44.59 | Wilson 80.2% vs BE 93.0% | gap=-12.7pp | candidates=1790 fills=94 fill_rate=5.3% pending_units=0 toxic=11 | blockers=pnl<=0; wilson<=BE; toxic>0
 - rank 6: sports NO maker_band=85-90 | gate=NO_GO_REVIEW | resolved_indep=118/50 | 95W-23L | pnl=-85.73 | Wilson 72.4% vs BE 87.8% | gap=-15.3pp | candidates=682 fills=213 fill_rate=31.2% pending_units=95 toxic=23 | blockers=pnl<=0; wilson<=BE; toxic>0
 - rank 7: weather NO maker_band=90-95 | gate=NO_GO_REVIEW | resolved_indep=60/50 | 53W-7L | pnl=-30.73 | Wilson 77.8% vs BE 93.5% | gap=-15.6pp | candidates=167 fills=68 fill_rate=40.7% pending_units=8 toxic=7 | blockers=pnl<=0; wilson<=BE; toxic>0
-- rank 8: sports NO maker_band=<85 | gate=NO_GO_REVIEW | resolved_indep=179/50 | 130W-49L | pnl=-174.03 | Wilson 65.7% vs BE 82.3% | gap=-16.7pp | candidates=1379 fills=287 fill_rate=20.8% pending_units=108 toxic=49 | blockers=pnl<=0; wilson<=BE; toxic>0
+- rank 8: sports NO maker_band=<85 | gate=NO_GO_REVIEW | resolved_indep=179/50 | 130W-49L | pnl=-174.03 | Wilson 65.7% vs BE 82.3% | gap=-16.7pp | candidates=1380 fills=287 fill_rate=20.8% pending_units=108 toxic=49 | blockers=pnl<=0; wilson<=BE; toxic>0
 
 ## Kalshi Maker Walk-Forward Validation
 - command: `python3 scripts/kalshi_maker_walkforward.py --limit 8`
@@ -939,7 +939,7 @@ workspace_head: 0710930
 ## Kalshi Academic-Prior Aligned Queue
 - command: `python3 scripts/kalshi_academic_prior_queue.py --report --per-family 2`
 - KALSHI ACADEMIC-PRIOR ALIGNED QUEUE
-- generated_at=2026-07-04T05:08:12.882587+00:00 db=/home/eric-king/kalshi_favorites_bot/trades.db
+- generated_at=2026-07-04T05:11:47.464587+00:00 db=/home/eric-king/kalshi_favorites_bot/trades.db
 - Lower rank_score means closer to review, not approval.
 - 1. high_price_native_taker:crypto_last_hour_longshot_no | status=NATIVE_FORWARD_ACCUMULATING rank=0.0669 | 342 resolved 307W-35L -$3.50 | Wilson 86.1% vs target 92.8% | next=KXBTCD-26JUL0402-T62799.99 active due=2026-07-04T05:59:59.894123+00:00 | blockers=pnl<=0, wilson<BE+2pp | next=wait for native-actionable forward rows to resolve; no live order until target clears
 - 2. high_price_native_taker:weather_no_candidate:no_95_98_zero_loss_cities_v1 | status=NATIVE_FORWARD_ACCUMULATING rank=0.1128 | 58 resolved 56W-2L -$0.56 | Wilson 88.3% vs target 99.5% | next=KXHIGHMIA-26JUL03-B88.5 active due=2026-07-04T14:00:00+00:00 | blockers=pnl<=0, wilson<BE+2pp | next=wait for native-actionable forward rows to resolve; no live order until target clears
@@ -947,12 +947,12 @@ workspace_head: 0710930
 - 4. source_shadow_requires_native:shadow_longshot_fading:other:NO:weak:80-90:4-24h | status=SHADOW_STABILITY_REJECT rank=0.2500 | 55 events 54W-1L +$771.83 | Wilson 90.4% vs target 85.3% | stability_validation=17ev 17W-0L +$284.09 Wilson 81.6% vs target 84.4% | blockers=source_only_requires_native_forward_gate, shadow_stability_reject, validation_wilson<avg_price+buffer | next=only promote if a matching native first-actionable gate clears after fees and depth
 - 5. maker_adverse_selection:cell_sports_no | status=NO_GO_REVIEW rank=0.6510 | 467 independent resolved 357W-110L -$515.92 | Wilson 72.4% vs BE 87.5% | toxic=110 fill_rate=28.5% | blockers=pnl<=0, wilson<=BE, toxic>0 | next=continue shadow fill/toxicity measurement; no maker pilot with toxic or Wilson blockers
 - 6. maker_adverse_selection:cell_crypto_yes | status=NO_GO_REVIEW rank=0.8680 | 320 independent resolved 176W-144L -$1002.41 | Wilson 49.5% vs BE 86.3% | toxic=144 fill_rate=29.0% | blockers=pnl<=0, wilson<=BE, toxic>0 | next=continue shadow fill/toxicity measurement; no maker pilot with toxic or Wilson blockers
-- 7. structural_arbitrage:same_strike_last_24h | status=WATCH_ONLY rank=1.0000 | 41762 observations | fresh_pairs=41762 execution_ready_tier=6152 gross_positive=1 execution_ready_gross_positive=0 qty10_positive=1 execution_ready_qty10_positive=0 best_gross_edge=0.01 | blockers=no_execution_ready_gross_positive, no_execution_ready_fee_net_qty10_positive | next=continue simultaneous quote scans; only trade fee-net positive executable dislocations
+- 7. structural_arbitrage:same_strike_last_24h | status=WATCH_ONLY rank=1.0000 | 41776 observations | fresh_pairs=41776 execution_ready_tier=6158 gross_positive=2 execution_ready_gross_positive=0 qty10_positive=2 execution_ready_qty10_positive=0 best_gross_edge=0.01 | blockers=no_execution_ready_gross_positive, no_execution_ready_fee_net_qty10_positive | next=continue simultaneous quote scans; only trade fee-net positive executable dislocations
 
 ## Kalshi Shadow Longshot Fading Resolver
 - timer: kalshi-shadow-longshot-fading-backfill.timer active/enabled | service=kalshi-shadow-longshot-fading-backfill.service
-- recent_36h_backlog: unresolved=1501 | expired_after_60s_grace=1223 | oldest_expired=2026-07-04 04:58:59 | oldest_expected=2026-07-04 04:58:59
-- recent_36h_crypto_backlog: unresolved=1335 | expired_after_60s_grace=1185 | oldest_expired=2026-07-04 04:59:59 | oldest_expected=2026-07-04 04:59:59
+- recent_36h_backlog: unresolved=1502 | expired_after_60s_grace=1223 | oldest_expired=2026-07-04 04:58:59 | oldest_expected=2026-07-04 04:58:59
+- recent_36h_crypto_backlog: unresolved=1336 | expired_after_60s_grace=1185 | oldest_expired=2026-07-04 04:59:59 | oldest_expected=2026-07-04 04:59:59
 - native_gate_stale_unresolved=0
 - resolved_last_30m=1178
 - all_expired_backlog: unresolved=7749 | crypto=7356 | other=352 | weather=41 | oldest_expired=2026-04-15 21:59:59 | newest_expired=2026-07-04 05:00:00
@@ -983,77 +983,77 @@ workspace_head: 0710930
 ## Timers
 ```
 NEXT                                 LEFT LAST                              PASSED UNIT                                                   ACTIVATES
-Sat 2026-07-04 00:08:26 CDT           11s Sat 2026-07-04 00:07:26 CDT      48s ago gateway-watchdog.timer                                 gateway-watchdog.service
-Sat 2026-07-04 00:08:26 CDT           11s Sat 2026-07-04 00:07:26 CDT      48s ago goal-loop-watchdog.timer                               goal-loop-watchdog.service
-Sat 2026-07-04 00:08:30 CDT           14s Sat 2026-07-04 00:08:00 CDT      15s ago gemini-cushion-ds-scanner.timer                        gemini-cushion-ds-scanner.service
-Sat 2026-07-04 00:08:41 CDT           26s Sat 2026-07-04 00:03:33 CDT 4min 42s ago kalshi-moderate-favorites-eth-yes-preflight.timer      kalshi-moderate-favorites-eth-yes-preflight.service
-Sat 2026-07-04 00:08:42 CDT           27s Sat 2026-07-04 00:08:06 CDT       9s ago kalshi-worldcup-score-state-live-pilot.timer           kalshi-worldcup-score-state-live-pilot.service
-Sat 2026-07-04 00:08:46 CDT           31s Sat 2026-07-04 00:06:46 CDT 1min 28s ago gemini-ds-index-micro-parity.timer                     gemini-ds-index-micro-parity.service
-Sat 2026-07-04 00:08:52 CDT           36s Sat 2026-07-04 00:07:52 CDT      23s ago gemini-ds-index-parity.timer                           gemini-ds-index-parity.service
-Sat 2026-07-04 00:08:54 CDT           39s Sat 2026-07-04 00:07:50 CDT      24s ago kalshi-mve-component-result-live-pilot.timer           kalshi-mve-component-result-live-pilot.service
-Sat 2026-07-04 00:08:59 CDT           43s Sat 2026-07-04 00:03:55 CDT 4min 19s ago kalshi-shadow-deterministic-settlement-backfill.timer  kalshi-shadow-deterministic-settlement-backfill.service
-Sat 2026-07-04 00:09:00 CDT           44s Sat 2026-07-04 00:08:00 CDT      15s ago cushion-ds-multi-series-scanner.timer                  cushion-ds-multi-series-scanner.service
-Sat 2026-07-04 00:09:01 CDT           45s Sat 2026-07-04 00:04:01 CDT 4min 14s ago gemini-maker-fill-simulator.timer                      gemini-maker-fill-simulator.service
-Sat 2026-07-04 00:09:12 CDT           57s Sat 2026-07-04 00:08:09 CDT       6s ago kalshi-worldcup-final-state-live-pilot.timer           kalshi-worldcup-final-state-live-pilot.service
-Sat 2026-07-04 00:09:56 CDT      1min 41s Sat 2026-07-04 00:06:29 CDT 1min 46s ago kalshi-sports-final-state-live-pilot.timer             kalshi-sports-final-state-live-pilot.service
-Sat 2026-07-04 00:10:00 CDT      1min 44s Fri 2026-07-03 18:10:00 CDT 5h 58min ago claude-chat-sync.timer                                 claude-chat-sync.service
-Sat 2026-07-04 00:10:00 CDT      1min 44s Sat 2026-07-04 00:00:00 CDT     8min ago full-picture-latest-refresh.timer                      full-picture-latest-refresh.service
-Sat 2026-07-04 00:11:08 CDT      2min 53s Sat 2026-07-04 00:06:07 CDT  2min 8s ago kalshi-crypto-ladder-dislocation-preflight.timer       kalshi-crypto-ladder-dislocation-preflight.service
-Sat 2026-07-04 00:11:17 CDT       3min 2s Fri 2026-07-03 23:56:17 CDT    11min ago gemini-ds-source-parity.timer                          gemini-ds-source-parity.service
-Sat 2026-07-04 00:11:21 CDT       3min 6s Sat 2026-07-04 00:06:16 CDT 1min 59s ago kalshi-crypto-favorite-taker-preflight.timer           kalshi-crypto-favorite-taker-preflight.service
-Sat 2026-07-04 00:11:29 CDT      3min 14s Sat 2026-07-04 00:06:27 CDT 1min 47s ago kalshi-weather-yes-90-93-preflight.timer               kalshi-weather-yes-90-93-preflight.service
-Sat 2026-07-04 00:11:31 CDT      3min 15s Sat 2026-07-04 00:06:26 CDT 1min 49s ago kalshi-other-longshot-no-80-90-preflight.timer         kalshi-other-longshot-no-80-90-preflight.service
-Sat 2026-07-04 00:11:34 CDT      3min 18s Sat 2026-07-04 00:06:34 CDT 1min 41s ago kalshi-shadow-forecast-accuracy-backfill.timer         kalshi-shadow-forecast-accuracy-backfill.service
-Sat 2026-07-04 00:11:57 CDT      3min 41s Sat 2026-07-04 00:06:57 CDT 1min 18s ago kalshi-weather-no-candidate-preflight.timer            kalshi-weather-no-candidate-preflight.service
-Sat 2026-07-04 00:12:12 CDT      3min 57s Sat 2026-07-04 00:07:02 CDT 1min 12s ago kalshi-weather-high-ask-no-preflight.timer             kalshi-weather-high-ask-no-preflight.service
-Sat 2026-07-04 00:12:17 CDT       4min 1s Fri 2026-07-03 23:57:17 CDT    10min ago ds-storage-pressure-monitor.timer                      ds-storage-pressure-monitor.service
-Sat 2026-07-04 00:12:20 CDT       4min 5s Sat 2026-07-04 00:07:14 CDT  1min 1s ago kalshi-shadow-longshot-fading-backfill.timer           kalshi-shadow-longshot-fading-backfill.service
-Sat 2026-07-04 00:12:39 CDT      4min 24s Sat 2026-07-04 00:07:35 CDT      40s ago kalshi-crypto-last-hour-longshot-no-preflight.timer    kalshi-crypto-last-hour-longshot-no-preflight.service
-Sat 2026-07-04 00:13:07 CDT      4min 52s Sat 2026-07-04 00:08:07 CDT       7s ago gemini-reward-post-only-safety.timer                   gemini-reward-post-only-safety.service
-Sat 2026-07-04 00:13:21 CDT          5min Fri 2026-07-03 23:58:21 CDT     9min ago kalshi-side-equivalence-resolver.timer                 kalshi-side-equivalence-resolver.service
-Sat 2026-07-04 00:14:07 CDT          5min Fri 2026-07-03 23:44:07 CDT    24min ago ds-storage-monitor.timer                               ds-storage-monitor.service
-Sat 2026-07-04 00:14:15 CDT          6min Fri 2026-07-03 23:59:15 CDT     8min ago btc-moderate-v2-shadow-resolver.timer                  btc-moderate-v2-shadow-resolver.service
-Sat 2026-07-04 00:14:15 CDT          6min Fri 2026-07-03 23:59:15 CDT     8min ago gemini-categorical-scanner.timer                       gemini-categorical-scanner.service
-Sat 2026-07-04 00:15:00 CDT          6min Sat 2026-07-04 00:00:00 CDT     8min ago cushion-ds-multi-series-resolver.timer                 cushion-ds-multi-series-resolver.service
-Sat 2026-07-04 00:15:00 CDT          6min Sat 2026-07-04 00:00:00 CDT     8min ago gemini-cushion-ds-resolver.timer                       gemini-cushion-ds-resolver.service
-Sat 2026-07-04 00:17:52 CDT          9min Sat 2026-07-04 00:07:51 CDT      24s ago ds-shadow-continuous-archive.timer                     ds-shadow-continuous-archive.service
-Sat 2026-07-04 00:18:58 CDT         10min Fri 2026-07-03 21:18:58 CDT 2h 49min ago db-auto-vacuum.timer                                   db-auto-vacuum.service
-Sat 2026-07-04 00:19:00 CDT         10min Fri 2026-07-03 23:19:00 CDT    49min ago gemini-db-retention.timer                              gemini-db-retention.service
-Sat 2026-07-04 00:19:07 CDT         10min Fri 2026-07-03 23:49:07 CDT    19min ago eth-ds-fg-filter-blocks-resolver.timer                 eth-ds-fg-filter-blocks-resolver.service
-Sat 2026-07-04 00:19:19 CDT         11min Sat 2026-07-04 00:04:19 CDT 3min 56s ago gemini-categorical-resolver.timer                      gemini-categorical-resolver.service
-Sat 2026-07-04 00:24:04 CDT         15min Fri 2026-07-03 23:54:04 CDT    14min ago gemini-db-size-monitor.timer                           gemini-db-size-monitor.service
-Sat 2026-07-04 00:30:00 CDT         21min Fri 2026-07-03 23:30:00 CDT    38min ago gemini-direct-index-ds-first-resolution-verifier.timer gemini-direct-index-ds-first-resolution-verifier.service
-Sat 2026-07-04 00:36:01 CDT         27min Fri 2026-07-03 23:34:36 CDT    33min ago ladder-coherence-two-leg-resolver.timer                ladder-coherence-two-leg-resolver.service
-Sat 2026-07-04 00:41:01 CDT         32min Fri 2026-07-03 23:40:50 CDT    27min ago macro-release-resolver.timer                           macro-release-resolver.service
-Sat 2026-07-04 01:07:00 CDT         58min Sat 2026-07-04 00:07:01 CDT 1min 14s ago claude-partition-arb-scan.timer                        claude-partition-arb-scan.service
-Sat 2026-07-04 01:17:00 CDT       1h 8min Fri 2026-07-03 19:17:00 CDT 4h 51min ago ds-shadow-retention-engine.timer                       ds-shadow-retention-engine.service
-Sat 2026-07-04 03:15:00 CDT       3h 6min Fri 2026-07-03 03:15:00 CDT            - shadow-verification.timer                              shadow-verification.service
-Sat 2026-07-04 03:18:56 CDT      3h 10min Fri 2026-07-03 21:18:56 CDT 2h 49min ago ds-shadow-db-maintenance.timer                         ds-shadow-db-maintenance.service
-Sat 2026-07-04 03:24:20 CDT      3h 16min Fri 2026-07-03 21:24:20 CDT 2h 43min ago ds-shadow-archive.timer                                ds-shadow-archive.service
-Sat 2026-07-04 03:30:00 CDT      3h 21min Fri 2026-07-03 03:30:00 CDT            - ibkr-independent-verification.timer                    ibkr-independent-verification.service
-Sat 2026-07-04 04:13:00 CDT       4h 4min Fri 2026-07-03 16:13:00 CDT       7h ago claude-calibration-logger.timer                        claude-calibration-logger.service
-Sat 2026-07-04 04:30:00 CDT      4h 21min Fri 2026-07-03 04:30:00 CDT            - tax-ledger-ingest.timer                                tax-ledger-ingest.service
-Sat 2026-07-04 04:49:19 CDT      4h 41min Fri 2026-07-03 04:46:50 CDT            - ds-archive-tier-rotation.timer                         ds-archive-tier-rotation.service
-Sat 2026-07-04 05:20:00 CDT      5h 11min Fri 2026-07-03 05:20:01 CDT            - logrotate-user.timer                                   logrotate-user.service
-Sat 2026-07-04 05:30:00 CDT      5h 21min Fri 2026-07-03 05:30:01 CDT            - disk-hygiene-audit.timer                               disk-hygiene-audit.service
-Sat 2026-07-04 05:30:00 CDT      5h 21min Fri 2026-07-03 05:30:01 CDT            - full-picture-daily-save.timer                          full-picture-daily-save.service
-Sat 2026-07-04 05:40:00 CDT      5h 31min Fri 2026-07-03 05:40:00 CDT            - database-autonomous-maintenance.timer                  database-autonomous-maintenance.service
+Sat 2026-07-04 00:11:53 CDT            2s Sat 2026-07-04 00:10:53 CDT      57s ago gemini-ds-index-parity.timer                           gemini-ds-index-parity.service
+Sat 2026-07-04 00:11:57 CDT            6s Sat 2026-07-04 00:06:57 CDT 4min 53s ago kalshi-side-equivalence-scanner.timer                  kalshi-side-equivalence-scanner.service
+Sat 2026-07-04 00:11:57 CDT            6s Sat 2026-07-04 00:06:57 CDT 4min 53s ago kalshi-weather-no-candidate-preflight.timer            kalshi-weather-no-candidate-preflight.service
+Sat 2026-07-04 00:12:00 CDT            9s Sat 2026-07-04 00:11:00 CDT      49s ago cushion-ds-multi-series-scanner.timer                  cushion-ds-multi-series-scanner.service
+Sat 2026-07-04 00:12:00 CDT            9s Sat 2026-07-04 00:11:30 CDT      20s ago gemini-cushion-ds-scanner.timer                        gemini-cushion-ds-scanner.service
+Sat 2026-07-04 00:12:02 CDT           11s Sat 2026-07-04 00:10:58 CDT      51s ago kalshi-mve-component-result-live-pilot.timer           kalshi-mve-component-result-live-pilot.service
+Sat 2026-07-04 00:12:12 CDT           22s Sat 2026-07-04 00:07:02 CDT 4min 47s ago kalshi-weather-high-ask-no-preflight.timer             kalshi-weather-high-ask-no-preflight.service
+Sat 2026-07-04 00:12:17 CDT           26s Fri 2026-07-03 23:57:17 CDT    14min ago ds-storage-pressure-monitor.timer                      ds-storage-pressure-monitor.service
+Sat 2026-07-04 00:12:20 CDT           30s Sat 2026-07-04 00:07:14 CDT 4min 36s ago kalshi-shadow-longshot-fading-backfill.timer           kalshi-shadow-longshot-fading-backfill.service
+Sat 2026-07-04 00:12:24 CDT           33s Sat 2026-07-04 00:11:47 CDT       2s ago kalshi-worldcup-score-state-live-pilot.timer           kalshi-worldcup-score-state-live-pilot.service
+Sat 2026-07-04 00:12:25 CDT           34s Sat 2026-07-04 00:11:20 CDT      29s ago kalshi-worldcup-final-state-live-pilot.timer           kalshi-worldcup-final-state-live-pilot.service
+Sat 2026-07-04 00:12:27 CDT           37s Sat 2026-07-04 00:11:27 CDT      22s ago gateway-watchdog.timer                                 gateway-watchdog.service
+Sat 2026-07-04 00:12:27 CDT           37s Sat 2026-07-04 00:11:27 CDT      22s ago goal-loop-watchdog.timer                               goal-loop-watchdog.service
+Sat 2026-07-04 00:12:39 CDT           49s Sat 2026-07-04 00:07:35 CDT 4min 15s ago kalshi-crypto-last-hour-longshot-no-preflight.timer    kalshi-crypto-last-hour-longshot-no-preflight.service
+Sat 2026-07-04 00:12:47 CDT           56s Sat 2026-07-04 00:10:47 CDT  1min 3s ago gemini-ds-index-micro-parity.timer                     gemini-ds-index-micro-parity.service
+Sat 2026-07-04 00:13:07 CDT      1min 17s Sat 2026-07-04 00:08:07 CDT 3min 42s ago btc-moderate-v2-shadow-scanner.timer                   btc-moderate-v2-shadow-scanner.service
+Sat 2026-07-04 00:13:07 CDT      1min 17s Sat 2026-07-04 00:08:07 CDT 3min 42s ago gemini-fp-orderbook-capture.timer                      gemini-fp-orderbook-capture.service
+Sat 2026-07-04 00:13:07 CDT      1min 17s Sat 2026-07-04 00:08:07 CDT 3min 42s ago gemini-reward-post-only-safety.timer                   gemini-reward-post-only-safety.service
+Sat 2026-07-04 00:13:17 CDT      1min 27s Sat 2026-07-04 00:09:56 CDT 1min 53s ago kalshi-sports-final-state-live-pilot.timer             kalshi-sports-final-state-live-pilot.service
+Sat 2026-07-04 00:13:21 CDT      1min 30s Fri 2026-07-03 23:58:21 CDT    13min ago kalshi-side-equivalence-resolver.timer                 kalshi-side-equivalence-resolver.service
+Sat 2026-07-04 00:13:45 CDT      1min 55s Sat 2026-07-04 00:08:42 CDT  3min 8s ago kalshi-moderate-favorites-eth-yes-preflight.timer      kalshi-moderate-favorites-eth-yes-preflight.service
+Sat 2026-07-04 00:14:00 CDT      2min 10s Sat 2026-07-04 00:08:59 CDT 2min 51s ago kalshi-shadow-deterministic-settlement-backfill.timer  kalshi-shadow-deterministic-settlement-backfill.service
+Sat 2026-07-04 00:14:01 CDT      2min 10s Sat 2026-07-04 00:09:01 CDT 2min 49s ago gemini-maker-fill-simulator.timer                      gemini-maker-fill-simulator.service
+Sat 2026-07-04 00:14:07 CDT      2min 16s Fri 2026-07-03 23:44:07 CDT    27min ago ds-storage-monitor.timer                               ds-storage-monitor.service
+Sat 2026-07-04 00:14:15 CDT      2min 25s Fri 2026-07-03 23:59:15 CDT    12min ago btc-moderate-v2-shadow-resolver.timer                  btc-moderate-v2-shadow-resolver.service
+Sat 2026-07-04 00:14:15 CDT      2min 25s Fri 2026-07-03 23:59:15 CDT    12min ago gemini-categorical-scanner.timer                       gemini-categorical-scanner.service
+Sat 2026-07-04 00:15:00 CDT       3min 9s Sat 2026-07-04 00:00:00 CDT    11min ago cushion-ds-multi-series-resolver.timer                 cushion-ds-multi-series-resolver.service
+Sat 2026-07-04 00:15:00 CDT       3min 9s Sat 2026-07-04 00:00:00 CDT    11min ago gemini-cushion-ds-resolver.timer                       gemini-cushion-ds-resolver.service
+Sat 2026-07-04 00:16:09 CDT      4min 19s Sat 2026-07-04 00:11:08 CDT      41s ago kalshi-crypto-ladder-dislocation-preflight.timer       kalshi-crypto-ladder-dislocation-preflight.service
+Sat 2026-07-04 00:16:28 CDT      4min 37s Sat 2026-07-04 00:11:23 CDT      27s ago kalshi-crypto-favorite-taker-preflight.timer           kalshi-crypto-favorite-taker-preflight.service
+Sat 2026-07-04 00:16:33 CDT      4min 42s Sat 2026-07-04 00:11:31 CDT      19s ago kalshi-other-longshot-no-80-90-preflight.timer         kalshi-other-longshot-no-80-90-preflight.service
+Sat 2026-07-04 00:16:39 CDT      4min 48s Sat 2026-07-04 00:11:29 CDT      20s ago kalshi-weather-yes-90-93-preflight.timer               kalshi-weather-yes-90-93-preflight.service
+Sat 2026-07-04 00:17:52 CDT          6min Sat 2026-07-04 00:07:51 CDT 3min 59s ago ds-shadow-continuous-archive.timer                     ds-shadow-continuous-archive.service
+Sat 2026-07-04 00:18:58 CDT          7min Fri 2026-07-03 21:18:58 CDT 2h 52min ago db-auto-vacuum.timer                                   db-auto-vacuum.service
+Sat 2026-07-04 00:19:00 CDT          7min Fri 2026-07-03 23:19:00 CDT    52min ago gemini-db-retention.timer                              gemini-db-retention.service
+Sat 2026-07-04 00:19:07 CDT          7min Fri 2026-07-03 23:49:07 CDT    22min ago eth-ds-fg-filter-blocks-resolver.timer                 eth-ds-fg-filter-blocks-resolver.service
+Sat 2026-07-04 00:19:19 CDT          7min Sat 2026-07-04 00:04:19 CDT     7min ago gemini-categorical-resolver.timer                      gemini-categorical-resolver.service
+Sat 2026-07-04 00:24:04 CDT         12min Fri 2026-07-03 23:54:04 CDT    17min ago gemini-db-size-monitor.timer                           gemini-db-size-monitor.service
+Sat 2026-07-04 00:26:17 CDT         14min Sat 2026-07-04 00:11:17 CDT      32s ago gemini-ds-source-parity.timer                          gemini-ds-source-parity.service
+Sat 2026-07-04 00:30:00 CDT         18min Fri 2026-07-03 23:30:00 CDT    41min ago gemini-direct-index-ds-first-resolution-verifier.timer gemini-direct-index-ds-first-resolution-verifier.service
+Sat 2026-07-04 00:36:01 CDT         24min Fri 2026-07-03 23:34:36 CDT    37min ago ladder-coherence-two-leg-resolver.timer                ladder-coherence-two-leg-resolver.service
+Sat 2026-07-04 00:41:01 CDT         29min Fri 2026-07-03 23:40:50 CDT    31min ago macro-release-resolver.timer                           macro-release-resolver.service
+Sat 2026-07-04 01:07:00 CDT         55min Sat 2026-07-04 00:07:01 CDT 4min 49s ago claude-partition-arb-scan.timer                        claude-partition-arb-scan.service
+Sat 2026-07-04 01:17:00 CDT       1h 5min Fri 2026-07-03 19:17:00 CDT 4h 54min ago ds-shadow-retention-engine.timer                       ds-shadow-retention-engine.service
+Sat 2026-07-04 03:15:00 CDT       3h 3min Fri 2026-07-03 03:15:00 CDT            - shadow-verification.timer                              shadow-verification.service
+Sat 2026-07-04 03:18:56 CDT       3h 7min Fri 2026-07-03 21:18:56 CDT 2h 52min ago ds-shadow-db-maintenance.timer                         ds-shadow-db-maintenance.service
+Sat 2026-07-04 03:24:20 CDT      3h 12min Fri 2026-07-03 21:24:20 CDT 2h 47min ago ds-shadow-archive.timer                                ds-shadow-archive.service
+Sat 2026-07-04 03:30:00 CDT      3h 18min Fri 2026-07-03 03:30:00 CDT            - ibkr-independent-verification.timer                    ibkr-independent-verification.service
+Sat 2026-07-04 04:13:00 CDT       4h 1min Fri 2026-07-03 16:13:00 CDT       7h ago claude-calibration-logger.timer                        claude-calibration-logger.service
+Sat 2026-07-04 04:30:00 CDT      4h 18min Fri 2026-07-03 04:30:00 CDT            - tax-ledger-ingest.timer                                tax-ledger-ingest.service
+Sat 2026-07-04 04:49:19 CDT      4h 37min Fri 2026-07-03 04:46:50 CDT            - ds-archive-tier-rotation.timer                         ds-archive-tier-rotation.service
+Sat 2026-07-04 05:20:00 CDT       5h 8min Fri 2026-07-03 05:20:01 CDT            - logrotate-user.timer                                   logrotate-user.service
+Sat 2026-07-04 05:30:00 CDT      5h 18min Fri 2026-07-03 05:30:01 CDT            - disk-hygiene-audit.timer                               disk-hygiene-audit.service
+Sat 2026-07-04 05:30:00 CDT      5h 18min Fri 2026-07-03 05:30:01 CDT            - full-picture-daily-save.timer                          full-picture-daily-save.service
+Sat 2026-07-04 05:40:00 CDT      5h 28min Fri 2026-07-03 05:40:00 CDT            - database-autonomous-maintenance.timer                  database-autonomous-maintenance.service
 Sat 2026-07-04 06:40:00 CDT            6h -                                      - ibkr-deterministic-fx-poc.timer                        ibkr-deterministic-fx-poc.service
-Sat 2026-07-04 09:02:00 CDT            8h Fri 2026-07-03 20:57:00 CDT 3h 11min ago claude-crossing-no-v3.timer                            claude-crossing-no-v3.service
+Sat 2026-07-04 09:02:00 CDT            8h Fri 2026-07-03 20:57:00 CDT 3h 14min ago claude-crossing-no-v3.timer                            claude-crossing-no-v3.service
 Sat 2026-07-04 09:14:12 CDT            9h Fri 2026-07-03 09:14:12 CDT      14h ago launchpadlib-cache-clean.timer                         launchpadlib-cache-clean.service
 Sat 2026-07-04 09:18:56 CDT            9h Fri 2026-07-03 09:18:56 CDT      14h ago gemini-fp-retention.timer                              gemini-fp-retention.service
 Sun 2026-07-05 02:00:00 CDT      1 day 1h Sun 2026-06-28 02:00:00 CDT            - gemini-archive-compression.timer                       gemini-archive-compression.service
 Fri 2026-07-10 09:16:55 CDT        6 days Fri 2026-07-03 09:16:55 CDT      14h ago ubuntu-insights-upload.timer                           ubuntu-insights-upload.service
 Sun 2026-08-02 19:43:55 CDT 4 weeks 1 day Fri 2026-07-03 09:13:55 CDT      14h ago ubuntu-insights-collect.timer                          ubuntu-insights-collect.service
--                                       - Sat 2026-07-04 00:08:07 CDT       7s ago btc-moderate-v2-shadow-scanner.timer                   btc-moderate-v2-shadow-scanner.service
--                                       - Sat 2026-07-04 00:08:07 CDT       7s ago gemini-fp-orderbook-capture.timer                      gemini-fp-orderbook-capture.service
--                                       - Sat 2026-07-04 00:07:18 CDT      56s ago gemini-liquidity-rewards-scanner.timer                 gemini-liquidity-rewards-scanner.service
--                                       - Fri 2026-07-03 23:22:21 CDT    45min ago gemini-reward-account-monitor.timer                    gemini-reward-account-monitor.service
--                                       - Fri 2026-07-03 23:18:22 CDT    49min ago gemini-reward-inventory-exit.timer                     gemini-reward-inventory-exit.service
--                                       - Fri 2026-07-03 23:46:14 CDT    22min ago gemini-reward-live-readiness.timer                     gemini-reward-live-readiness.service
--                                       - Fri 2026-07-03 23:18:18 CDT    49min ago gemini-reward-quote-pilot.timer                        gemini-reward-quote-pilot.service
--                                       - Sat 2026-07-04 00:06:03 CDT 2min 12s ago gemini-trade-print-capture.timer                       gemini-trade-print-capture.service
--                                       - Sat 2026-07-04 00:06:57 CDT 1min 18s ago kalshi-side-equivalence-scanner.timer                  kalshi-side-equivalence-scanner.service
+-                                       - Sat 2026-07-04 00:10:00 CDT 1min 50s ago claude-chat-sync.timer                                 claude-chat-sync.service
+-                                       - Sat 2026-07-04 00:10:00 CDT 1min 50s ago full-picture-latest-refresh.timer                      full-picture-latest-refresh.service
+-                                       - Sat 2026-07-04 00:10:53 CDT      57s ago gemini-liquidity-rewards-scanner.timer                 gemini-liquidity-rewards-scanner.service
+-                                       - Fri 2026-07-03 23:22:21 CDT    49min ago gemini-reward-account-monitor.timer                    gemini-reward-account-monitor.service
+-                                       - Fri 2026-07-03 23:18:22 CDT    53min ago gemini-reward-inventory-exit.timer                     gemini-reward-inventory-exit.service
+-                                       - Fri 2026-07-03 23:46:14 CDT    25min ago gemini-reward-live-readiness.timer                     gemini-reward-live-readiness.service
+-                                       - Fri 2026-07-03 23:18:18 CDT    53min ago gemini-reward-quote-pilot.timer                        gemini-reward-quote-pilot.service
+-                                       - Sat 2026-07-04 00:11:03 CDT      47s ago gemini-trade-print-capture.timer                       gemini-trade-print-capture.service
+-                                       - Sat 2026-07-04 00:11:34 CDT      15s ago kalshi-shadow-forecast-accuracy-backfill.timer         kalshi-shadow-forecast-accuracy-backfill.service
 -                                       - Fri 2026-07-03 15:00:00 CDT       9h ago snap.firmware-updater.firmware-notifier.timer          snap.firmware-updater.firmware-notifier.service
 
 72 timers listed.
