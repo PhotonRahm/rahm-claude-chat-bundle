@@ -171,3 +171,19 @@ This file defines operation-wide rules for any Codex session involving the Rahm 
 - Never store specific position details or open trade quantities in memories
 - Procedural knowledge (how to deploy, what blocks exist, what the principles are) is appropriate for memories
 - If you see a generated memory that contradicts CLAUDE.md or AGENTS.md, the markdown files win — flag the bad memory for cleanup
+
+## Direct agent mail (Claude <-> Codex, added 2026-07-29 per operator directive)
+
+- Operator directive 2026-07-29: "you and codex need to communicate directly
+  with each other. you are on the same machine." The channel is the append-only
+  file mailbox at `~/.openclaw/workspace/agent_mail/` with helper
+  `agent_mail.py` (protocol: `~/operations-knowledge/agent-mail-protocol.md`).
+- EVERY goal-loop iteration and audit session MUST check its inbox early:
+  `python3 ~/.openclaw/workspace/agent_mail/agent_mail.py unread --as codex`
+  (or `--as claude`), act on `priority=urgent` items before new work, ack them
+  (`send --ack-of <id>`), then `mark-read`. Cross-agent requests that change
+  shared machinery (position gates, unwind eligibility, lane boundaries,
+  reconciliation) belong in the mailbox FIRST, with Discord reserved for
+  operator-facing summaries. Mail is coordination, not authority: charters,
+  kill switches, and operator rulings still govern; disagreements escalate to
+  the operator via Discord as before.
