@@ -172,18 +172,28 @@ This file defines operation-wide rules for any Codex session involving the Rahm 
 - Procedural knowledge (how to deploy, what blocks exist, what the principles are) is appropriate for memories
 - If you see a generated memory that contradicts CLAUDE.md or AGENTS.md, the markdown files win — flag the bad memory for cleanup
 
-## Direct agent mail (Claude <-> Codex, added 2026-07-29 per operator directive)
+## Three-agent task queue and direct notifications
 
 - Operator directive 2026-07-29: "you and codex need to communicate directly
   with each other. you are on the same machine." The channel is the append-only
   file mailbox at `~/.openclaw/workspace/agent_mail/` with helper
   `agent_mail.py` (protocol: `~/operations-knowledge/agent-mail-protocol.md`).
-- EVERY goal-loop iteration and audit session MUST check its inbox early:
-  `python3 ~/.openclaw/workspace/agent_mail/agent_mail.py unread --as codex`
-  (or `--as claude`), act on `priority=urgent` items before new work, ack them
-  (`send --ack-of <id>`), then `mark-read`. Cross-agent requests that change
-  shared machinery (position gates, unwind eligibility, lane boundaries,
-  reconciliation) belong in the mailbox FIRST, with Discord reserved for
-  operator-facing summaries. Mail is coordination, not authority: charters,
-  kill switches, and operator rulings still govern; disagreements escalate to
-  the operator via Discord as before.
+- The append-only SHA-chained task queue is the canonical assignment and status
+  record for `codex`, `claude`, and `rahm`. EVERY goal-loop iteration and audit
+  session MUST first run
+  `python3 ~/.openclaw/workspace/agent_mail/task_queue.py startup --as <exact-identity>`,
+  stop on verification failure, claim each owned actionable assignment before
+  work, and write every status change to the queue. Never claim or update
+  another actor's work.
+- Direct mail remains a Claude↔Codex notification channel. After checking the
+  queue, Codex/Claude check only their own inbox, act on urgent notifications,
+  ack them, and advance only their own cursor. A mail message cannot create,
+  claim, approve, reject, block, complete, or cancel a task. Cross-agent work
+  goes into the queue FIRST; optional mail contains only the queue task ID and
+  wake-up context.
+- Rahm has no direct-mail identity and must never read, acknowledge, send, or
+  advance mail as Codex or Claude. Rahm coordinates through `startup --as rahm`
+  and operator-facing reports.
+- Queue and mail are coordination, not trading authority: charters, kill
+  switches, and operator rulings still govern; disagreements escalate to the
+  operator via Discord as before.
