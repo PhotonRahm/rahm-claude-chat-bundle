@@ -126,6 +126,7 @@ This file defines operation-wide rules for any Codex session involving the Rahm 
 - Principle 91: Peer-agent quota exhaustion is not an operational stop. If Claude or Codex reaches a token/quota limit, the available agent continues every still-authorized task solo and does not wait, pause the profit goal, or mark it blocked solely because peer review is unavailable. Preserve already-reviewed bytes; when an open peer-owned task pins bytes that now require correction, leave that task/history untouched and build a distinct successor version under the available agent rather than churning the pinned package or updating the other actor's queue state. Peer review becomes deferred until the stated return time; it is not a prerequisite for source-only progress or for operator-authorized solo execution. The solo agent must compensate with exact frozen hashes, reproducible isolated and connected tests, source-of-truth validation, full reconciliation, all non-peer safety/kill gates, descriptive commit/push history, and an explicit Discord disclosure that peer review is deferred. When the peer returns, enqueue the frozen review backlog without pausing current safe work. Current reference: 2026-08-05/06 q25 CF runtime, where Claude hit its weekly limit, the q25 correction queue stalled, and Eric directed Codex to continue solo until Claude returns on 2026-08-09 at 19:00 America/Chicago.
 - Principle 92: Genuinely locked-profit strategies scale to maximum executable depth without statistical gates. This exception applies only when the complete executed structure has an exact all-path payout floor strictly above all-in cost and fees, every required leg and quantity is simultaneously executable under the venue's verified native quote and order model, available buying power and hard venue/order limits support the debit, and ambiguous, partial, stale, or orphan execution cannot be mislabeled as locked profit. Size to the minimum immediately executable depth across all required legs, further bounded only by available buying power and hard venue/order limits; do not impose Wilson, trade-count, cohort, pilot-quantity, or incremental cap-lift gates. Probabilistic high-win-rate strategies remain evidence-gated. Existing consumed orders are not enlarged, retried, repriced, replaced, or canceled under this rule; apply it prospectively to a fresh qualifying opportunity. Current reference: 2026-08-06 operator directive after protected X maker deployment and discovery of the Dune/Oscars exact-duplicate q100 book-depth candidate.
 - Principle 93: Maximize realized fee-net profit velocity, and accept compensated risk. The primary allocation score is defensible expected fee-net dollars per wall-clock time under the capital actually available, not win rate, raw ROI, nominal locked dollars, or variance minimization. Count executable depth, natural opportunity frequency, fill probability, fees, expected loss magnitude, correlated tail paths, and time until cash is actually reusable. A higher-variance or larger position is preferred when those inputs show higher defensible expected dollar profit; risk is not a reason to reject it by itself. Conversely, uncompensated risk, negative expected value, and slow capital lock reduce the profit objective and are not justified by the operator's risk tolerance. For exact all-path locks, first rank by profit velocity and then apply Principle 92 maximum-depth sizing; do not let a long-duration nominal lock crowd out a faster recycler with higher expected profit throughput. Current reference: 2026-08-06 operator directives after the Dune/Oscars 512-day q100 candidate: prioritize strategies that recycle cash quickly, accept more risk for higher reward, and judge performance by profit generated.
+- Principle 94: Parallel agent throughput requires exact queue ownership, not a shared identity. Static Codex worker identities may progress concurrently only when each process uses one unique exact queue identity, claims only tasks owned by that identity, and holds at most one in-progress task. Preserve the legacy queue schema and principal actor projection; expose additive worker identities for compatibility. Cross-worker claims and updates, dynamic identities, and mailbox impersonation fail closed. The coordinating `codex` identity alone owns the Codex direct-mail cursor; `codex-1`, `codex-2`, and `codex-3` coordinate through exact queue tasks. Parallelism does not broaden live-trading authority, bypass dependencies, relax shared venue request budgets, or permit overlapping edits without an explicit boundary. Current reference: 2026-08-07 operator request to put idle Codex instances to work in parallel, after the original one-in-progress-per-`codex` identity topology serialized otherwise independent work.
 - User systemd unit source-of-truth: operational user units are captured in `~/operations-knowledge/systemd-units/user/`. Use `~/operations-knowledge/scripts/deploy-user-systemd-units.sh` to install them on a fresh server, then review env files and explicitly restart the relevant services. Do not rely on untracked `~/.config/systemd/user/*.service` as the only copy of live deployment behavior.
 - Memories vs CLAUDE.md: memories (~/.codex/memories/) are a soft recall layer. CLAUDE.md and AGENTS.md are source-of-truth. If they conflict, the markdown files win.
 
@@ -176,28 +177,31 @@ This file defines operation-wide rules for any Codex session involving the Rahm 
 - Procedural knowledge (how to deploy, what blocks exist, what the principles are) is appropriate for memories
 - If you see a generated memory that contradicts CLAUDE.md or AGENTS.md, the markdown files win — flag the bad memory for cleanup
 
-## Three-agent task queue and direct notifications
+## Multi-agent task queue and direct notifications
 
 - Operator directive 2026-07-29: "you and codex need to communicate directly
   with each other. you are on the same machine." The channel is the append-only
   file mailbox at `~/.openclaw/workspace/agent_mail/` with helper
   `agent_mail.py` (protocol: `~/operations-knowledge/agent-mail-protocol.md`).
 - The append-only SHA-chained task queue is the canonical assignment and status
-  record for `codex`, `claude`, and `rahm`. EVERY goal-loop iteration and audit
-  session MUST first run
+  record. Its legacy principals remain `codex`, `claude`, and `rahm`; its exact
+  worker identities are `codex`, `codex-1`, `codex-2`, `codex-3`, `claude`,
+  and `rahm`. EVERY goal-loop iteration and audit session MUST first run
   `python3 ~/.openclaw/workspace/agent_mail/task_queue.py startup --as <exact-identity>`,
-  stop on verification failure, claim each owned actionable assignment before
-  work, and write every status change to the queue. Never claim or update
-  another actor's work.
+  stop on verification failure, claim only exact-owned actionable assignments
+  before work, and write every status change to the queue. One `in_progress`
+  task is allowed per exact identity; different exact Codex identities may work
+  concurrently. Cross-worker claims/updates and unlisted dynamic identities
+  fail closed.
 - Direct mail remains a Claude↔Codex notification channel. After checking the
-  queue, Codex/Claude check only their own inbox, act on urgent notifications,
-  ack them, and advance only their own cursor. A mail message cannot create,
-  claim, approve, reject, block, complete, or cancel a task. Cross-agent work
-  goes into the queue FIRST; optional mail contains only the queue task ID and
-  wake-up context.
-- Rahm has no direct-mail identity and must never read, acknowledge, send, or
-  advance mail as Codex or Claude. Rahm coordinates through `startup --as rahm`
-  and operator-facing reports.
+  queue, only the coordinating `codex` and `claude` identities check their own
+  inbox, act on urgent notifications, ack them, and advance only their own
+  cursor. A mail message cannot create, claim, approve, reject, block, complete,
+  or cancel a task. Cross-agent work goes into the queue FIRST; optional mail
+  contains only the queue task ID and wake-up context.
+- `codex-1`, `codex-2`, `codex-3`, and `rahm` have no direct-mail identity and
+  must never read, acknowledge, send, or advance mail as Codex or Claude. They
+  coordinate through their exact queue identities and operator-facing reports.
 - Queue and mail are coordination, not trading authority: charters, kill
-  switches, and operator rulings still govern; disagreements escalate to the
-  operator via Discord as before.
+  switches, shared request budgets, dependencies, and operator rulings still
+  govern; disagreements escalate to the operator via Discord as before.
