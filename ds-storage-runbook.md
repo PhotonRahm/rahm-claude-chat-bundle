@@ -214,13 +214,14 @@ consumers under `/home/kingeric`, files over 5 GiB, and directory growth over
 
 `database-autonomous-maintenance.timer` runs daily at 05:40 CDT and performs
 the maintenance actions that are explicitly safe and re-runnable:
-- SQLite Online Backup API backups for DS shadow, Polymarket, Kalshi, Gemini,
-  and IBKR DBs;
+- SQLite Online Backup API backups for active non-trading databases; live
+  trading databases use their dedicated off-window verified-backup jobs;
 - zstd compression for those backups at a bounded daily-backup level;
 - backup retention: last 7 daily, last 4 Sunday weekly, last 12 first-of-month
   monthly;
 - latest-backup decompression plus SQLite `quick_check`;
-- quick_check for known DBs;
+- quick_check for known small DBs; large live trading DBs are verified from a
+  recent SQLite Online Backup artifact and fail loud when that proof is stale;
 - passive WAL checkpoints for trading DBs and truncate checkpoints for
   non-trading DBs;
 - classification drift audit with only safe-direction auto-change
@@ -261,9 +262,16 @@ User log rotation:
   handles remain valid.
 
 Polymarket:
-- `polymarket.db` is classified as research-grade shadow data, not disposable
-  cache. It is covered by daily backup and integrity checks. No prune is
-  deployed until per-table downstream value is separated.
+- `polymarket.db` remains research-grade evidence, not disposable cache. The
+  collector is operator-paused pending access, so an absent database is
+  explicitly excluded from active backup/integrity gates. Any artifact remains
+  preserved; reactivation requires an explicit lifecycle change.
+
+Kalshi manual snapshots:
+- `kalshi-manual-snapshot-retention.timer` runs at minute 02, 17, 32, and 47
+  each hour. Each low-priority run locks exclusively, processes at most one
+  staged snapshot, proves zstd readability plus restored byte hash before
+  removing raw source bytes, and reports remaining staged bytes/manifests.
 
 ## Automatic vs Operator Attention
 
