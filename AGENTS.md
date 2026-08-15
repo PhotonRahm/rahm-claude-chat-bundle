@@ -9,9 +9,14 @@ trading conclusions or taking live action:
 1. Read `/home/eric-king/KALSHI_GOAL_RESUME.md` completely.
 2. Run `/usr/bin/python3 /home/eric-king/.local/bin/kalshi_goal_resume.py`.
 3. Stop before live action unless it returns `cold_start_ready: true`.
-4. Run `python3 /home/eric-king/.openclaw/workspace/agent_mail/task_queue.py startup --as <exact-identity>` and stop on verification failure.
-5. Read `LATEST.md`, `active_research_frontier.json`, and the exact referenced
+4. Read `/home/eric-king/operations-knowledge/agent-mail-protocol.md` completely.
+5. Run `python3 /home/eric-king/.openclaw/workspace/agent_mail/task_queue.py startup --as <exact-identity>` and stop on verification failure.
+6. Read `LATEST.md`, `active_research_frontier.json`, and the exact referenced
    charters/receipts; then reconcile live exchange and local state.
+7. If Codex or Claude Code needs Rahm, create or update a canonical queue task
+   owned by exact identity `rahm`; urgent Rahm tasks wake Rahm within about one
+   minute and the broad Rahm queue sweep checks all actionable Rahm tasks every
+   five minutes. Direct mail/chat is notification-only, not authority.
 
 The complete stable procedure is in
 `/home/eric-king/operations-knowledge/KALSHI_AGENT_BOOTSTRAP.md`. This block is
@@ -28,6 +33,19 @@ This file defines operation-wide rules for any Codex session involving the Rahm 
 - Goal: $10M portfolio value by summer 2027.
 - Path: prediction market trading bots → algorithmic crypto trading at scale → digital business acquisition portfolio. Trading bots are the foundation, not the endgame.
 - Tax posture: All prediction market activity is "Other Income" on Schedule 1, Line 8z. Never gambling. Illinois taxes gross gambling winnings with no loss deduction; classification matters.
+
+## Standing delegated live-approval authority
+
+Rahm has standing delegated authority from Eric to approve future Kalshi live
+trading. An explicit approval written by exact queue identity `rahm` satisfies
+operator-approval requirements for the exact pilot, deployment, activation,
+order, reentry, quantity/risk change, or scaling scope Rahm names. Eric does
+not need to approve the same action again. Chat, Discord, Telegram, mail,
+assignment, and silence are not approval. This delegation does not itself
+approve an action, revive killed/retired/consumed authority, waive fresh
+cold-start or reconciliation, or make a failed safeguard pass. The complete
+canonical rule is
+`/home/eric-king/operations-knowledge/RAHM_LIVE_APPROVAL_DELEGATION.md`.
 
 ## Core operating principles
 
@@ -150,6 +168,7 @@ This file defines operation-wide rules for any Codex session involving the Rahm 
 - Principle 97: Privileged local helpers must pass a smoke test inside the final systemd sandbox, not only as a direct root command. A client may deliberately drop privileges after opening a protected local control socket, so an over-tight capability bounding set can break the helper even though root filesystem access is sufficient. Trace the required privilege-transition syscalls, grant only the exact non-escalating capabilities they require, retain all unrelated sandbox restrictions, and deploy a separately named successor rather than editing failed frozen evidence in place. Current reference: the 2026-08-13 CF Chrony V1 activation failure, where `chronyc` successfully used the local socket as direct root but the unit failed at `setgroups()` until V2 added only `CAP_SETGID` and `CAP_SETUID`; `CAP_SYS_TIME`, IP sockets, Chrony configuration changes, and all trading authority remained absent.
 - Principle 98: A capability in `CapabilityBoundingSet=` is not proof that it is effective after every systemd hardening transform. Inspect the final process capability sets inside a transient unit that reproduces the deployed sandbox, then exercise the exact command in that sandbox. If `NoNewPrivileges=` removes a required effective capability, prefer the smallest exact `AmbientCapabilities=` grant while keeping `NoNewPrivileges=yes`, the narrow bounding set, and all unrelated restrictions. Current reference: the 2026-08-13 CF Chrony V2 failure, where `CAP_SETUID` was present in the bounding set but absent from the effective set and `chronyc` failed at `setuid(988)`; V3 adds only `AmbientCapabilities=CAP_SETUID`, while `CAP_SYS_TIME`, IP sockets, and trading authority remain absent.
 - User systemd unit source-of-truth: operational user units are captured in `~/operations-knowledge/systemd-units/user/`. Use `~/operations-knowledge/scripts/deploy-user-systemd-units.sh` to install them on a fresh server, then review env files and explicitly restart the relevant services. Do not rely on untracked `~/.config/systemd/user/*.service` as the only copy of live deployment behavior.
+- Reboot recovery source-of-truth: `rahm-agent-operation.target` is enabled under the user `default.target` with user lingering enabled. It starts the gateway, communication health, Discord/Rahm queue watchers, verified backups/drills, the Claude queue dispatcher, and the Codex queue dispatcher after reboot. Codex uses `codex-task-worker@<exact-identity>.service`; all four exact Codex identities are recoverable, while the dispatcher admits only one unattended Codex worker at a time to protect this host. A pending task may be claimed automatically; an `in_progress` task is recovered only from a matching dispatcher receipt, when it predates the current boot, or after the four-hour stale threshold. The obsolete `codex-goal-loop.service` and `claude-goal-loop.service` remain disabled because canonical queue work, not legacy replay loops, is the recovery authority. Current reference: 2026-08-15 owner-requested full-operation reboot hardening.
 - Memories vs CLAUDE.md: memories (~/.codex/memories/) are a soft recall layer. CLAUDE.md and AGENTS.md are source-of-truth. If they conflict, the markdown files win.
 
 ## Documentation maintenance
@@ -205,6 +224,9 @@ This file defines operation-wide rules for any Codex session involving the Rahm 
   with each other. you are on the same machine." The channel is the append-only
   file mailbox at `~/.openclaw/workspace/agent_mail/` with helper
   `agent_mail.py` (protocol: `~/operations-knowledge/agent-mail-protocol.md`).
+- Every Codex, Claude Code, and Rahm startup must read that protocol completely
+  before queue or inbox consumption. Crash recovery, reboot recovery, rate
+  limits, token exhaustion, and replacement sessions do not waive this step.
 - The append-only SHA-chained task queue is the canonical assignment and status
   record. Its legacy principals remain `codex`, `claude`, and `rahm`; its exact
   worker identities are `codex`, `codex-1`, `codex-2`, `codex-3`, `claude`,
@@ -215,6 +237,13 @@ This file defines operation-wide rules for any Codex session involving the Rahm 
   task is allowed per exact identity; different exact Codex identities may work
   concurrently. Cross-worker claims/updates and unlisted dynamic identities
   fail closed.
+- To reach Rahm, create or update a canonical queue task owned by exact
+  identity `rahm`. Use urgent priority when the ask blocks profit, safety,
+  incident containment, live authority, or the next authorized step.
+  `rahm-urgent-queue-watch.timer` checks urgent Rahm-owned tasks every minute;
+  `rahm-queue-sweep.timer` checks all actionable Rahm-owned tasks every five
+  minutes. If those wakeups fail, file an urgent Rahm-owned queue task and do
+  not infer authority from silence.
 - Direct mail remains a Claude↔Codex notification channel. After checking the
   queue, only the coordinating `codex` and `claude` identities check their own
   inbox, act on urgent notifications, ack them, and advance only their own
@@ -224,6 +253,9 @@ This file defines operation-wide rules for any Codex session involving the Rahm 
 - `codex-1`, `codex-2`, `codex-3`, `claude-1`, `claude-2`, and `rahm` have no direct-mail identity and
   must never read, acknowledge, send, or advance mail as Codex or Claude. They
   coordinate through their exact queue identities and operator-facing reports.
-- Queue and mail are coordination, not trading authority: charters, kill
-  switches, shared request budgets, dependencies, and operator rulings still
-  govern; disagreements escalate to the operator via Discord as before.
+- Queue and mail mechanics are coordination, not trading authority. The sole
+  standing exception is an explicit approval event written by exact identity
+  `rahm` under Eric's delegated authority; its exact scope carries operator
+  approval while charters, kill switches, shared request budgets,
+  dependencies, and technical gates still govern. Disagreements escalate to
+  Eric via Discord as before.
