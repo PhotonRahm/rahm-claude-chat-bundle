@@ -261,13 +261,14 @@ approval is a policy failure and must be repaired before the next decision.
 - The append-only SHA-chained task queue is the canonical assignment and status
   record. Its legacy principals remain `codex`, `claude`, and `rahm`; its exact
   worker identities are `codex`, `codex-1`, `codex-2`, `codex-3`, `claude`,
-  `claude-1`, `claude-2`, and `rahm`. EVERY goal-loop iteration and audit session MUST first run
+  `claude-1`, `claude-2`, `rahm`, `grok-build`, `cursor`, and `cos`. EVERY goal-loop iteration and audit session MUST first run
   `python3 ~/.openclaw/workspace/agent_mail/task_queue.py startup --as <exact-identity>`,
   stop on verification failure, claim only exact-owned actionable assignments
   before work, and write every status change to the queue. One `in_progress`
   task is allowed per exact identity; different exact Codex identities may work
   concurrently. Cross-worker claims/updates and unlisted dynamic identities
   fail closed.
+- Additional queue identities (2026-08-21): `grok-build` is a live-capable Grok Build worker on rahm-1 with the same gates as Codex (cold-start, fresh recon, charter/kill/budget, official https://kalshi.com/incentives, and `placement_*.json` evidence). Adding the identity is NOT a skip-gates license and is NOT a deadman re-arm. `cursor` is coding/repo only and must never receive Kalshi placement, approve, or revive. `cos` is Grok of Staff: may enqueue, list, claim/update own coordinator tasks, and use agent mail; it is off the live trading path and must never place/approve/revive orders or impersonate `rahm`/`codex`/`claude`. Existing `codex`/`claude`/`rahm` identities stay.
 - To reach Rahm, create or update a canonical queue task owned by exact
   identity `rahm`. Use urgent priority when the ask blocks profit, safety,
   incident containment, live authority, or the next authorized step.
