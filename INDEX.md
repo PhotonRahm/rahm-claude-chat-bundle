@@ -1,7 +1,7 @@
 # Rahm Operation - Claude-in-Chat Bundle Index
 
-Last updated: 2026-09-05T10:41:14+00:00
-Pipeline heartbeat: 2026-09-05T10:41:14+00:00
+Last updated: 2026-09-05T11:10:00+00:00
+Pipeline heartbeat: 2026-09-05T11:10:00+00:00
 Bundle commit: pending-sync; exact pushed SHA is written to claude_chat_sync_status.json
 
 ## Startup
@@ -29,9 +29,9 @@ Fetch this index first, then fetch Tier 1. Fetch Tier 2/3 only when the operator
 ## File checksums
 - AGENTS.md: sha256=7729c1710bfa79ebc4c5a2bed340e95d36924a55f11cda4bc4f5386eb46340cd bytes=101554
 - CLAUDE-CHAT.md: sha256=808380d8d0a380f49a333add2292875118bcd62bca062036baeebb86436370f4 bytes=4101
-- MANIFEST.md: sha256=5aaa3c6f50f4bdabe16edcbf867d650804304256dc775178818aa001f84dbe28 bytes=1551
+- MANIFEST.md: sha256=6fd4780f28426b2f2e1d55000bef7454f2129b7cc1a4b7830d1fd6cb1965a6f0 bytes=1551
 - VERIFICATION_DEFERRED.md: sha256=a0964e94b3168303de4607805c17be30f7eb31b1d335d1f130c4e5a01601f1c5 bytes=141483
-- current-state.md: sha256=f18cb4b370b772a4d3da2e92fab5baf5d3e6ec06cbc4d0c9ec44c7b1c364f645 bytes=431383
+- current-state.md: sha256=e9aeef9e8aaa7ff0f08bdf5d80de52ed95898b3fb400347a547df85eb0c905b1 bytes=431380
 - dispatch-conventions.md: sha256=597a82528f51b403ef3487fadf905ecd719c93f5acc08db3f39a00944bebe24f bytes=14119
 - ds-storage-runbook.md: sha256=1725bb53e1760114b13c19518bfd1b5414925b8b766e0dedbe521a8604e47c6b bytes=12230
 - operator-decision-log.md: sha256=7b97655fb49392431a640c84f37fd90d4bfff97c6fb532ea48dfee4d8f3f6bd6 bytes=77941
