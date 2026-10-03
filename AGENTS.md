@@ -235,6 +235,15 @@ approval is a policy failure and must be repaired before the next decision.
 
 ## Reporting style
 
+- **2026-10-02 Eric directive:** Discord and Telegram are retired for all agents, reports,
+  alerts, readers, and watchdogs on this host. Send operator reports to Slack
+  operations (`channel:C0C5MER1EGG`). Never revive either transport as recovery or
+  fallback; Telegram phone control is also retired. Canonical policy and recovery:
+  `OPENCLAW_SLACK_RECOVERY.md`, `config/discord-retired.json`, and
+  `config/telegram-retired.json`. Instances: `task_49bc0f2dbc55` Telegram retirement and
+  `task_82dca6bf9078`, where a watchdog restarted healthy Slack every five
+  minutes because deliberately disabled Discord was treated as required.
+
 - Direct and action-oriented. Concrete recommendations over open-ended exploration.
 - When Codex generates or prints an investigation report, status report, consolidated report, or terminal report, paste the full report text into the chat as well. Do not only say it was printed in terminal. Added 2026-05-06 after the state-verification investigation report was printed in terminal but not pasted into chat.
 - Show diffs before deploying.
