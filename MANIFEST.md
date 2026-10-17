@@ -1,13 +1,13 @@
 # Claude Chat Bundle Manifest
 
-generated_utc: 2026-10-16T10:46:28+00:00
-pipeline_heartbeat_utc: 2026-10-16T10:46:28+00:00
+generated_utc: 2026-10-17T11:31:52+00:00
+pipeline_heartbeat_utc: 2026-10-17T11:31:52+00:00
 
 - `AGENTS.md` | 102430 bytes | sha256=97bb9d12cde81536728ffb7432486b9c7a36224ff2370b16347cfe533f66625b | tier=2 | Global Rahm operating rules and principles
 - `dispatch-conventions.md` | 14119 bytes | sha256=597a82528f51b403ef3487fadf905ecd719c93f5acc08db3f39a00944bebe24f | tier=2 | Dispatch vocabulary and reporting conventions
 - `strategies-glossary.md` | 22155 bytes | sha256=6c759a1bb28fec6be90188356a2c7a20534214b72e59c1dfe92778847e1ce2c2 | tier=3 | Active strategy glossary
 - `CLAUDE-CHAT.md` | 4101 bytes | sha256=808380d8d0a380f49a333add2292875118bcd62bca062036baeebb86436370f4 | tier=1 | Claude-in-chat startup contract
-- `current-state.md` | 426519 bytes | sha256=e9ed348c62144d0e7f7fc31f81be98b9256b045d5f96267720186cf50009684b | tier=1 | Generated live operational state
+- `current-state.md` | 423616 bytes | sha256=e3eeed2a3baddc6a85b0e8b4cb3f7bdd76a7b002c9a16897eb434d25765e3aa0 | tier=1 | Generated live operational state
 - `VERIFICATION_DEFERRED.md` | 141483 bytes | sha256=a0964e94b3168303de4607805c17be30f7eb31b1d335d1f130c4e5a01601f1c5 | tier=3 | Deferred verification triggers
 - `ds-storage-runbook.md` | 12230 bytes | sha256=1725bb53e1760114b13c19518bfd1b5414925b8b766e0dedbe521a8604e47c6b | tier=3 | Storage operations runbook
 - `storage-architecture.md` | 1057 bytes | sha256=01e1044a1caa5ef5a547113dbf4029d6ad341c3c97741cf5aa0121126ea96dbb | tier=3 | High-level storage architecture
