@@ -301,3 +301,7 @@ approval is a policy failure and must be repaired before the next decision.
   approval while charters, kill switches, shared request budgets,
   dependencies, and technical gates still govern. Disagreements escalate to
   Eric via Discord as before.
+
+## Eric direct policy update — 2026-11-03
+
+Continuing strategy authorization is persistent ON/OFF, not recurring approval renewal. Read [RAHM_PERSISTENT_STRATEGY_AUTHORIZATION.md](RAHM_PERSISTENT_STRATEGY_AUTHORIZATION.md). Exact reviewed-generation migration, current technical/economic truth, persistent kills and the no-cancel boundary remain mandatory. This supersedes approval-duration renewal, not market TTC or freshness controls, and revives no retired/killed/consumed strategy. Source: Eric Slack #general `1793730222.034919`; parent `task_9be634d06391`.
